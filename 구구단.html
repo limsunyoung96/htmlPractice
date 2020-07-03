@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table border="2" id="id_disp">
+    
+    </table>
+   
+    <script>
+        //table 태그를 이용해 출력, 3분이면 가능
+        var v_disp = document.getElementById("id_disp");
+        var v_dan = prompt("단을 입력해 주삼?", "5"); //scanner 같은 친구가 prompt이다.
+        if(!v_dan){
+            v_dan = 2;
+        }
+        
+        var v_str = '<tr><th colspan="5">' + v_dan+'단</th></tr>';
+        for (var i = 1; i <= 9; i++) {
+            v_str += "<tr><td>"+v_dan + "<td>X</td><td>" + i + "</td><td>=</td><td>" + (v_dan * i) + "</td></tr>";
+        }
+        v_disp.innerHTML = v_str;
+    </script>
+</body>
+
+</html>

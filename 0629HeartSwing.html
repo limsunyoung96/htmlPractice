@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #myHeart {
+            overflow: visible;
+            position: relative;
+            top: 100px;
+            left: 300px;
+            width: 170px;
+            height: 430px;
+            /* border: 1px solid black; */
+        }
+
+        #ball {
+            position: relative;
+            z-index: 100;
+            top: -25px;
+            left: 60px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: red;
+        }
+
+        #bar {
+            position: relative;
+            top: -50px;
+            left: 75px;
+            width: 20px;
+            height: 300px;
+            background-color: blue;
+        }
+
+        #heart {
+            width: 150px;
+            height: 150px;
+            left: 9px;
+            top: -100px;
+            position: relative;
+            /*  border:5px dashed magenta; */
+            transform: rotate(45deg);
+        }
+
+        #tcircle {
+            position: absolute;
+            left: 50px;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            border-radius: 50%;
+        }
+
+        #lcircle {
+            position: absolute;
+            top: 50px;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            border-radius: 50%;
+        }
+
+        #nemo {
+            position: absolute;
+            left: 50px;
+            top: 50px;
+            width: 100px;
+            height: 100px;
+            /* background-image: url("http://img.newspim.com/news/2020/01/30/200130145446801.jpg"); */
+            background-size: 100px 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <input type=button value="크기조정" onclick="f_scale()">
+    <script>
+        var v_parent;
+        function f_scale() {
+            v_parent = document.getElementById("myHeart");
+            //  v_parent.style.transform = "scale(10)"; // 절반으로 줄이기
+            v_parent.style.transform = "scale(2, 1.5)"; // 폭 2배, 높이 1.5배
+        }
+    </script>
+    <div id="myHeart" onmouseover="f_scale()">
+        <div id="ball"></div>
+        <div id="bar"></div>
+        <div id="heart">
+            <div id="tcircle"></div>
+            <div id="lcircle"></div>
+            <div id="nemo"></div>
+        </div>
+    </div>
+    <script>
+        var v_myHeart = document.getElementById("myHeart");
+        var v_nemo = document.getElementById("nemo");
+        v_myHeart.style.transformOrigin = "center top";
+        var v_gak = 0;
+        var v_mv = 3;
+        function f_swing() {
+            v_gak = (v_gak + v_mv) % 360;
+            v_myHeart.style.transform = "rotate(" + v_gak + "deg)";
+            if (v_gak >= 30 || v_gak <= -30) {
+                v_mv = -v_mv;
+            }
+            if (v_gak < 0) {
+                v_nemo.style.transform = "rotate(0deg)"
+            } else {
+                v_nemo.style.transform = "rotate(-90deg)";
+            }
+            setTimeout(f_swing, 200);
+        }
+        f_swing();
+    </script>
+</body>
+
+</html>

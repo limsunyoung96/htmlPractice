@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<div id="id_isp"></div>
+<script>
+    // 이 정도는 써줘야 중급자라고 할 수 있죠
+    // 어떤 객체에 어떤 속성이 들어있는지 확인하기
+    alert("open" in window) // window 객체에 open 속성이 있는가? true/false
+
+
+    // 객체의 속성과 해당속성의 값 리스트하기 (for in 문)
+    var v_dv = document.getElementById("id_isp")
+    for (var v_attr in window) {
+        v_dv.innerHTML += v_attr + "\t-->\t" + window[v_attr] + "<br>" // 속성만 리스트하기
+    }
+    var System = {}
+    System.out = {}
+    System.out.println = function (p_msg) {
+        document.write(p_msg)
+    }
+    System.out.println("<h1>나야 임선영!</h1>")
+
+    // 전역 번수 패기지화
+    var Global = {}
+    Global.v_name = "조현수"
+    Global.v_age = 100
+    // Global["v_age"] = 100 // 배열식 접근법
+
+    // 속성 리스트 체크용 for in 문
+    for (var v_attr in Global) {
+        //  Global.v_atrr 는 뜨지 않는다. 왜냐하면 속성을 주지 않았기 때문에 배열식 접근법을 써야한다.
+        // alert(v_attr + ": " + Global[v_attr] + " ") // json은 속성 리스트 출력
+    }
+
+    var v_arr = ["aa", "bb", "cc"]
+    for (var v_lsy in v_arr) {
+        // alert(v_lsy + ": " + v_arr[v_lsy]) // 인덱스가 뜸
+    }
+
+
+    // var v_name = "ㅎㅅㅎ"
+
+    /*
+    // json 메소드
+    var v_json = {} // 빈 객체 생성
+    // var v_json = {"myName": 임선영} // 아래는 이것과 같은 방법.
+    v_json.myName = "임선영 안뇽" // 속성추가, 속성명은 내 맘대로
+    v_json.myAge = {}
+    v_json.myAge.realAge = 99
+    v_json.myAge.fakeAge = 10
+    v_json.myAge = 100;
+    v_json.getName = function () { //메소드 추가
+        return this.myName
+    }
+    v_json.setAge = function (p_age) {
+        this.myAge = p_age
+    }
+
+    alert(v_json.getName())
+    */
+</script>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #all_container{
+            position: relative;
+            transform-origin: top center;
+            /* border: 1px solid black; */
+            width: 60px;
+            height: 200px;
+            left: 150px;
+            top: 150px;
+        }
+        #id_bar {
+            position: absolute;
+            left: 20px;
+            /* top: 150px; */
+            width: 20px;
+            height: 150px;
+            /* transform: rotate(-45deg); */
+            background-color: rgb(20, 180, 119);
+            /* transform-origin: top center; */
+            /* 기본 값 center center*/
+        }
+
+        .heart {
+            position: absolute;
+            display: inline-block;
+            /* 옆자리에 오는걸 허락해줌 */
+            width: 40px;
+            height: 40px;
+            /* border: 1px solid black; */
+            transform: rotate(45deg);
+            /* left: 153px;*/
+            top: 120px; 
+            left: 10px
+            /* transform-origin: top center; */
+            /* margin: 5px 10px; */
+        }
+
+        .nemo {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: salmon;
+            left: 20px;
+            top: 20px;
+        }
+
+        .nleft {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: salmon;
+            border-radius: 20px 20px;
+            top: 20px;
+        }
+
+        .ntop {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: salmon;
+            border-radius: 20px 20px;
+            left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="눌렁!" onclick="f_rot()">
+    <div id="all_container">
+        <div id="id_bar"></div>
+        <div id="container">
+            <div class="heart">
+                <div class="nemo"></div>
+                <div class="nleft"></div>
+                <div class="ntop"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var v_bar = document.getElementById("id_bar")
+        var v_heart = document.getElementById("all_container")
+        var v_gak = 0
+        var v_mv = 3
+        function f_rot() {
+            v_gak = (v_gak + v_mv) % 360;  // 360 넘는 값은 필요없음
+            // v_bar.style.transform = "rotate(" + v_gak + "deg)";
+            v_heart.style.transform = "rotate(" + v_gak + "deg)";
+            if (v_gak >= 40 || v_gak <= -40) {
+                v_mv = -v_mv;    // 방향전환
+            }
+            setTimeout(f_rot, 300);   // 0.3초마다 f_rot 콜
+        }
+    </script>
+</body>
+
+</html>

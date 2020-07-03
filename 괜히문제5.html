@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <center>
+        <script>
+            // 여기서 문제 반복문을 한번만 써서 아래와 똑같은 결과를 만들어 보세요
+            // 반복문 1번 쓰는 것 외에 제역사항 없음
+            // 반복문/ 조건문 사용 연습
+            var flag = false
+            for (var i = 1; i <= 6 && i >= 1;) {
+                if (i == 6) {
+                    flag = true
+                }
+                document.write("<h" + i + ">난 최고의 프로그래머당</h" + i + ">")
+                if (flag) {
+                    i--
+                } else {
+                    i++
+                }
+            }
+            // for (var i = 6; i >= 1; i--) {
+            //     document.write("<h" + i + ">난 최고의 프로그래머당</h" + i + ">")
+            // }
+        </script>
+    </center> <!-- deprecated 호환성 때문에 남겨둔 것-->
+</body>
+
+</html>

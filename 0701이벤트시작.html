@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            display: inline-block;
+        }
+
+        #id_menu,
+        #id_menu2 {
+            width: 100px;
+            border: 1px solid black;
+        }
+
+        #id_sub,
+        #id_sub2 {
+            /* 공간도 차지 안하고 보이지도 않음 */
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="id_menu" onmouseover="f_show()" onmouseout="f_none()">
+        <div>메인메뉴</div>
+        <div id="id_sub">
+            <a href="#">네이버</a><br>
+            <a href="#">다음</a><br>
+            <a href="#">넥스트</a><br>
+        </div>
+    </div>
+    <!-- mousedown은 마우스 클릭 -->
+    <div id="id_menu2" onmousedown="f_down()">
+        <div>메인메뉴2</div>
+        <div id="id_sub2">
+            <a href="#">네이버</a><br>
+            <a href="#">다음</a><br>
+            <a href="#">넥스트</a><br>
+        </div>
+    </div>
+    <script>
+        var v_sub1 = document.getElementById("id_sub")
+        var v_sub2 = document.getElementById("id_sub2")
+        var v_run = true
+        function f_down() {
+            // 이벤트 객체 출현(짜잔)
+            // alert(event.button); // 0: 왼쪽, 1: 휠, 2: 오른쪽
+            if (event.button == 0) {
+                if (v_run) {
+                    v_sub2.style.display = "inline-block"
+                    v_run = false
+                } else {
+                    v_sub2.style.display = "none"
+                    v_run = true
+                }
+            }
+        }
+        function f_none() {
+            v_sub1.style.display = "none"
+        }
+
+        function f_show() {
+            v_sub1.style.display = "inline-block"
+        }
+    </script>
+</body>
+
+</html>

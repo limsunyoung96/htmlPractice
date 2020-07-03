@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- onkeypress는 onkeydown에서 새로 만들어진 것.
+         onkeypress는 char 형식만 따로 모아서 만든 것 -->
+    <input type="text" id="id_txt1" value="" onkeydown="f_check1()"><br>
+    <!-- <input type="text" id="id_txt2" value="" onkeypress="f_check2()"><br> -->
+    <input type="text" id="id_txt2" value="" onkeydown="f_check2()"><br>
+
+    <script>
+        // 일반적으로는 특수키 입력까지 받아들이는 keyDown 이벤트를 많이 사용
+        var v_txt1 = document.getElementById("id_txt1")
+        var v_txt2 = document.getElementById("id_txt2")
+        function f_check1() {
+            // keyCode 속성 말고 key를 쓰라고 권장하고 있으나
+            // 개발자들이 말을 잘 안들음
+            alert(event.key) // 엔터: Enter
+            // 사용자가 엔터키를 입력했다면
+            if (event.keyCode == 13) { // 엔터: 13
+                // 마우스 커서를 주는 메소드 -> 객체.focus()
+                v_txt2.focus()
+            }
+            // alert(event.keyCode)
+        }
+
+        function f_check2() {
+            // keyCode 속성 말고 key를 쓰라고 권장하고 있으나
+            // 개발자들이 말을 잘 안들음
+            alert(event.key)
+            if (event.keyCode == 13) {
+                // 마우스 커서를 주는 메소드 -> 객체.focus()
+                v_txt1.focus()
+            }
+        }
+    </script>
+</body>
+
+</html>

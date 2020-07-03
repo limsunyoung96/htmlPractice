@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .heart {
+            position: relative;
+            display: inline-block;
+            /* 옆자리에 오는걸 허락해줌 */
+            width: 150px;
+            height: 150px;
+            /* border: 1px solid black; */
+            transform: rotate(45deg);
+            /* left: 10px; */
+            margin: 5px 10px;
+        }
+
+        .nemo {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: salmon;
+            left: 50px;
+            top: 50px;
+        }
+
+        .nleft {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: salmon;
+            border-radius: 50px 50px;
+            top: 50px;
+        }
+
+        .ntop {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: salmon;
+            border-radius: 50px 50px;
+            left: 50px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>성연에겡...</h1>
+    <input type="button" value="하트추가" onclick="f_add()">
+    <div id="container">
+        <div class="heart">
+            <div class="nemo"></div>
+            <div class="nleft"></div>
+            <div class="ntop"></div>
+        </div>
+    </div>
+    <script>
+        var v_container = document.getElementById("container")
+        var v_hearStr = v_container.innerHTML
+        var v_count = 1
+        function f_add() {
+            v_container.innerHTML += v_hearStr
+            v_count++
+            if (v_count == 10) {
+                v_container.innerHTML = ""
+                v_count = 0;
+            }
+            setTimeout(f_add, 1000)
+        }
+        f_add() //call 했으므로 자동 실행
+    </script>
+</body>
+
+</html>

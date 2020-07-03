@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="눌렁" onclick="f_rot()"><br>
+    <img id="meat1" src="./images/meat01.jpg" width="200" height="200">
+    <img id="meat2" src="./images/meat02.jpg" width="200" height="200">
+    <img id="meat3" src="./images/meat03.jpg" width="200" height="200">
+    <script>
+        var v_meat1 = document.getElementById("meat1")
+        var v_meat2 = document.getElementById("meat2")
+        var v_meat3 = document.getElementById("meat3")
+        var v_gak = 0
+        function f_rot() {
+            v_gak = (v_gak + 15) % 360
+            v_meat1.style.transform = "rotateX(" + v_gak + "deg)" // 상하 회전
+            v_meat2.style.transform = "rotateY(" + v_gak + "deg)" // 좌우 회전
+            v_meat3.style.transform = "rotateZ(" + v_gak + "deg)" // 가운데 중심 뱅글뱅글
+            setTimeout(f_rot, 50)
+        }
+    </script>
+</body>
+
+</html>

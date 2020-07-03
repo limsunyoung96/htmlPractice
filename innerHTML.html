@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>innerHTML중요해용!</title>
+</head>
+
+<body>
+    <div id="id_na">
+        <div>흥</div>
+        <div id="id_child2">치</div>
+        <div>피</div>
+    </div>
+    <script>
+        //권장되는 스크립트 태그 위치
+        var v_div1 = document.getElementById("id_na");
+        var v_div2 = document.getElementById("id_child2");
+
+        console.log(v_div1); // id가 id_na인 div 전체를 보여준다.
+        console.log(v_div1.innerHTML); // id가 id_na인 div의 innerHTML을 보여준다.
+        console.log(v_div2);
+        console.log(v_div2.innerHTML);
+        v_div2.innerHTML = "<h1>뭐냐 넌?</h1>";
+        console.log(v_div2.innerHTML);
+        v_div1.innerHTML = '<img src = "./images/meat01.jpg">';
+    </script>
+</body>
+
+</html>

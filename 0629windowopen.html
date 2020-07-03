@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="새창열기" onclick="f_newOpen()"><br>
+    <input type="text" id="old_txt" value=""><br>
+    <input type="button" value="새창에 값 전달" onclick="f_newTo()">
+    <input type="button" value="새창 닫기" onclick="f_newClose()">
+    <input type="button" value="체크" onclick="f_check()">
+    <input type="button" value="나를 닫기" onclick="f_close()">
+
+    <script>
+        function f_close() {
+            window.close()
+            // 스크립트로 열지 않은 창은 스크립트로 닫을 수 없음
+            // 일부 악용하는 사이트가 있어 제한을 걸음
+        }
+        // var f_flag = false
+        var v_newWin = null
+        function f_check() {
+            console.log(v_newWin)
+        }
+        function f_newClose() {
+            // f_flag = false
+            v_newWin.close()
+            v_newWin = null
+        }
+        function f_newTo() {
+            // if (f_flag) {
+            v_newWin.document.getElementById("new_txt").value =
+                document.getElementById("old_txt").value
+            // } else {
+            //     alert("창이 없습니다.")
+            // }
+        }
+        var f_newOpen = function () {
+            // window.open(URL, NAME, Attribute)
+            // 두번째 매개변수에 이름을 주면 같은 이름의 창이 1개만 띄어줌.
+            // width와 height를 주면 창이 튀어나옴
+            // left와 top을 주면 0,0이 아닌 left top 위치에서 창을 켬
+
+            // open을 범용사이트에는 자제해서 사용하고
+            // 내부네트워크 프로그램에는 편하게 씀
+            // 그래서 display 효과를 넣어서 보였다 닫았다 하면서 원래 있던 것처럼 함
+
+            if (!v_newWin) {
+                // open은 열린창을 가리키는 참조값을 리턴해 줌
+                v_newWin = window.open("./0629newWin.html", "",
+                    "width=500. height=200, left =200, top=200")
+                // f_flag = true
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    // this? 우리말로 하면 나! context -> 문맥
+
+    // console.log(this) // 누구? -> 최상위 객체 window를 가리킴
+
+    function f_check() {
+        // console.log(this) // ? 역시 window - 왜?:
+    }
+    // f_check() // 앞에 window가 생략된 window.f_check() 이기 때문
+
+    var v_lsy = {} // 빈객체 생성, window에 명명된 것이기 때문에
+    v_lsy.myMeth = function (p_msg) {
+        console.log(this) // ?
+        return this // method 체이닝을 구현
+    }
+
+    // v_lsy.myMeth("A").myMeth("B").myMeth("c")
+
+    var v_csj = v_lsy.myMeth
+    v_csj("뭐얌") // window.v_csj
+
+    /*
+        해당 속성을 가지고 있는 객체가 this! (문맥상 context)
+        js 개발자의 반발 뭐냐 짜증난당!
+    */
+</script>

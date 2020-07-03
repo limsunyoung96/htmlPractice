@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="눌렁" onclick="f_click()">
+    <input type="button" id="id_btn1" value="등록법2">
+    <script>
+        var v_btn1 = document.getElementById("id_btn1")
+        // v_btn1에 클릭 이벤트 등록
+        // v_btn1.onclick = function () {
+        //     alert('나 불렀엄??')
+        // }
+        //권장되는 이벤트 등록법
+        // v_btn1.addEventListener("clikc", function () {
+        //     alert("이것이 권장되는 이벤트 등록법!")
+        // });
+
+        /* 등록법 2는 같은 이벤트에 함수(이벤트핸들러)를 정의하면 덮어써버림. (곧 나중것만 실행됨)
+                window.onload = function () {
+                    alert("페이지 로딩 끝났엄?")
+                }
+        
+                window.onload = function () {
+                    alert("페이지 로딩이 끝났다공?")
+                }
+        */
+
+        // 덮어쓰지 않고 이벤트가 추가됨
+        window.addEventListener("load", function () {
+            alert("페이지 로딩 끝났엄?")
+        })
+        window.addEventListener("load", function () {
+            alert("페이지 로딩이 끝났다공?")
+        })
+
+        function f_click() {
+
+        }
+    </script>
+</body>
+
+</html>

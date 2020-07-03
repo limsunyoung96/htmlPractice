@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container {
+            width: 210px;
+            margin: 0 auto;
+            border: 2px solid palevioletred;
+        }
+
+        #wrapper {
+            position: relative;
+        }
+
+        #child1,
+        #child2,
+        #child3,
+        #child4 {
+            position: absolute;
+        }
+
+        #child1 {
+            z-index: 100;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <input type="text" id="id_txt" value="" size="6">
+        <input type="button" value="<" onclick="f_pre()">
+        <input type="button" value=">" onclick="f_next()">
+        <div id="wrapper">
+            <div id="child1">
+                <table border="1">
+                    <tr>
+                        <td><img src="images/meal01.jpg" width="100" height="100"></td>
+                        <td><img src="images/meal02.jpg" width="100" height="100"></td>
+                    </tr>
+                    <tr>
+                        <td><img src="images/meal03.jpg" width="100" height="100"></td>
+                        <td><img src="images/meal05.jpg" width="100" height="100"></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="child2">
+                <table border="1">
+                    <tr>
+                        <td><img src="images/meal06.jpg" width="100" height="100"></td>
+                        <td><img src="images/meal07.jpg" width="100" height="100"></td>
+                    </tr>
+                    <tr>
+                        <td><img src="images/meal08.jpg" width="100" height="100"></td>
+                        <td><img src="images/meal09.jpg" width="100" height="100"></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="child3">
+                <table border="1">
+                    <tr>
+                        <td><img src="images/meat01.jpg" width="100" height="100"></td>
+                        <td><img src="images/meat02.jpg" width="100" height="100"></td>
+                    </tr>
+                    <tr>
+                        <td><img src="images/meat03.jpg" width="100" height="100"></td>
+                        <td><img src="images/meat04.jpg" width="100" height="100"></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="child4">
+                <table border="1">
+                    <tr>
+                        <td><img src="images/meat05.jpg" width="100" height="100"></td>
+                        <td><img src="images/meat06.jpg" width="100" height="100"></td>
+                    </tr>
+                    <tr>
+                        <td><img src="images/pig01.jpg" width="100" height="100"></td>
+                        <td><img src="images/cow01.jpg" width="100" height="100"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        var v_startLayer = 1
+        var v_totalLayer = 4
+        var txt = document.getElementById("id_txt")
+        txt.value = v_startLayer + "/" + v_totalLayer
+        function f_pre() {
+            v_startLayer--;
+            for (var i = 1; i <= 4; i++) {
+                document.getElementById("child" + i).style.zIndex = 100  //초기화 시켜주고 
+            }
+            if (v_startLayer <= 0) {
+                v_startLayer = v_totalLayer
+            }
+            txt.value = v_startLayer + "/" + v_totalLayer
+            document.getElementById("child" + v_startLayer).style.zIndex = 1000 //나올 것만 값 변환
+        }
+        function f_next() {
+            v_startLayer++;
+            //동일한 z-index 값으로 강제 초기화
+            for (var i = 1; i <= 4; i++) {
+                document.getElementById("child" + i).style.zIndex = 100  //초기화 시켜주고 
+            }
+            if (v_startLayer > v_totalLayer) {
+                v_startLayer = 1
+            }
+            txt.value = v_startLayer + "/" + v_totalLayer
+            document.getElementById("child" + v_startLayer).style.zIndex = 1000 //나올 것만 값 변환
+        }
+        function f_proxy() {
+            f_next()
+            setTimeout(f_proxy, 1000)
+        }
+        f_proxy();
+    </script>
+</body>
+
+</html>

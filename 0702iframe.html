@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- iframe은 원래 마이크로소프트에서 만들어서 IE(인터넷 익스플로어)에 넣어서
+        브라우저 시장을 점유하는데 큰 역할을 했던 태그로
+        현재는 표준태그로 자리잡아서 모든 브라우저에서 지원함
+    -->
+
+    <!-- 미국에서 무분별한 광고를 해서 ?autoplay=1&mute=1 라고 써야 음소거 이면서 자동실행이 된다.
+         ?autoplay=1&mute=1 는 서버에 값을 넘기는 쿼리 스트링 이라고 불림 -->
+    <iframe id="id_myMovie" width="889" height="500" src="https://www.youtube.com/embed/6LqI1w96dUc?autoplay=1&mute=1"
+        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe><br>
+    <input type="button" value="다음뮤비" onclick="f_next()">
+    <script>
+        var v_codes = ["oKUEbsJDvuo", "UuV2BmJ1p_I", "nM0xDI5R50E"]
+        var v_myMovie = document.getElementById("id_myMovie")
+        var i = 0
+        function f_next() {
+            v_myMovie.src = "https://www.youtube.com/embed/" + v_codes[i] + "?autoplay=1"
+            if (++i >= v_codes.length) {
+                i = 0
+            }
+            setTimeout(f_next,171000) // 영상실행시간을 알면 자동플레이를 구현할 수 있음
+        }
+    </script>
+</body>
+
+</html>

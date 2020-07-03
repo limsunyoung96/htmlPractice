@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .cl_child {
+            display: inline-block;
+        }
+
+        #id_parent {
+            position: relative;
+            left: 300px;
+            width: 100px;
+            height: 100px;
+            border: 10px groove black;
+            overflow: hidden;
+            /* 중요한 속성. 부모보다 자식의 크기가 큼. 겹치면 사라져라(hidden) */
+        }
+
+        #id_row1 {
+            position: absolute;
+            width: 420px;
+            height: 100px;
+        }
+
+        #id_row2 {
+            position: absolute;
+            width: 420px;
+            height: 100px;
+            left: 420px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="전자앨범 팔까?" onclick="f_mv()">
+    <div id="id_parent">
+        <div id="id_row1">
+            <div class="cl_child"><img src="images/meal01.jpg" width="100" height="100"></div>
+            <div class="cl_child"><img src="images/meal02.jpg" width="100" height="100"></div>
+            <div class="cl_child"><img src="images/meal03.jpg" width="100" height="100"></div>
+            <div class="cl_child"><img src="images/meal04.jpg" width="100" height="100"></div>
+        </div>
+        <div id="id_row2">
+            <div class="cl_child"><img src="images/meal05.jpg" width="100" height="100"></div>
+            <div class="cl_child"><img src="images/meal06.jpg" width="100" height="100"></div>
+            <div class="cl_child"><img src="images/meal07.jpg" width="100" height="100"></div>
+            <div class="cl_child"><img src="images/meal08.jpg" width="100" height="100"></div>
+        </div>
+    </div>
+    <script>
+        var v_row1 = document.getElementById("id_row1")
+        var v_row2 = document.getElementById("id_row2")
+        var v_mvW = 10 //한번 클릭할 때 움직일 값
+
+        function f_mv() {
+            // inline style로 초기화 되지 않았다면 빈 공백 값으로 읽힘, 공백은 false
+            if (!v_row1.style.left) {
+                v_row1.style.left = "0px" //강제 초기화
+                v_row2.style.left = "420px"
+            }
+            // alert("pp" + v_row1.style.left + "pp")
+            v_row1.style.left = parseInt(v_row1.style.left) - v_mvW + "px"
+            v_row2.style.left = parseInt(v_row2.style.left) - v_mvW + "px"
+            //  v_row1.style.left 이런 값은 인라인 스타일 밖에 가져오지 못함.
+            //  그렇기 때문에 body 안의 div에 직접 속성을 넣어야 가져올 수 있음
+            var v_row1left = parseInt(v_row1.style.left)
+            var v_row2left = parseInt(v_row2.style.left)
+            if (v_row1left <= -420) {
+                v_row1.style.left = "420px"
+            }
+
+            if (v_row2left <= -420) {
+                v_row2.style.left = "420px"
+            }
+            // if (parseInt(v_row1.style.left) < -420) {
+            //     v_row1.style.left = 420 + "px"
+            // }
+
+            // if (parseInt(v_row2.style.left) < -420) {
+            //     v_row2.style.left = 420 + "px"
+            // }
+
+            setTimeout(f_mv, 50)
+        }
+    </script>
+</body>
+
+</html>

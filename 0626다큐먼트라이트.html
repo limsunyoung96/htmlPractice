@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>난 최고의 프로그래머당!</h1>
+    <input type="button" value="문서에 쓰깅" onclick="f_wrt()">
+    <script>
+        function f_wrt() {
+            document.write("<h1>전 어떻게 될까요?</h1>")
+            // 이미 닫힌 문서에 적용하면 새문서를 작성하게 됨! -> 전에 썼던 것이 다 사라져서 그럼.
+        }
+        // document.write() 권장되지 않음 : 이유 - 가발자들이 잘 못써서
+        // 잘쓰면 장점 있음. 최근 스크립트 엔진들은 내부적으로 자동 체크 하는게
+        // 많아서 잘못 쓸거면 쓰지 마 분위기다.
+
+        // 스크립트 내부에 씀 장점: 스크립트 내부에 쓰면 for문으로 10번 출력 가능
+        for (var i = 1; i <= 3; i++) {
+            document.write("<h1>난 최고의 프로그래머당!</h1>")
+        }
+    </script>
+</body>
+
+</html> <!-- 문서(document)가 닫힘. 문서 작성 끝남-->
+<!-- 반복문의 document는 </html>에서 끝났다가 버튼을 누르면 새로운 html 작동되어 새 문서 작성(전의 for문 출력이 다 지워짐) -->

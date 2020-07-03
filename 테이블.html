@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <table border="10"> <!-- 빨간 속성은 호환성 때문에 되도록 쓰지 말고 css 써라 하는 것-->
+        <tr> <!-- table row -->
+            <th>이름</th> <!-- table header -->
+            <th colspan="2">나이 / 별명</th> <!-- colspan : 컬럼 확장하는데 2개-->
+            <!-- <th>별명</th> -->
+        </tr>
+        <tr> <!-- table row -->
+            <td>박성연</td> <!-- table data -->
+            <td>25</td>
+            <td rowspan="2">성연,앜쿸</td>
+        </tr>
+        <tr> <!-- table row -->
+            <td>허내윤</td> <!-- table data -->
+            <td>25</td>
+            <!-- <td>탈곤지암</td> -->
+        </tr>
+    </table>
+
+    <!-- table>tr*7>td*8 단축이다--> 
+    <!-- div>div*4>div*8 이것도 단축이다-->
+</body>
+</html>

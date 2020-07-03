@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="id_disp"></div>
+    <input id="id_btn" type="button" value="눌러!">
+    <script>
+        var v_btn = document.getElementById("id_btn");
+        function f_msg(p_msg) {
+            console.log(this);
+            alert(p_msg);
+        }
+        /*
+            call, apply,는 ()가 와도 괴는 자리에 단지 this 값을 세팅하고 싶을 때 
+            bind는 ()가 오면 안되는 자리에 this나 매개변수 값을 세팅하고 싶을 때
+        */
+        // setTimeout(f_msg.bind(document, "임선영 만만세"), 1000)
+        setTimeout(f_msg, 1000, "첫번째 매개변수얌")
+        /*
+            call은 함수를 실행시켜 주고
+            bind는 내부적으로 새로운 함수를 만들어서 
+            그 함수의 포인터를 리턴해주기 때문에 자동실행되지 않음!
+        */
+
+        // window.onload = f_msg("aaa") //이것이 옳은 사용법인가요? 아니오. 함수()라서 무조건 call 하고있던 것
+        // window.onload = f_msg // 이것이 옳은 사용법이다.
+        // this = v_btn 내부적으로 실행됨
+        v_btn.onclick = f_msg.bind(v_btn, "나 이태영이얌마!");// bind는 버튼 눌러야 실행됨
+        // v_btn.onclick = f_msg.call(null, "나 임선영이얌") // call은 버튼 안눌러도 실행됨
+    </script>
+</body>
+
+</html>

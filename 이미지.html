@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img id="id_img" src="images/meat01.jpg" width=200 height=200><br>
+    <input type=button value="따음" onclick="f_next()">
+    <script>
+        var v_img = document.getElementById("id_img");
+        var v_imgs = []; // 빈 배열 선언
+        for(var i=1; i<=10; i++){
+            v_imgs[v_imgs.length] = "images/kimdami0" + i + ".jpeg";
+        }
+       // alert(v_imgs); // 배열 요소 값 확인
+       var v_startIndex = 1;
+        function f_next(){
+            var v_index = v_startIndex++;
+            if(v_index == v_imgs.length){
+                v_index = 1;
+                v_startIndex=1;
+            } 
+            v_img.src = "images/kimdami0" + v_index + ".jpg";   // 이미지 소스 바꾸기
+        }
+        //여기서 괜히 문제 마지막 이미지넘버 넘어가면 
+        //첫번째 이미지로 오게 해보세용!
+    </script>
+</body>
+</html>

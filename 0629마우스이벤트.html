@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #wrapper {
+            width: 50px;
+            height: 20px;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper" onmouseover="f_over()" onmouseout="f_out()">
+    </div>
+    <script>
+        var v_wrapper = document.getElementById("wrapper")
+        var v_timeA
+        var v_timeB
+        function f_over() {
+            clearTimeout(v_timeB)
+            // console.log("pppp" + v_wrapper.style.width + "ppp") // style 값은 가져오지 못하고 태그에 쓴 값만 가져옴
+            if (!v_wrapper.style.width) { //빈 공백은 false다
+                v_wrapper.style.width = "50px"
+            }
+            v_wrapper.style.width = parseInt(v_wrapper.style.width) + 10 + "px"
+            v_wrapper.innerHTML = "늘어난당!"
+            v_timeA = setTimeout(f_over, 300)
+            // console.log("마우스가 올라왔어용!")
+        }
+        function f_out() {
+            //over되었을 때 커지는 것 멈추기
+            clearTimeout(v_timeA)
+            if (!v_wrapper.style.width) { //빈 공백은 false다
+                v_wrapper.style.width = "50px"
+            }
+            v_wrapper.style.width = parseInt(v_wrapper.style.width) - 10 + "px"
+            v_wrapper.innerHTML = "줄어든당!"
+            v_timeB = setTimeout(f_out, 300)
+            console.log("마우스가 떠났어요!")
+        }
+    </script>
+</body>
+
+</html>

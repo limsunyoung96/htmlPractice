@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 스크립트 파일 넣기 -->
+    <script src="0629mylib.js"></script>
+    <!-- mylib.js 에서 alert(document.getElementById("id_test").innerHTML)가 
+        안되는 이유는 순서에 영향받기 때문 body 밑에 id_test가 선언되었다.
+        이를 위해 onload 선언.-->
+    <style>
+        #id_test {
+            position: absolute;
+            /* 움직이려면 absolute */
+            width: 150px;
+            height: 150px;
+            border: 2px solid black;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="id_test">난 innerHTML</div>
+    <script>
+        // f_myFunc("나야 나 안녕")
+        // 스크립트 소스 코드
+        // 여기서 디버깅을 한 다음에 파일로 따로 저장
+        // 파일 확장자는 .js
+
+    </script>
+</body>
+
+</html>

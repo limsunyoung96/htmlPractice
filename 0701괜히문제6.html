@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #wrapper {
+            position: relative;
+            /* 가운데 정렬 */
+            margin: 0px auto;
+            width: 60%;
+            /* width: 400px; */
+            height: 90vh;
+            background-color: seagreen;
+        }
+
+        #id_bar {
+            /* 부모 기준으로 맞춤 absolute */
+            position: absolute;
+            /* 아래 기준으로 */
+            bottom: 40px;
+            width: 80px;
+            height: 20px;
+            background-color: sandybrown;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper" tabindex="0" onkeydown="f_lrMove()">
+        <div id="id_bar"></div>
+    </div>
+    <script>
+        var v_square = document.getElementById("id_bar")
+        var v_parent = document.getElementById("wrapper")
+        function f_lrMove() {
+            var v_left = parseInt(v_square.style.left)
+            // 좌우 화살표 눌렀을 때 막대 움직이기
+            if (event.keyCode == 37) { //왼쪽 화살표
+                if (v_left - 10 >= 0) {
+                    v_square.style.left = v_left - 10 + "px"
+                }
+            }
+            if (event.keyCode == 39) { //오른쪽 화살표
+                // alert(v_parent.style.width)
+                // if (v_left + 10 + 80 <= 400) {
+                if (v_left + 10 + 80 <= parseInt(v_parent.style.width)) {
+                    v_square.style.left = v_left + 10 + "px"
+                }
+
+            }
+        }
+
+        // 초기 세팅이 필요한 일들은 window.onload 이벤트에 모아서 세팅
+        window.onload = function () {
+            if (!v_square.style.left) { //초기값 없을 때 초기값 강제 세팅
+                v_square.style.left = "30px"
+            }
+            if (!v_parent.style.width) { //초기값 없을 때 초기값 강제 세팅
+                v_parent.style.width = window.innerWidth * 60 / 100 + "px"
+            }
+        }
+        // 여기서 문제 막대가 좌우로 움직이는데
+        // 부모(wrappe)를 벗어나지 못하게
+    </script>
+</body>
+
+</html>

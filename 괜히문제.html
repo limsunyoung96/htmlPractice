@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<SCript>
+    var v_arr = [3, 8, 1, 6, 9, 2, 3, 2];
+    //위 배열 요소중에 최소값 찾아 출력
+    var min = v_arr[0];
+    for (var i = 1; i < v_arr.length; i++) {
+        //출력문을 잘 이용하면 값의 변화를 눈으로 볼 수 있음
+        console.log("i:", i, " v_arr[i]:", v_arr[i]);
+
+        if (min > v_arr[i]) {
+            console.log("현재 min:",min, " v_arr[i]:", v_arr[i]);
+            min = v_arr[i];
+        }
+    }
+    alert(min);
+</SCript>

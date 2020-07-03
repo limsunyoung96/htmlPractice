@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #wrapper {
+            /* position: relative; */
+            width: 96vw;
+            height: 96vh;
+            border: 1px solid black;
+        }
+
+        #ity {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-image: url("images/meat01.jpg");
+            background-size: 100px 100px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="ity">루루루루라라라라라라</div>
+    <div id="wrapper" onmousemove="f_move()">
+    </div>
+    <script>
+        var v_letter = document.getElementById("ity")
+        function f_move() {
+            // console.log("마우스X좌표: ", event.clientX)
+            // console.log("마우스Y좌표: ", event.clientY)
+            v_letter.style.left = event.clientX + "px"
+            v_letter.style.top = event.clientY + "px"
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #id_ball {
+            position: absolute;
+            /* 움직이려면 relative나 absolute여야 함 */
+            width: 100px;
+            height: 100px;
+            left: 100px;
+            top: 100px;
+            /* right: 20px;
+            bottom: 30px; */
+            border-radius: 50px 50px;
+            /* width height의 절반값이면 동그라미 */
+            background-color: lightslategray;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="움직여봐" onclick="f_proxy()">
+    <!-- 얘가 style보다 우선순위가 높아서 덮어씌움 -->
+    <div id="id_ball" style="left: 60px;top: 60px; 
+                            background-image: url('./images/pig01.jpg'); 
+                            background-size: 100px 100px;"></div>
+    <script>
+        // 새로운 키워드 javascropt 브라우저를 참조하는 식별자 window
+        var v_ball = document.getElementById("id_ball");
+
+        // 인라인 스타일 접근법(- 하이픈 들어간 것) (권장)
+        // 하이픈 빼고 대문자
+        // alert(v_ball.style.backgroundImage)
+        // alert(v_ball.style.backgroundSize)
+
+        //배열 접근법
+        // alert(v_ball.style["background-image"])
+        // alert(v_ball.style["backgroundSize"])
+
+        var v_wWidth = window.innerWidth
+        var v_hHeight = window.innerHeight
+        var v_mvW = 50 //좌우 방향 컨트롤
+        var v_mvH = 50 //상하 방향 컨트롤
+
+        //SW 프로그래밍 기법 proxy pattern 이라고 불림
+        var isRun = false //아직 실행되고 있지 않은 상황
+        function f_proxy() { //proxy는 대리인이라는 뜻
+            if (!isRun) { //isRun이 false 일 때에만
+                f_mv1()
+                isRun = true
+            }
+        }
+        var v_number = 1;
+        var v_gak = 0;
+        function f_mv1() {
+            var v_left = parseInt(v_ball.style.left)
+            var v_top = parseInt(v_ball.style.top)
+            v_ball.style.left = v_left + v_mvW + "px" /* 단위 꼭 붙여*/
+            v_ball.style.top = v_top + v_mvH + "px" /* 단위 꼭 붙여*/
+            v_left = parseInt(v_ball.style.left)
+            v_top = parseInt(v_ball.style.top)
+            //오른쪽 벽에 닿거나 넘어선다면 || 왼쪽 벽에 닿거나 넘어선다면
+            if ((v_left + 100) >= v_wWidth || v_left <= 0) {
+                v_mvW = -v_mvW //+10을 -10으로 바꾸어 줌
+            }
+            //위아래 부딪혔을 때
+            if ((v_top + 100) >= v_hHeight || v_top <= 0) {
+                v_mvH = -v_mvH //+10을 -10으로 바꾸어 줌
+            }
+
+            var v_path = "./images/meat0" + v_number++ + ".jpg";
+            v_ball.style.backgroundImage = "url(" + v_path + ")"
+            v_gak = (v_gak + 20) % 360 //10도씩 추가
+            v_ball.style.transform = "rotate(" + v_gak + "deg)" //각도
+
+            if (v_number > 6) {
+                v_number = 1
+            }
+            setTimeout(f_mv1, 300)
+            // alert("사용자가 보는 넓이:"+window.innerWidth)
+            // alert("사용자가 보는 높이:"+window.innerHeight)
+        }
+        //버튼을 눌러도 속도가 안빨라지게 해보세요!
+        //힌트: 자바의 싱글톤
+    </script>
+</body>

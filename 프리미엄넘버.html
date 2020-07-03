@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // prime 넘버 구하기 (소수)
+        // 1과 그 자신으로만 나누어 떨어지는 수, 1 제외
+
+
+        var v_primeArr = []
+        var v_primeArr2 = []
+        function isPrime(p_num) {
+            var v_prime = true //소수라고 가정
+            for (var i = 2; i <= p_num - 1; i++) {
+                if (p_num % i == 0) {
+                    // alert("소수라고 가정했는데 틀렸네요")
+                    v_prime = false
+                    break
+                }
+            }
+            return v_prime
+        }
+        // alert(isPrime(11))
+
+        function f_prime(p_endNum) {
+            for (var i = 2; i <= p_endNum; i++) {
+                if (isPrime(i)) {
+                    v_primeArr[v_primeArr.length] = i
+                }
+            }
+        }
+        f_prime(10) //2에서 10까지 사이의 소수를 배열에 담아서 출력
+        alert(v_primeArr)
+
+        // function f_prime(p_endNum) {
+        //     for (var i = 2; i <= p_endNum; i++) {
+        //         var cnt = 0
+        //         for (var j = 1; j <= i; j++) {
+        //             if (!(i % j)) {
+        //                 cnt++
+        //             }
+        //         }
+        //         if (cnt == 2) {
+        //             v_primeArr[v_primeArr.length] = i
+        //         }
+        //     }
+        // }
+        // f_prime(10) //2에서 10까지 사이의 소수를 배열에 담아서 출력
+        // alert(v_primeArr)
+
+        function f_prime1(p_endNum) {
+            for (var i = 2; i <= p_endNum; i++) {
+                for (var j = 2; j <= i; j++) {
+                    if (j == i) {
+                        v_primeArr2[v_primeArr2.length] = i
+                    }
+                    if (!(i % j)) {
+                        break
+                    }
+                }
+            }
+        }
+        f_prime1(10) //2에서 10까지 사이의 소수를 배열에 담아서 출력
+        alert(v_primeArr2)
+    </script>
+</body>
+
+</html>

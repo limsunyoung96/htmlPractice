@@ -1,0 +1,28 @@
+<meta charset="UTF-8">
+<script>
+    // 반복문은 continue와 break를 잘 알아둡시다.
+    // 초기값; 조건 ; 증감식
+    // var i = 1;
+    // for (; i < 10;) { //이렇게 쓰면 while문과 같아짐
+    //     if (i == 5) break;
+    //     alert(i++);
+    // }
+
+    // var i = 1;
+    // var a = i++; // a =i; i=i+1;
+    // a = ++i; //i=i+1; a=i;
+
+    // for (; "이렇게하면 무한루핑";) { //이렇게 쓰면 while문과 같아짐
+    //     if (i == 5) break; //무한루핑 종료 조건
+    //     alert(i++);
+    // }
+    for (var i = 1; i <= 10; i++) {
+        if (!(i % 2)) { // i % 2 == 0
+            continue; // 증감식 부분으로 돌아감
+        }
+        alert(i);
+    }
+
+    // 조건문 java same
+    // switch 아주 가끔 firmware에 사용
+</script>

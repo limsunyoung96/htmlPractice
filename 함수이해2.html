@@ -1,0 +1,17 @@
+<meta charset="UTF-8">
+<script>
+    // 변수 범위(variable scope)
+    // function 안에 선언이 되어있으면 무조건 지역변수, 밖에 선언되면 전역변수
+    var v_aaa = "흥!"; // 전역변수 (global)
+    function f_scope(p_arg){
+        // var v_aaa = "치!"; //지역변수(local)
+        // alert(v_aaa)
+        for(var i = 1; i<=2; i++){
+            var v_kyh = "김영훈" 
+        }
+        // alert("for문 밖 i: "+ i); //여기의 i는 잘 뜬다.
+        alert("jyh : "+v_kyh)
+    } 
+    f_scope();
+    alert(v_aaa);
+</script>

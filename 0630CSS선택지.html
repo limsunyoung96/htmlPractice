@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/myStyle.css">
+    <title>웹디자이너 입장에서 본 CSS</title>
+
+    <style>
+        /* basic selector */
+
+        /* 전체 선택자 ( * ) */
+        * {
+            border: 2px solid black;
+        }
+
+        /* 태그(또는 type라고 부름) 선택자 */
+        input {
+            border: 5px dashed palevioletred;
+        }
+
+        /* ID 선택자 ( # ) */
+        #lty {
+            /* 2em: 폰트사이즈 2배 */
+            font-size: 2em;
+        }
+
+        /* class 선택자 . */
+        .aaa {
+            background-color: seagreen;
+        }
+
+        /* 속성 포함 선택자[] 개발자가 많이 쓰는 표현 */
+        /* input 태그 중에 type이 버튼인 것 */
+        input[type=button] {
+            color: tomato;
+            background-color: peachpuff;
+        }
+
+        /* 여러개 선택 , 콤마*/
+        div,
+        input {
+            /* 덮어쓰지 못한 이유는 inline view의 태그(클래스)에 background를 줘서 */
+            background-color: purple;
+        }
+
+        /* 붙여쓰면 and */
+        input[type=button]#id_a {
+            font-size: 3em;
+        }
+
+        /* 우선순위가 id가 class보다 높다 */
+        input[type=button][class=kkk] {
+            font-size: 5em;
+            background-color: pink;
+        }
+
+        /* 후손 선택자 빈 공백 */
+
+        #parent {
+            width: 400px;
+            height: 400px;
+            border: 1px solid black;
+        }
+
+        /* parent의 후손(자손 포함) */
+        /* parent의 div형태의 자손 모두 포함 */
+        #parent div {
+            width: 200px;
+            height: 100px;
+            border: 1px solid royalblue;
+            margin: 10px;
+            background-color: saddlebrown;
+        }
+
+        /* 직계 자손만 선택 */
+        #parent>div {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="parent">
+        <div style="background-color: springgreen;" style="z-index: 20;">
+            <div style="background-color: slategrey;" style="z-index: 10;"></div>
+        </div>
+        <div>
+            <div></div>
+        </div>
+        <div>
+            <div></div>
+        </div>
+        <div>
+            <div></div>
+        </div>
+    </div>
+    <br>
+    <div class="fgBlue" id="lty">이태영</div>
+    <div class=" fgYellow aaa">최승주</div>
+    <input class="fgPink" type=text value="임이랑"><br>
+    <input type=button id="id_a" class="kkk" value="나얌 버튼"><br>
+    <input type=button value="나얌 버튼"><br>
+    <input type=button class="kkk" value="나얌 버튼">
+</body>
+
+</html>
