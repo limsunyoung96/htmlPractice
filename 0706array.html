@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // w3school에서 JAVASCRIPT ARRAY REFERENCE 검색
+        // 배열은 속성 length가 제일 중요함
+        // 중요메소드: splice
+
+        // 배열생성
+        var v_arr =["이다솔","다또리","이다똘","닭도리"];
+        // indexOf: 찾기
+        alert(v_arr.indexOf("이다똘")); // 해당하는 문자열을 못찾으면 -1 반환
+        // sort: 정렬
+        var v_arr2 = v_arr.sort();
+        alert(v_arr2);
+        alert(v_arr); // 원본에도 영향을 줌(배열객체라 참조형이기에, 원본을 바꿈)
+        // 원시타입과 객체타입에 적용하는 메소드들의 동작이 약간씩 다름(원본에 영향을 주는지 여부)
+
+        
+        v_arr[2] = ""; // 2번째 인덱스자리가 공백으로 변경됨
+        alert(v_arr);
+        alert(v_arr.length); // 배열요소(길이)에 변동없음
+        // splice는 배열요소 자체를 삭제함(배열요소 즉, 길이에 변동있음)
+        v_arr.splice(2,1); // 인덱스2번부터 1개를 지움
+        alert(v_arr);
+        alert(v_arr.length); // 배열요소(길이)에 변동있음
+        
+        // 배열생성 또다른 방법(권장하지는 않음)
+        var v_arr1 = new Array("1","3","5","4"); // var v_arr1 = ["1","3","5","4"]; 와 같음
+        alert(v_arr1);
+        // 이 방법 작성시 주의사항: 매개변수가 괄호안에 1개만 올 경우 배열갯수를 의미함.
+        var v_arr2 = new Array("5"); // 5개짜리 배열을 선언한것임
+        alert(v_arr2); // 이때 5는 값의 5가 아닌 5개짜리 배열인 것을 말함
+        alert(v_arr2.length); // 그래서 배열길이 1임
+
+        // 주의사항
+        var v_arr3 = ["3","3","7","5"];
+        function f_check(){
+            v_arr3 = []; // 빈배열을 생성해서 강제로 값 변경
+        }
+        f_check(); // 함수 콜
+        alert(v_arr3);
+
+        var v_arr4 = ["3","3","7","5"];
+        function f_check2(p_arr){
+            p_arr[0] = "다또리"; // p_arr은 v_arr3를 가르키는데 참조변수(배열)이기에 부분으로 값 변경 가능함   
+        }
+        f_check2(v_arr4); // 매개변수로 배열을 넘김
+        alert(v_arr4);
+
+        var v_arr5 = ["3","3","7","5"];
+        function f_check3(p_arr2){
+            p_arr2 = []; // 매개변수로 받은 배열을 강제로 빈객체로 전체를 덮어쓰려고 하면 안됨
+            // 논리적으로는 빈객체로 덮어쓰는게 맞는데, visualStudio에서 그냥 이렇게 안되게 만들어놓음
+        }
+        f_check3(v_arr5); // 원본그대로 출력됨
+        alert(v_arr5);
+    </script>
+</body>
+</html>

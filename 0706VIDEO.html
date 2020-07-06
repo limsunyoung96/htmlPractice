@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 동영상은 높이 or 넓이 한쪽만 설정가능함(다른 한쪽은 자동으로 비율에 맞게 설정됨) -->
+    <!-- 동영상화면에서 마우스 오른쪽버튼 클릭시 '컨트롤표시'가 있음. 컨트롤표시 설정시 동영상재생위한 버튼들 생성됨 
+            또는 controls속성을 기입해서 나타내주기 -->
+    <!-- 속성: autoplay muted(자동플래이)/ autoplay만 쓰면 안됨. 
+                자동재생은 갑자기 소리나는 것을 방지하기 위해 muted를 써서 벙어리모드(음소거)에서만 가능함. -->
+    <!-- 속성: controlslist:nodownload(컨트롤러에서 다운로드 비활성화) -->
+    <!-- <video src="video/다미짱01.mp4" width="300" autoplay muted controls controlslist="nodownload"></video> -->
+    <select id="id_list" size=5>
+        <option value=""></option>
+    </select>
+    <video id="id_video" src="images/다미짱01.mp4" width="300" controlslist="nodownload"></video>
+    <input id="id_play" type="button" value="PLAY">
+    <input id="id_stop" type="button" value="STOP">
+    <input id="id_controls" type="button" value="컨트롤보이기">
+    <input id="id_speed" type="button" value="2배속">
+    <script>
+        var v_list = document.getElementById("id_list");
+        v_list.onchange = function () {
+            // alert(v_list.value);
+            v_video.src = v_list.value;
+            if (!v_video.autoplay) {
+                v_video.play();
+            }
+        }
+
+        var v_list = document.getElementById("id_list");
+        var v_optPath = "./video/";
+        var v_optHtml = "다미짱";
+        window.onload = function () {
+            for (var i = 1; i < 4; i++) {
+                if (i < 10) {
+                    v_index = "0" + i;
+                } else {
+                    v_index = i;
+                }
+                var v_option = document.createElement("option");
+                v_option.value = v_optPath + v_optHtml + i + ".mp4";
+                v_option.innerHTML = v_optHtml + i + ".mp4";
+                v_list.appendChild(v_option); // select에 child로 붙여줌
+            }
+        }
+
+        var v_video = document.getElementById("id_video");
+        var v_play = document.getElementById("id_play");
+        var v_stop = document.getElementById("id_stop");
+        var v_controls = document.getElementById("id_controls");
+        var v_speed = document.getElementById("id_spped");
+        v_speed.onclick = function () {
+            v_video.playbackRate = v_video.playbackRate * 2; // 원래속도값의 2배
+        }
+
+        var v_number = 1;
+        var v_index;
+        v_video.addEventListener("ended", function () {
+            if (v_number < 10) {
+                v_index = "0" + (++v_number);
+            } else {
+                v_index = ++v_number;
+            }
+            v_video.scr = "video/다미짱" + v_index + ".mp4";
+            v_video.autoplay = true; // v_video.play();와 같음
+        });
+
+        v_controls.addEventListener("click", function () {
+            alert(v_video.controller); // 현재속성값 확인(현재상태 false임)
+            v_video.controller = true;
+        });
+        v_play.onclick = function () {
+            v_video.play();
+        }
+        v_stop.addEventListener("click", function () {
+            v_video.pause();
+        });
+    </script>
+</body>
+
+</html>

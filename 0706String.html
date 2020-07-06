@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*  문자열 속성: length
+            문자열 메소드: indexOf, replace, substr, trim, split는 기본적으로 알고 있어야함*/
+        //substr, substring: 문자열자르기
+        var v_str = "이다솔 만만세 다또리 흥 다또리 치";
+        alert(v_str.substr(1,2)); // 원본에 영향을 안줌
+        alert(v_str); // 원본출력
+        v_str = v_str.substr(1,6); // 원본변경
+        alert(v_str); // 변경된원본출력
+        
+        // trim: 양쪽에 있는 공백 제거
+        var v_str2 = " 이다솔 만만세 다또리 흥 다또리 치 ";
+        alert("aaa"+v_str2+"aaa"); // 양쪽 공백없애지 않고 문자열 합쳐짐
+        alert("aaa"+v_str2.trim()+"aaa"); // 양쪽 공백없앤뒤에 문자열 합쳐짐
+    </script>
+</body>
+</html>

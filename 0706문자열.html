@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 자주쓰는 문자열 속성과 메소드
+        // w3school에서 javascript string reference 검색해보기
+        var v_str = "이다솔 만만세";
+
+        // indexOf 문자시작번호찾아줌(lastindexOf는 뒤에서부터 찾아줌)
+        alert(v_str.indexOf("만세"));
+        alert(v_str.indexOf("망세")); // 없는글자면 -1
+
+        // length: 문자열길이
+        alert(v_str.length);
+
+        // 배열처럼도 접근가능함
+        alert(v_str[4]);
+        v_str[4] = "임"; // 이것은 불가능: primitive(원시)타입이라서 부분만 변경 불가능
+
+        // 문자열은 원시타입인데 메소드가 사용가능한 이유?(ex.charAt 같은 메소드)
+        // 메소드를 붙이는 순간 자동으로 wrapper객체로 바뀜
+        // v_str = new String(v_str)이 내부적으로 실행되어서 String타입으로 바뀜(이때 스트링은 객체스트링으로 바뀌는 것임)
+        alert(v_str.charAt(4)) // index 4번글자
+
+        // replace: 원본을 바꾸지 않고 새로운 문자열을 리턴해줌(원시타입은 전체를 바꾸지 않고는 부분만 변경불가)
+        v_str.replace("이다솔", "다또리");
+        alert(v_str); // 변경안됨
+        // 원본을 바꾸지 않기에 새로운 변수에 담아줘야함
+        var v_str2 = v_str.replace("이다솔", "다또리");
+        alert(v_str2);
+        // 원본을 바꾸고 싶을 경우 원본의 변수명을 대입시키기
+        v_str = v_str.replace("이다솔", "다또리");
+        alert(v_str);
+
+        // replace는 맨처음 찾은 것만 바꿈
+        var v_strR = "이다솔이고 이다솔이다 이다솔이지롱";
+
+        // split: 매개변수값이 구분자, 배열을 리턴해줌
+        v_strR.split(""); // 공백을 기준으로 잘라줌(원본에 영향을 주지 않음)
+        alert(v_strR);
+        var v_strArr = v_strR.split(""); // 리턴값이 있기에 새로운 변수로 받을 수 있음
+        alert(v_strArr);
+        alert(v_strArr[2]); // 공백기준으로 잘랐기에 이다솔이다가 인덱스 2번임
+
+
+        v_strR = v_strR.replace("이다솔", "다또리");
+        alert(v_strR);
+        // 문장전체내에서 이다솔을 바꾸기 위해서는?
+        while (true) { // for(; v_strR.indexOf("이다솔") != -1 ;)로 써도됨
+            if (v_strR.indexOf("이다솔") != -1) { // 해당문자열이 있다면(없으면 -1을 리턴함)
+                v_strR = v_strR.replace("이다솔", "다또리");
+                break;
+            }
+        }
+        // 이렇게 써도됨
+        while (v_strR.indexOf("이다솔") != -1) { 
+                v_strR = v_strR.replace("이다솔", "다또리");
+                break;
+            }
+        alert(v_strR);
+        // tip. class(클래스): 기술적정의 = 사용자정의 데이터형
+    </script>
+</body>
+
+</html>
