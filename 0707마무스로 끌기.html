@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #id_lsy {
+            /* 움직임. static은 움직이지 않음 */
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border: 1px solid teal;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="id_lsy" onmousedown="f_down()" onmousemove="f_move()" onmouseup="f_up()" onmouseout="f_out()">나 임선영</div>
+    <script>
+        var v_lsy = document.getElementById("id_lsy")
+        var v_isLeftDown = false; // 왼쪽 버튼 누르지 않은 상황
+        function f_out() {
+            v_isLeftDown = false
+        }
+        function f_down() {
+            if (event.button == 0) {
+                v_isLeftDown = true
+            }
+        }
+        function f_move() {
+            if (v_isLeftDown) { // 왼쪽 버튼이 눌려져 있는 상황일 때
+                v_lsy.style.left = event.clientX - 50 + "px"
+                v_lsy.style.top = event.clientY - 50 + "px"
+            }
+        }
+        function f_up() {
+            v_isLeftDown = false
+        }
+          // 오늘의 과제 마우스가 움직이는 만큼 div도 움직임
+        // 곧 제대로 된 마우스 끌기!
+    </script>
+</body>
+
+</html>

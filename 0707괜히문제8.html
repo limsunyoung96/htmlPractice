@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #id_disp {
+        width: 300px;
+        height: 300px;
+        border: 2px solid rebeccapurple;
+    }
+</style>
+
+<body>
+    <!-- scf -> Comma Seperated Value -->
+    <!-- 0707myData.csv 파일을  drop하면 그 내용을
+        id_disp에 table 형식으로 출력 -->
+    <div id="id_disp"></div>
+    <script>
+        var v_disp = document.getElementById("id_disp")
+        v_disp.addEventListener("drop", function () {
+            // 끌고 온 파일 정보
+            var v_file = event.dataTransfer.files[0]
+            var v_fileReader = new FileReader()
+            v_fileReader.readAsText(v_file) // text 읽을 때
+            // v_fileReader.readAsDataURL(v_file) // image 읽을 때
+
+            v_fileReader.onload = function () { // 1. call만 해주고
+                v_disp.innerHTML = "" // 넣기 전에 비움
+                var v_content = v_fileReader.result;     // 읽은 내용 확인
+                var v_lines = v_content.split("\n")
+                var innerStr = "<table border=2>"
+                for (var i = 0; i < v_lines.length; i++) {
+                    var v_str = v_lines[i].split(",")
+                    innerStr += "<tr>"
+                    for (var j = 0; j < v_str.length; j++) {
+                        console.log(v_str[j].trim())
+                        innerStr += "<td>" + v_str[j].trim() + "</td>";
+                    }
+                    innerStr += "</tr>"
+                }
+                innerStr += "</table>"
+                v_disp.innerHTML += innerStr
+                console.log(v_disp.innerHTML)
+            }
+        })
+
+        // 브라우저의 Drag & Drop 기본기능 막아버리기
+        window.addEventListener("dragover", function () {
+            event.preventDefault() // 기본 이벤트 막기
+            event.stopPropagation() // 이벤트 전파 막기
+        })
+        window.addEventListener("drop", function () {
+            event.preventDefault() // 기본 이벤트 막기
+            event.stopPropagation() // 이벤트 전파 막기
+        })
+    </script>
+</body>
+
+</html>

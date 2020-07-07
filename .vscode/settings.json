@@ -1,5 +1,6 @@
 {
     "files.autoGuessEncoding": true,
     "editor.mouseWheelZoom": true,
-    "editor.fontSize": 15
+    "editor.fontSize": 15,
+    "files.encoding": "utf8"
 }
