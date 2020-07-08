@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    사이트<input id="id_site" type="text" value=""><br>
+    <input id="id_btn" type="button" value="사이트 이동">
+    <script>
+        var v_btn = document.getElementById("id_btn")
+        var v_site = document.getElementById("id_site")
+        v_btn.onclick = function () {
+            // 주소표시줄을 컨트롤하는 객체 location
+            // 중요속성 href, 중요메소드 replace, reload는 권장하지 않음.
+            // reload는 새로고침 같은것. (로직이 잘못된 것이라는 뜻이기 때문에 권장 x)
+            // get 방식은 url에 직접 ?를 붙여서 만들어줘도 된다
+            // 주소창에 0708test2?name=value 를 넣으면 그것이 0708test2로 넘어감
+            // location.href = "0708test2.php?nm_aidi=lsy"; // href : 하이퍼링크 레퍼런스
+            location.replace("0708test2.php?nm_aidi=lsy&nm_kkk=임선영")
+            // 외관상 같은 기능처럼 보이나, replace는 cache를 쓰지 않음
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #wrapper {
+            position: relative;
+            /* 가운데 정렬 */
+            margin: 0px auto;
+            /* width: 60%; */
+            width: 400px;
+            height: 850px;
+            background-color: maroon;
+        }
+
+        #id_bar {
+            /* 부모 기준으로 맞춤 absolute */
+            position: absolute;
+            /* 아래 기준으로 */
+            /* bottom: 40px; */
+            width: 80px;
+            height: 20px;
+            background-color: whitesmoke;
+        }
+
+        #id_ball {
+            position: absolute;
+            /* 움직이려면 relative나 absolute여야 함 */
+            width: 100px;
+            height: 100px;
+            /* left: 100px; */
+            /* top: 100px; */
+            /* right: 20px;
+            bottom: 30px; */
+            border-radius: 50px 50px;
+            /* width height의 절반값이면 동그라미 */
+            background-color: whitesmoke;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="공 움직이기" onclick="f_start()">
+    <div id="wrapper" tabindex="0" onkeydown="f_lrMove()">
+        <div id="id_ball" style="left: 0px;top: 0px; "></div>
+        <div id="id_bar"></div>
+    </div>
+    <script>
+        var v_ball = document.getElementById("id_ball");
+        var v_square = document.getElementById("id_bar")
+        var v_parent = document.getElementById("wrapper")
+
+        var v_sqLeft
+        var v_sqTop
+        var v_wWidth
+        var v_hHeight
+        var v_mvW = 50 //좌우 방향 컨트롤
+        var v_mvH = 50 //상하 방향 컨트롤
+
+        var isRun = false //아직 실행되고 있지 않은 상황
+        function f_start() {
+            v_wWidth = parseInt(v_parent.style.width)
+            v_hHeight = parseInt(v_parent.style.height)
+            v_sqLeft = parseInt(v_square.style.left)
+            v_sqTop = parseInt(v_square.style.top)
+            // alert(v_wWidth)
+            if (!isRun) { //isRun이 false 일 때에만
+                f_mv1()
+                isRun = true
+            }
+        }
+        // var v_number = 1;
+        var v_gak = 0;
+        function f_mv1() {
+            // alert(v_sqLeft)
+            var v_left = parseInt(v_ball.style.left)
+            var v_top = parseInt(v_ball.style.top)
+            v_ball.style.left = v_left + v_mvW + "px" /* 단위 꼭 붙여*/
+            v_ball.style.top = v_top + v_mvH + "px" /* 단위 꼭 붙여*/
+            v_left = parseInt(v_ball.style.left)
+            v_top = parseInt(v_ball.style.top)
+            //오른쪽 벽에 닿거나 넘어선다면 || 왼쪽 벽에 닿거나 넘어선다면
+            if ((v_left + 100) >= v_wWidth || v_left <= 0) {
+                v_mvW = -v_mvW //+10을 -10으로 바꾸어 줌
+            }
+            //위아래 부딪혔을 때
+            if ((v_top + 100) >= v_hHeight || v_top <= 0) {
+                v_mvH = -v_mvH //+10을 -10으로 바꾸어 줌
+            }
+            if ((v_top + 100 >= v_sqTop)) { // 막대기에 닿았을 때
+                v_mvH = -v_mvH
+            }
+            if ((v_left + 100 >= v_sqTop)) {
+                v_mvH = -v_mvH
+            }
+
+            // var v_path = "./images/meat0" + v_number++ + ".jpg";
+            // v_ball.style.backgroundImage = "url(" + v_path + ")"
+            v_gak = (v_gak + 20) % 360 //10도씩 추가
+            v_ball.style.transform = "rotate(" + v_gak + "deg)" //각도
+
+            // if (v_number > 6) {
+            //     v_number = 1
+            // }
+            setTimeout(f_mv1, 300)
+        }
+
+        function f_lrMove() {
+            v_sqLeft = parseInt(v_square.style.left)
+            v_sqTop = parseInt(v_square.style.top)
+            // 좌우 화살표 눌렀을 때 막대 움직이기
+            if (event.keyCode == 37) { //왼쪽 화살표
+                if (v_sqLeft - 10 >= 0) {
+                    v_square.style.left = v_sqLeft - 10 + "px"
+                }
+            }
+            if (event.keyCode == 39) { //오른쪽 화살표
+                // alert(v_parent.style.width)
+                // if (v_left + 10 + 80 <= 400) {
+                if (v_sqLeft + 10 + 80 <= parseInt(v_parent.style.width)) {
+                    v_square.style.left = v_sqLeft + 10 + "px"
+                }
+            }
+        }
+
+        // 초기 세팅이 필요한 일들은 window.onload 이벤트에 모아서 세팅
+        window.onload = function () {
+            if (!v_square.style.left) { //초기값 없을 때 초기값 강제 세팅
+                v_square.style.left = "30px"
+            }
+            if (!v_parent.style.width) { //초기값 없을 때 초기값 강제 세팅
+                v_parent.style.width = "500px"//window.innerWidth * 60 / 100 + "px"
+            }
+            if (!v_parent.style.height) { //초기값 없을 때 초기값 강제 세팅
+                v_parent.style.height = "850px"
+            }
+            if (!v_square.style.left) {
+                v_square.style.left = "10px"
+            }
+            if (!v_square.style.top) {
+                v_square.style.top = "800px"
+            }
+            if (!v_ball.style.height) {
+                v_ball.style.height = "100px";
+            }
+            if (!v_ball.style.width) {
+                v_ball.style.width = "100px";
+            }
+        }
+
+    </script>
+</body>
+
+</html>

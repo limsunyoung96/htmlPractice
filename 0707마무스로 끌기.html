@@ -19,20 +19,41 @@
 <body>
     <div id="id_lsy" onmousedown="f_down()" onmousemove="f_move()" onmouseup="f_up()" onmouseout="f_out()">나 임선영</div>
     <script>
+        window.onload = function () {
+            if (!v_lsy.style.left) {
+                v_lsy.style.left = "100px"
+                v_lsy.style.top = "100px"
+            }
+        }
         var v_lsy = document.getElementById("id_lsy")
         var v_isLeftDown = false; // 왼쪽 버튼 누르지 않은 상황
+        var v_lsyPosX // 마우스 눌렀을 때 div 좌표 저장할 변수
+        var v_lsyPosY;
+        var v_mouseX // 마우스 눌렀을 때 마우스 좌표 저장할 변수
+        var v_mouseY
+
         function f_out() {
             v_isLeftDown = false
         }
         function f_down() {
-            if (event.button == 0) {
+            if (event.button == 0) { // 왼쪽 버튼이 눌러져 있는 상황일 때
+
+                v_lsyPosX = parseInt(v_lsy.style.left)
+                v_lsyPosY = parseInt(v_lsy.style.top)
+                v_mouseX = event.clientX
+                v_mouseY = event.clientY
                 v_isLeftDown = true
             }
         }
         function f_move() {
             if (v_isLeftDown) { // 왼쪽 버튼이 눌려져 있는 상황일 때
-                v_lsy.style.left = event.clientX - 50 + "px"
-                v_lsy.style.top = event.clientY - 50 + "px"
+                // 마우스가 움직인 폭과 높이
+                var v_width = event.clientX - v_mouseX
+                var v_height = event.clientY - v_mouseY
+
+                // 마우스 빨리 움직이면 안돼~! 
+                v_lsy.style.left = v_lsyPosX + v_width + "px"
+                v_lsy.style.top = v_lsyPosY + v_height + "px"
             }
         }
         function f_up() {

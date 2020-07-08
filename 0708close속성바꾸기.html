@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .aaa {
+            background-color: cadetblue;
+        }
+
+        .bbb {
+            background-color: darkgoldenrod;
+        }
+
+        .ccc {
+            color: darkgreen;
+        }
+
+        div {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="id_lsy" class="aaa">임선영만만세</div>
+    <input type="button" value="클래스 바꾸기" onclick="f_chgClass()">
+    <input type="button" value="클래스 추가하기" onclick="f_addClass()">
+    <input type="button" value="클래스 빼기" onclick="f_removeClass()">
+    <script>
+        var v_div = document.getElementById("id_lsy")
+        // alert(v_div.class) // aaa를 예상하지만 실제론 undefined. => class는 이미 예약된 키워드라서
+        // alert(v_div.className) //이것이 aa를 출력함
+        // alert(v_div.getAttribute("class")) // 굳이 class를 사용하고 싶다면 getAttribute를 쓰면 된다.
+        function f_chgClass() {
+            v_div.className = "bbb"
+        }
+        function f_addClass() {
+            // v_div.className = v_div.className + " ccc"
+            v_div.classList.add("ccc")
+        }
+        function f_removeClass() {
+            // ccc를 다시 빼기
+            var v_remClass = "ccc"
+            v_div.classList.remove(v_remClass) // 이거 하나로 쓰는게 편하지만
+            // 공부하기엔 아래가 좋음
+            // var v_strClass = v_div.className
+            // var v_indexNum = v_strClass.indexOf(v_remClass)
+            // if (v_indexNum != -1) {
+            //     alert("ppp" + v_strClass.substring(0, v_indexNum) + "ppp")
+            //     // v_div.className = '"' + trim(v_strClass.substring(0, v_indexNum)) + '"'
+            //     v_div.setAttribute("class", v_strClass.substring(0, v_indexNum).trim())
+            // }
+
+            // var classes = v_div.className.split(" ")
+            // for (var i = 0; i < classes.length; i++) {
+            //     if (classes[i] == "ccc") {
+            //         classes.ind
+            //     }
+            // }
+        }
+    </script>
+</body>
+
+</html>
