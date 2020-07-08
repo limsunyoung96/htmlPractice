@@ -59,6 +59,8 @@
         var v_hHeight
         var v_mvW = 50 //좌우 방향 컨트롤
         var v_mvH = 50 //상하 방향 컨트롤
+        var v_ballWidth
+        var v_ballHeight
 
         var isRun = false //아직 실행되고 있지 않은 상황
         function f_start() {
@@ -66,6 +68,8 @@
             v_hHeight = parseInt(v_parent.style.height)
             v_sqLeft = parseInt(v_square.style.left)
             v_sqTop = parseInt(v_square.style.top)
+            v_ballWidth = parseInt(v_ball.style.width);
+            v_ballHeight = parseInt(v_ball.style.height);
             // alert(v_wWidth)
             if (!isRun) { //isRun이 false 일 때에만
                 f_mv1()
@@ -78,22 +82,22 @@
             // alert(v_sqLeft)
             var v_left = parseInt(v_ball.style.left)
             var v_top = parseInt(v_ball.style.top)
+
             v_ball.style.left = v_left + v_mvW + "px" /* 단위 꼭 붙여*/
             v_ball.style.top = v_top + v_mvH + "px" /* 단위 꼭 붙여*/
             v_left = parseInt(v_ball.style.left)
             v_top = parseInt(v_ball.style.top)
             //오른쪽 벽에 닿거나 넘어선다면 || 왼쪽 벽에 닿거나 넘어선다면
-            if ((v_left + 100) >= v_wWidth || v_left <= 0) {
+            if ((v_left + v_ballWidth) >= v_wWidth || v_left <= 0) {
                 v_mvW = -v_mvW //+10을 -10으로 바꾸어 줌
             }
             //위아래 부딪혔을 때
-            if ((v_top + 100) >= v_hHeight || v_top <= 0) {
+            if ((v_top + v_ballHeight) >= v_hHeight || v_top <= 0) {
                 v_mvH = -v_mvH //+10을 -10으로 바꾸어 줌
             }
-            if ((v_top + 100 >= v_sqTop)) { // 막대기에 닿았을 때
-                v_mvH = -v_mvH
-            }
-            if ((v_left + 100 >= v_sqTop)) {
+            if (v_left + v_ballWidth / 2 <= v_sqLeft + 80 &&
+                v_left + v_ballWidth / 2 >=v_sqLeft && 
+                (v_top + v_ballHeight >= v_sqTop)) {
                 v_mvH = -v_mvH
             }
 
