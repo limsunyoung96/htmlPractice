@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    //name 값을 매개변수로 넘기면 value를 return 하도록
+    // 일반화(범용화) 성공 짝짝짝!
+    function getParameterValue(p_name) {
+        var v_url = location.href;
+        if (v_url.indexOf("?") == -1) return;
+        v_url = decodeURIComponent(v_url);  // 디코딩
+        var v_queryString = v_url.split("?")[1];
+        var v_nameValues = v_queryString.split("&");
+        for (var i = 0; i < v_nameValues.length; i++) {
+            var v_nameValue = v_nameValues[i].split("=");
+            if (v_nameValue[0] == p_name) {
+                return v_nameValue[1];
+            }
+        }
+        return null;  // 못찾았다는 표시, 개발자 맘
+    }
+    //함수 동작 테스트
+    alert(getParameterValue("nm_aidi"));
+    alert(getParameterValue("nm_password"));
+    alert(getParameterValue("nm_pkkk"));
+
+    // var v_urlValue = location.href.split("?")[1]; // ? 오른쪽 값만 뽑아내기
+    /*  encoding / decoding 관련 메소드
+            escape                  unescape                아주 옛날꺼
+            encodeURI               decodeURI               적당히 옛날꺼
+            encodeURIComponent      decodeURIComponent      최신꺼(대부분 이걸 사용)
+    */
+
+    // alert("인코딩값:" + v_urlValue)
+    // alert("디코딩된 값:" + decodeURIComponent(v_urlValue))
+
+    // v_urlValue = decodeURIComponent(v_urlValue)
+    // var v_aidi = v_urlValue.split("&")[0].split("=")[1]
+    // var v_password = v_urlValue.split("&")[1].split("=")[1]
+    // alert(v_aidi + "님 당신의 암호는 " + v_password + "군요!")
+</script>
