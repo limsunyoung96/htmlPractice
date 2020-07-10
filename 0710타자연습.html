@@ -69,7 +69,7 @@
             if (event.key == "Enter") {
                 for (var i = 0; i < v_onDiv.length; i++) {
                     if (v_onDiv[i].innerHTML == v_input.value) {
-                        v_onDiv[i].style.top = "-0px" // 다시 화면 밖으로
+                        v_onDiv[i].style.top = "-30px" // 다시 화면 밖으로
                         v_onDiv.splice(i, 1) // index i번 부터 1개 객체 삭제
                     }
                 }
@@ -86,21 +86,26 @@
         var v_mvTime = 500 // 움직임 리사이클 시간
         var v_onDiv = [];  // 선택과 이동을 연결시켜 줄 배열!
         function f_selWord() {
+
             var v_gulja
-            var isNew = true
-            while (isNew) {
+            if (v_onDiv.length == 0) {
+                v_gulja = document.getElementById("lty" + Math.ceil(Math.random() * v_keyWords.length));
+                v_gulja.style.left = Math.ceil(Math.random() * 330) + "px"// 떨어지기 시작 위치 랜덤
+                v_onDiv[v_onDiv.length] = v_gulja;
+            } else {
+                var isNew = true
                 for (var i = 0; i < v_onDiv.length; i++) {
                     v_gulja = document.getElementById("lty" + Math.ceil(Math.random() * v_keyWords.length));
                     if (v_gulja == v_onDiv[i]) {
+                        isNew = false;
                         break;
                     }
-                    if (i == v_onDiv.length - 1) {
-                        isNew = false
-                        v_gulja.style.left = Math.ceil(Math.random() * 330) + "px"// 떨어지기 시작 위치 랜덤
-                    }
+                }
+                if (isNew) {
+                    v_gulja.style.left = Math.ceil(Math.random() * 330) + "px"// 떨어지기 시작 위치 랜덤
+                    v_onDiv[v_onDiv.length] = v_gulja;
                 }
             }
-            v_onDiv[v_onDiv.length] = v_gulja;
             v_timer2 = setTimeout(f_selWord, v_selTime);
         }
 
@@ -118,7 +123,7 @@
                 v_onDiv[i].style.top = parseInt(v_onDiv[i].style.top) + v_speed + "px";
                 v_onDiv[i].style.color = f_ranColor();
                 v_onDiv[i].style.backgroundColor = f_ranColor()
-                v_onDiv[i].style.transform = "rotate(" + Math.floor(Math.random() * 360) + "deg)"
+                // v_onDiv[i].style.transform = "rotate(" + Math.floor(Math.random() * 360) + "deg)"
                 // v_onDiv[i].setAttribute("style.text-align", "center")
                 if (parseInt(v_onDiv[i].style.top) >= 450) {
                     v_onDiv[i].style.top = "-50px"
