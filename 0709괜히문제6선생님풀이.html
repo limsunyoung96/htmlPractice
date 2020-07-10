@@ -105,7 +105,8 @@
             /* 아래방식의 코드를 디버깅 로그 출력형식으로 많이 사용함 */
             if (v_autoMode) {
                 console.log(v_barLeft + " " + v_barRight + " " + v_ballLeft)
-                if (v_ballLeft - 15 < 0) {
+                if (
+                    v_ballLeft - 15 < 0) {
                     v_bar.style.left = "0px"
                 } else if (v_ballLeft - 15 + 80 > 400) {
                     v_bar.style.left = 400 - 80 + "px"
