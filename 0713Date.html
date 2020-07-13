@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #id_clock {
+            width: 100px;
+            height: 100px;
+            border: 1px solid slateblue;
+            background-color: thistle;
+            color: violet;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="id_clock"></div>
+    <script>
+        // javascript date 객체는 java의 것을 그냥 벤치마킹했다고 알려져있음
+        // 클라이언트 컴퓨터 시간을 읽어오면, 통일되지 않은 시간을 읽어옴
+        // 서버쪽 시간으로 세팅하지 않으면 큰 의미가 없음
+        // 달력등의 컴포넌트를 만드는 회사가 아니면 Date 객체는 클라이언트보단
+        // 서버쪽에서 처리하는 것이 유리
+        "use strict"
+        var v_clock = document.getElementById("id_clock")
+        var v_input = confirm("임선영 여자니 남자니")
+
+        function f_time() {
+            var v_today = new Date()
+            var v_hour = v_today.getHours();
+            var v_minute = v_today.getMinutes();
+            var v_seconds = v_today.getSeconds();
+            if (v_hour < 10) {
+                v_hour = "0" + v_hour
+            }
+            if (v_minute < 10) {
+                v_minute = "0" + v_minute
+            }
+            if (v_seconds < 10) {
+                v_seconds = "0" + v_seconds
+            }
+            var v_timeMsg = v_hour + ":" + v_minute + ":" + v_seconds
+            v_clock.innerHTML = v_timeMsg
+            setTimeout(f_time, 1000)
+        }
+        window.onload = f_time
+        // var v_today = new Date("2020-07-13"); // 시스템의 현재 날짜 시간을 읽어옴
+        // alert(v_today)
+    </script>
+</body>
+
+</html>
