@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Number Guess</h1>
+    <p>1부터 100 사이의 숫자를 입력하시오.</p>
+    <input id="number" type="text">
+    <button type="button" onclick="test()">숫자 추측</button>
+    <p id="message"></p>
+
+    <script>
+        var v_number = document.getElementById("number")
+        var v_message = document.getElementById("message")
+        var v_readNumber = Math.ceil(Math.random() * 100)
+        function test() {
+            var v_userInput = v_number.value - 0;
+            if (v_userInput < v_readNumber) {
+                v_message.innerHTML = "힌트: 너무 작음"
+            } else if (v_userInput > v_readNumber) {
+                v_message.innerHTML = "힌트: 너무 큼"
+            } else {
+                v_message.innerHTML = "정답입니당"
+            }
+            v_number.value = ""
+        }
+        function f_keyDown() {
+            if (event.key == "Enter") {
+                test();
+            }
+        }
+        v_number.addEventListener("keydown", f_keyDown);
+
+    </script>
+</body>
+
+</html>

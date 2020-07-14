@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    var v_arr1 = ["임선영", "박성연", "허내윤"]
+    function f_arrInit(p_arr) {
+        // 배열을 매개변수로 넘겼을 때에만 초기화가 되지 않는다. -> 버그임 안고치고있음
+        // p_arr = []; // 초기화가 되지 않음
+        p_arr[1] = "흥치피" // 배열을 매개변수로 받아서 초기화 하려면 안됨 -- 주의
+    }
+    f_arrInit(v_arr1);
+    alert(v_arr1)
+
+
+
+
+    var v_arr = []; //빈배열 생성
+    // v_arr[v_arr.length] = "임선영만세1"
+    // v_arr[v_arr.length] = "임선영만세2"
+
+    // push와 pop : stack
+    v_arr.push("임선영만만세1")
+    v_arr.push("임선영만만세2")
+    // alert(v_arr.pop()) // 마지막에 넣은 값을 꺼내서 return 함
+
+    // shift와 unshift : queue
+    // shift와 unshift는 push와 pop과 달리 원본에 영향을 줌
+    // pop과 push 권장
+    // alert(v_arr.unshift("임선영이다")) // 배열의 맨 처음(index 0)에 입력
+    // alert(v_arr) // 원본배열에서 마지막 값이 사라진걸 확인
+    // alert(v_arr.shift()) // 배열의 맨 처음(index 0) 값 삭제
+    // alert(v_arr) // 원본배열에서 마지막 값이 사라진걸 확인
+</script>
