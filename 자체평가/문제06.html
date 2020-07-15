@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container {
+            position: relative;
+            height: 500px;
+            width: 820px;
+            border: 1px solid steelblue;
+            background-color: lightsteelblue;
+        }
+
+        .divs {
+            background-color: black;
+            position: absolute;
+            width: 80px;
+            bottom: 0px;
+        }
+
+        .innerDivs {
+            position: absolute;
+            color: magenta;
+            border: 1px solid springgreen;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div class="divs" id="div1">
+            <!-- <div class="innerDivs"></div> -->
+        </div>
+        <div class="divs" id="div2">
+            <!-- <div class="innerDivs"></div> -->
+        </div>
+        <div class="divs" id="div3">
+            <!-- <div class="innerDivs"></div> -->
+        </div>
+        <div class="divs" id="div4">
+            <!-- <div class="innerDivs"></div> -->
+        </div>
+        <div class="divs" id="div5">
+            <!-- <div class="innerDivs"></div> -->
+        </div>
+        <div class="divs" id="div6">
+            <!-- <div></div> -->
+        </div>
+        <div class="divs" id="div7">
+            <!-- <div></div> -->
+        </div>
+        <div class="divs" id="div8">
+            <!-- <div></div> -->
+        </div>
+        <div class="divs" id="div9">
+            <!-- <div></div> -->
+        </div>
+    </div>
+    <script>
+        var v_datas = [80, 100, 56, 120, 180, 30, 40, 120, 160];
+        var v_divs = document.getElementsByClassName("divs")
+        var v_container = document.getElementById("container")
+        var v_width = 80;
+        var v_left = 10;
+        var innerDiv = []
+
+        for (var i = 0; i < v_datas.length; i++) {
+            innerDiv[i] = document.createElement("div")
+            innerDiv[i].innerHTML = v_datas[i]
+        }
+
+        for (var i = 0; i < v_datas.length; i++) {
+            v_divs[i].setAttribute("style", "height:" + v_datas[i] * 2 + "px; left:" + v_left + "px")
+            innerDiv[i].setAttribute("style", "display: inline-block; bottom:" + v_datas[i] * 2 + "px; color:magenta; left:" + v_left + "px; position: absolute")
+            v_container.appendChild(innerDiv[i])
+            v_left += v_width + 10
+        }
+
+    </script>
+</body>
+
+</html>

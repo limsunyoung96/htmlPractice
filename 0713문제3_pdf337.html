@@ -15,7 +15,9 @@
         for (; "이것은 무한 루핑";) {
             // 사용자 입력, prompt로 받은 값은 type이 문자열임에 주의
             var v_input = prompt("숫자를 입력해주세용, 종료하려면 0", "5") //초기값 5
+            // console.log(v_input)
             sum += parseInt(v_input)
+            sum += v_input;
             if (v_input == 0) {
                 v_div.innerHTML = "총 합은 " + sum + "입니다";
                 break;

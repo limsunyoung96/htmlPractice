@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var v_arrA = [1, 2, 3, 3, 4, 3, 2, 5, 5, 7, 9, 0, 1];
+        var v_arrB = [4, 5, 6, 7, 6, 9, 1, 3, 5, 7, 8, 1, 5];
+        var v_arrC = []
+        var v_arrD = [];
+
+        v_arrA.sort()
+        v_arrB.sort();
+
+        //A 중복제거 후 C저장
+        for (var i = 0; i < v_arrA.length; i++) {
+            var isIn = false
+            for (var j = 0; j < v_arrC.length; j++) {
+                if (v_arrC[j] == v_arrA[i]) {
+                    isIn = true
+                    break
+                }
+            }
+            if (!isIn) {
+                v_arrC.push(v_arrA[i])
+            }
+        }
+
+        //B 중복제거 후 C에 저장
+        for (var i = 0; i < v_arrB.length; i++) {
+            var isIn = false
+            for (var j = 0; j < v_arrC.length; j++) {
+                if (v_arrC[j] == v_arrB[i]) {
+                    isIn = true
+                    break
+                }
+            }
+            if (!isIn) {
+                v_arrC.push(v_arrB[i])
+            }
+        }
+        console.log("v_arrC: "+v_arrC)
+
+        //A엔 있고 B는 없는 배열 만들기
+        for (var i = 0; i < v_arrA.length; i++) {
+            var num_arrA = v_arrA[i]
+            var isIn = false
+            for (var j = 0; j < v_arrD.length; j++) {
+                if (num_arrA == v_arrD[j]) { // num_arrA의 값이 이미 v_arrD 있으면 다음 숫자 검사하기 위해 break
+                    isIn = true
+                    break
+                }
+            }
+            if (!isIn) {
+                var isInB = false
+                for (var j = 0; j < v_arrB.length; j++) {
+                    if (num_arrA == v_arrB[j]) { // num_arrA가 v_arrB에 있으면 break
+                        isInB = true
+                        break
+                    }
+                }
+                if (!isInB) {
+                    v_arrD[v_arrD.length] = num_arrA
+                }
+            }
+        }
+        console.log("function 결과: " + f_isIn(v_arrA, v_arrB));
+
+        function f_isIn(v_arrA, v_arrB) {
+            var p_arr = []
+            for (var i = 0; i < v_arrA.length; i++) {
+                var num_arrA = v_arrA[i]
+                var isIn = false
+                for (var j = 0; j < p_arr.length; j++) {
+                    if (num_arrA == p_arr[j]) { // num_arrA의 값이 이미 v_arrD 있으면 다음 숫자 검사하기 위해 break
+                        isIn = true
+                        break
+                    }
+                }
+                if (!isIn) {
+                    var isInB = false
+                    for (var j = 0; j < v_arrB.length; j++) {
+                        if (num_arrA == v_arrB[j]) { // num_arrA가 v_arrB에 있으면 break
+                            isInB = true
+                            break
+                        }
+                    }
+                    if (!isInB) {
+                        p_arr[p_arr.length] = num_arrA
+                    }
+                }
+            }
+            return p_arr
+        }
+    </script>
+</body>
+
+</html>

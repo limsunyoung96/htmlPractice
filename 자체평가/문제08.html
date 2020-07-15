@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        function f_calDistance(p_time) { // 시간을 받으면 거리 나타남
+            var v_sum = 0
+            if (p_time % 2 == 0) { // 짝수 시간이면
+                v_sum += (p_time / 2) * 3
+                v_sum -= (p_time / 2) * 2
+            } else { // 홀수 시간이면
+                v_sum += Math.ceil(p_time / 2) * 3
+                v_sum -= Math.floor(p_time / 2) * 2
+            }
+            return v_sum
+        }
+
+        function f_calTime(p_distance) {
+            var dist = 0;
+            for (var i = 0; true; i++) {
+                if (dist == p_distance) {
+                    return i;
+                    break
+                }
+                if (i % 2 == 0) {// 시간이 홀수이면(3씩 증가하면){
+                    dist += 3
+                } else {
+                    dist -= 2
+                }
+            }
+        }
+
+        console.log(f_calDistance(6))
+        console.log(f_calDistance(7))
+        console.log(f_calTime(5))
+    </script>
+</body>
+
+</html>

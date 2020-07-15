@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0 0;
+        }
+
+        #wrapper {
+            position: relative;
+            margin: 0px auto;
+            width: 400px;
+            height: 500px;
+            border: 1px solid darkmagenta;
+        }
+
+        .cl_nums {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: burlywood;
+            color: darkblue;
+            text-align: center;
+            line-height: 50px;
+            top: -60px;
+        }
+
+        button {
+            left: 50px;
+            position: absolute;
+            color: darkgreen;
+            font-size: 2em;
+            width: 300px;
+            text-align: center;
+            bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div class="cl_nums" id="id_num1"></div>
+        <div class="cl_nums" id="id_num2"></div>
+        <div class="cl_nums" id="id_num3"></div>
+        <div class="cl_nums" id="id_num4"></div>
+        <div class="cl_nums" id="id_num5"></div>
+        <div class="cl_nums" id="id_num6"></div>
+        <button onclick="f_new()">로또번호발생</button>
+    </div>
+    </div>
+    <script>
+        var ranNums = []
+        var v_left = 25
+        var v_divs = document.getElementsByClassName("cl_nums")
+        for (var i = 0; i < v_divs.length; i++) {
+            var isIn = false
+            var v_ranNum = Math.ceil(Math.random() * 45) // 랜덤 숫자 생성
+            for (var j = 0; j < ranNums.length; j++) { // 중복 제거
+                if (v_ranNum == ranNums[j]) {
+                    isIn = true
+                    i-- // i 다시 돌아가기
+                    break
+                }
+            }
+            if (!isIn) {
+                ranNums[ranNums.length] = parseInt(v_ranNum)
+                v_divs[i].setAttribute("style", "left:" + v_left + "px; top: -60px")
+                v_left += 60
+            }
+        }
+        // console.log(ranNums)
+        ranNums.sort(function (a, b) {
+            return b - a
+        })
+        // console.log(ranNums)
+        for (var i = 0; i < v_divs.length; i++) {
+            v_divs[i].innerHTML = ranNums[i]
+        }
+
+        // 버튼 클릭시
+        var v_selTime = 1000 // 글자 선택 리사이클 시간
+        var v_isStart = false
+        function f_new() {
+            if (!v_isStart) {
+                f_move();
+                v_isStart = true
+            }
+        }
+
+        var num = 0
+        function f_move() {
+            if (num == v_divs.length) {
+                clearTimeout(v_timer1)
+                return
+            }
+            var v_speed = 15 // 스피드
+            v_divs[num].style.top = parseInt(v_divs[num].style.top) + v_speed + "px";
+            console.log("v_divs[" + num + "].style.top: " + parseInt(v_divs[num].style.top))
+            if (parseInt(v_divs[num].style.top) >= 240) {
+                v_divs[num].style.top = "220px"
+                num++;
+            }
+            v_timer1 = setTimeout(f_move, 30);
+        }
+
+    </script>
+</body>
+
+</html>

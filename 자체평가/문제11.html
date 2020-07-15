@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #id_back {
+            position: relative;
+            left: 10px;
+            top: 10px;
+            width: 200px;
+            height: 200px;
+            background-image: url("../images/image1jpg");
+            border-radius: 50%;
+        }
+
+        #id_circle {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: darkred;
+            opacity: 50%;
+            border-radius: 100px 0 0 0;
+        }
+
+        #id_dot {
+            position: absolute;
+            left: 100px;
+            top: 100px;
+            width: 5px;
+            height: 5px;
+            border-radius: 2.5%;
+            background-color: rgb(255, 81, 217);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="id_back">
+        <div id="id_dot"></div>
+        <div id="id_circle"></div>
+    </div>
+
+    <script>
+        var v_circle = document.getElementById("id_circle")
+        v_circle.style.transformOrigin = "right bottom"
+
+        var v_gak = 0;
+        var v_mv = 3;
+        function f_swing() {
+            v_gak = (v_gak + v_mv) % 360;
+            v_circle.style.transform = "rotate(" + v_gak + "deg)";
+            setTimeout(f_swing, 50);
+        }
+        f_swing();
+    </script>
+</body>
+
+</html>
