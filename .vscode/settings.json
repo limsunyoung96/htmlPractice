@@ -2,5 +2,41 @@
     "files.autoGuessEncoding": true,
     "editor.mouseWheelZoom": true,
     "editor.fontSize": 15,
-    "files.encoding": "utf8"
+    "files.encoding": "utf8",
+    "auto-rename-tag.activationOnLanguage": [
+        "*"
+    ],
+    "highlight-matching-tag.styles": {
+        "opening": {
+            "left": {
+                "underline": "yellow"
+            },
+            "right": {
+                "surround": "#155FFA"
+            },
+            "name": {
+                "highlight": "rgba(180, 20, 80, 0.3)"
+            }
+        },
+        "closing": {
+            "full": {
+                "custom": {
+                    "dark": {
+                        "borderWidth": "0 0 1px 0",
+                        "borderColor": "white",
+                        "borderStyle": "solid",
+                        "borderRadius": "4px",
+                        "right": "10px"
+                    },
+                    "light": {
+                        "borderWidth": "0 0 1px 0",
+                        "borderColor": "brown",
+                        "borderStyle": "solid",
+                        "borderRadius": "4px",
+                        "right": "10px"
+                    }
+                }
+            }
+        }
+    }
 }

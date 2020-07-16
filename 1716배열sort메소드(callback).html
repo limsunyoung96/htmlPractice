@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    /* 버블정렬
+    var v_arr = [5, 3, 1, 2, 9, 6]
+    v_arr.mySort = function (f_callback) {
+        console.log(this)
+        for (var i = 0; i < this.length; i++) {
+            for (var j = 0; j < this.length; j++) {
+                if (this[i] > this[j]) {
+                    var v_temp = this[i]
+                    this[i] = this[j]
+                    this[j] = v_temp
+                }
+            }
+
+        }
+    }
+    v_arr.mySort()
+    alert(v_arr)
+    */
+
+// callback 함수는 시대적으로 중요한 부분이니
+// 가끔 눈으로 봐서 낯설지 않게 힉혀둡니다.
+    var v_arr = [5, 3, 1, 2, 9, 6];
+    v_arr.mySort = function (f_callback) {
+        for (var i = 0; i < this.length; i++) {
+            for (var j = i + 1; j < this.length; j++) {
+                if (f_callback(this[i], this[j]) < 0) {
+                    var v_temp = this[i];
+                    this[i] = this[j];
+                    this[j] = v_temp;
+                }
+            }
+        }
+    }
+    v_arr.mySort(function (aa, bb) {
+        return aa - bb;
+    });
+
+    alert(v_arr);
+    /*
+    console.log(v_arr.sort()) //오름차순 정렬
+    console.log(v_arr.sort(function (a, b) {
+        return a - b
+    })) //오름차순 정렬(sort()랑 같음)
+
+    console.log(v_arr.sort(function (a, b) {
+        return b - a
+    })) //내림차순 정렬
+    */
+</script>
+<meta>

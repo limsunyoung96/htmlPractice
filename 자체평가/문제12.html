@@ -163,14 +163,23 @@
             // 가운데 막대충돌 체크
             var v_var2LeftCheck = (v_ballRight >= v_bar2Left) && (v_ballRight >= v_bar2Left + 2);
             var v_var2RightCheck = (v_ballLeft >= v_bar2Right) && (v_ballLeft >= v_bar2Right - 2);
-            var v_var2TopCheck = (v_ballTop <= v_bar2Bottom) && (v_ballTop <= v_bar2Bottom - 2);
-            var v_var2BottomCheck = (v_ballBottom >= v_bar2Top) && (v_ballBottom >= v_bar2Top + 2);
+            var v_var2BottomCheck = (v_ballTop <= v_bar2Bottom) && (v_ballTop <= v_bar2Bottom - 2);
+            var v_var2TopCheck = (v_ballBottom >= v_bar2Top) && (v_ballBottom >= v_bar2Top + 2);
 
-            if (v_var2TopCheck && v_var2BottomCheck) {
-                if (!v_var2LeftCheck && !v_var2RightCheck) {
-                    v_mvH = - v_mvH
-                }
+
+            var v_var2BottomCheck = (v_ballBottom <= v_bar2Top) && (v_ballBottom >= v_bar2Top - 2);
+            var v_var2TopCheck = (v_ballTop >= v_bar2Bottom) && (v_ballTop >= v_bar2Bottom - 2);
+            var v_var2rlCheck = (v_ballRight >= v_bar2Left) && (v_ballLeft <= v_bar2Right);
+            if ((v_var2BottomCheck||v_var2TopCheck )&& v_var2rlCheck) {
+                // if (v_mvW > 0) {
+                //     v_ball.style.transform = "skewX(-45deg) rotate(" + v_gak + "deg)"; // skew 뒤틀리다
+                // } else {
+                //     v_ball.style.transform = "skewX(45deg) rotate(" + v_gak + "deg)"; // rendering 시간 필요              
+                // }
+                v_mvW = -v_mvW;  // 위아래 방향만 전환
             }
+
+
             // if (v_var2LeftCheck && !(v_var2TopCheck && v_var2BottomCheck)) {
             //     v_mvW = -v_mvW;
             //     // v_mvH = - v_mvH
