@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+    <!-- 
+        CDN : Content Delivery Network
+        장점 : 내 서버의 부하를 줄여준다.
+        단점 : 해당서버(CDN제공서버)에 문제 발생시 내 사이트도 영향받음
+     -->
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+        이름<input type="text" name="nm_lsy1" value="임선영"><br>
+        <textarea name="nm_lsy" cols="20" rows="10"></textarea><br>
+        <input type="submit" value="전송!">
+    </form>
+
+    <!-- <textarea name="id_lsy" cols="20" rows="10"></textarea> -->
+    <script>
+        CKEDITOR.replace('nm_lsy');
+    </script>
+</body>
+
+</html>

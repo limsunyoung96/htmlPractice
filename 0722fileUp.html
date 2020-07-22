@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+
+<body>
+    <!-- 파일업로드 구현시 클라이언트단에서 주의할 부분
+     전송 Method는 꼭 post, 인코딩 방식 빼먹으면 안됨(온갖 에러가 모두 창출)  
+      enctype="multipart/form-data"
+      accept=".jpg,.png,.jpeg,.gif" : 이미지 파일만 선택
+    -->
+    <form action="0722upload.php" method="post" enctype="multipart/form-data">
+        Select image to upload:
+        <input type="file" name="fileToUpload" accept=".jpg,.png,.jpeg,.gif"><br>
+        <input type="submit" value="Upload Image" name="submit">
+    </form>
+
+</body>
+
+</html>
