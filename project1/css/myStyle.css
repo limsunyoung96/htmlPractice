@@ -59,6 +59,8 @@
     width: 750px;
     left: 250px;
     height: 700px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 #profile_img{
     position: absolute;
@@ -118,4 +120,14 @@
 }
 #profile_email{
     font-size: 0.7em;
+}
+
+#back_imgDIV{
+    border: 1px solid steelblue;
+    position: absolute;
+    left: 80px;
+    top: 300px;
+}
+#back_img{
+    
 }

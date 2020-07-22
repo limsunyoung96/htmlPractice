@@ -1,0 +1,29 @@
+#wrap{
+    width: 100%;
+    height: 900px;
+    display: block;
+    background-color: silver;
+}
+.top_banner{
+   
+    background-color: orange;
+    width: 100%;
+    height: 180px;
+}
+#header{
+    width: 100%;
+    height: 90px;
+    border: 1px solid steelblue;
+    text-align: center;
+}
+
+#header_img{
+    /* border: 1px solid tomato; */
+    width: 90px;
+    top: 6px;
+}
+#header_page_name{
+    font-size: 2.5em;
+    font-weight: bolder;
+    /* border: 1px solid steelblue; */
+}
