@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        window.onmousedown = function () {
+            if (event.button == 2) { // 0: 왼쪽, 1: 가운데, 2: 오른쪽
+                alert("오른쪽")
+                event.preventDefault(); // 기본 이벤트 막아버리기(막기)
+            }
+        }
+        //ContextMenu 막기(오른쪽 마우스 클릭 막음)
+        window.addEventListener("contextmenu", function () {
+            event.preventDefault(); // 기본 이벤트 막아버리기(막기)
+            // event.stopPropagation(); // 이벤트 전파 막기
+        })
+    </script>
+
+</body>
+
+</html>
