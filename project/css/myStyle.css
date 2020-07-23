@@ -1,29 +1,83 @@
 #wrap{
+    margin: 0px auto;
     width: 100%;
-    height: 900px;
-    display: block;
+    height: 100%;
     background-color: silver;
+    text-align: center;
+    vertical-align:middle;
+    align-items: center;
+    min-width: 1200px;
 }
-.top_banner{
-   
+/* .top_banner{
     background-color: orange;
     width: 100%;
-    height: 180px;
-}
+    height: 90px;
+} */
 #header{
     width: 100%;
     height: 90px;
-    border: 1px solid steelblue;
+    background-color: orange;
     text-align: center;
+    line-height: 90px;
 }
 
 #header_img{
     /* border: 1px solid tomato; */
     width: 90px;
-    top: 6px;
+    vertical-align:middle;
 }
 #header_page_name{
     font-size: 2.5em;
     font-weight: bolder;
+    vertical-align:middle;
     /* border: 1px solid steelblue; */
+}
+#id_menu_bar{
+    position: sticky;
+    left: 0px;
+    top: 0px;
+    background-color: tomato;
+    z-index: 100;
+}
+.cl_menu{
+    width: 150px;
+    height: 80px;
+    line-height: 80px;
+    display: inline-block;
+    font-size: 2em;
+    text-align: center;
+}
+#id_search{
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    vertical-align:middle;
+}
+.cl_elements{
+   width: 250px;
+   line-height: 150px;
+   border: 1px solid blueviolet;
+   display: inline-block;
+   margin: 10px 20px 10px 20px;
+   text-align: center;
+   vertical-align:middle;
+   align-items: center;
+}
+.cl_imgs{
+    width: 100%;
+    text-align: center;
+   vertical-align:middle;
+   align-items: center;
+}
+.cl_Container{
+    position: relative;
+    vertical-align:middle;
+    width: 100%;
+    height: 500px;
+    border: 1px solid tomato;
+    padding-top: 75px;
+    min-width: 1200px;
+    max-width: 1200px;
+    text-align: center;
+    align-items: center;
 }
