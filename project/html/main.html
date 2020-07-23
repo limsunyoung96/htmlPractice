@@ -77,8 +77,9 @@
             <div class="cl_elements"><img class="cl_imgs" src="https://img.youtube.com/vi/UDq5Q01ClPI/0.jpg"></div>
 
         </div>
-
+        <div class="cl_subject" ><img src="../img/목욕상어.gif" style="width: 100%;"><a>키즈엔터</a></div>
         <div class="cl_Container" id="id_ent">
+            
             <!-- <iframe width="889" height="500" src="https://www.youtube.com/embed/CmFe4OfMB2s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
             <div class="cl_elements"><img class="cl_imgs" src="https://img.youtube.com/vi/CmFe4OfMB2s/0.jpg"></div>
             <!-- <iframe width="1280" height="720" src="https://www.youtube.com/embed/U450Y2zr8gQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
@@ -98,7 +99,20 @@
         </div>
     </div>
     <script>
-
+        var v_elements = document.getElementsByClassName("cl_elements");
+        // 마우스 올려놓을 때 효과
+        for (var i = 0; i < v_elements.length; i++) {
+            v_elements[i].addEventListener("mouseover", function () {
+                event.target.style.transform = "scale(1.2)";
+                event.target.style.zIndex = 1;
+                event.target.style.transition = "all 0.5s";
+            })
+            v_elements[i].addEventListener("mouseout", function () {
+                event.target.style.transform = "scale(1)";
+                event.target.style.zIndex = 0;
+                event.target.style.transition = "all 0.5s";
+            })
+        }
     </script>
 </body>
 
