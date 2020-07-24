@@ -1,5 +1,7 @@
+body{
+    cursor: none;
+}
 #wrap{
-    margin: 0px auto;
     width: 100%;
     height: 100%;
     background-color: silver;
@@ -56,18 +58,25 @@
 .cl_elements{
    width: 250px;
    line-height: 150px;
-   border: 1px solid blueviolet;
+   /* border: 1px solid blueviolet; */
    display: inline-block;
-   margin: 10px 20px 10px 20px;
+   margin: 10px 20px 50px 20px;
    text-align: center;
    vertical-align:middle;
    align-items: center;
+   z-index: 60 ;
+   position: relative;
+  
 }
 .cl_imgs{
     width: 100%;
     text-align: center;
    vertical-align:middle;
    align-items: center;
+   z-index: 60;
+}
+.cl_hidden{
+    height: 75px;
 }
 .cl_Container{
     position: relative;
@@ -80,13 +89,48 @@
     max-width: 1200px;
     text-align: center;
     align-items: center;
+    /* background-color: silver; */
 }
 .cl_subject{
-    position: absolute;
-    width: 80px;
-    left: 50px;
-    transform: rotate(-10deg);
-    border: 1px solid tomato;
-    z-index: 50;
-    display: inline-block;
+   position: relative;
+   height: 80px;
+   width: 100%;
+   line-height: 80px;
+   z-index: 10;
+   top: -0px;
+   background-color: orange;
+   /* padding-top: 75px; */
 }
+.cl_subjectImg{
+    position: absolute;
+    width: 90px;
+    height: 80px;
+    z-index: 200;
+    left: 50px;
+    top: -5px;
+    transform: rotate(-10deg);
+    border: 1px dotted rgb(58, 58, 58);
+    display: inline-block;
+    background-color: coral;
+    border-radius: 40px 40px;
+    box-shadow: 3px 3px 10px black;
+    /* filter: drop-shadow(5px 5px 5px #000); */
+}
+.cl_subjectName{
+    /* border: 1px solid violet; */
+    width: 300px;
+    font-size: 2.5em;
+    font-weight: bolder;
+    position: absolute;
+    left: 170px;
+    font-stretch: ultra-expanded;
+    letter-spacing: 3pt;
+    text-align: left;
+    text-shadow:
+    -1px -1px 0 white,
+    1px -1px 0 white,
+    -1px 1px 0 white,
+    1px 1px 0 white,
+    3px 3px 3px rgb(58, 58, 58);  
+}
+
