@@ -19,7 +19,11 @@
             <div class="cl_menu" onclick="location.href='#id_video'">영어공부</div>
             <div class="cl_menu" onclick="location.href='#id_story'">동화</div>
             <div class="cl_menu" onclick="location.href='#id_ent'">키즈엔터</div>
-            <div class="cl_menu"><img class="cl_menu" id="id_search" src="../img/search.png"></div>
+            <div class="cl_menu"
+                onclick="location.href='http://192.168.20.59/jsstudy/%ed%94%84%eb%a1%9c%ec%a0%9d%ed%8a%b8/%eb%a9%94%ec%9d%b8%ed%99%94%eb%a9%b4.html'">
+                월간동화</div>
+            <input type="text" autofocus placeholder="검색어 입력" value="" id="id_searchBox" onkeydown="f_key()">
+            <img class="cl_menu" id="id_search" onclick="f_search()" src="../img/search.png">
         </div>
 
         <div class="cl_hidden" id="id_music"><a><img id="id_pic1" src="../img/맹구.gif"></a><a>오늘은 맹구와 뭐하고 놀깡?</a><img
@@ -30,22 +34,44 @@
         <div class="cl_Container">
             <!-- <iframe src="https://www.youtube.com/embed/761ae_KDg_Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe> -->
             <div class="cl_elements" id="761ae_KDg_Q" onclick="f_newOpen(this.id)"><img class="cl_imgs"
-                    src="https://img.youtube.com/vi/761ae_KDg_Q/0.jpg"></div>
+                    src="https://img.youtube.com/vi/761ae_KDg_Q/0.jpg">
+                <div class="cl_title">아기 상어</div>
+            </div>
             <!-- <iframe width="889" height="500" src="https://www.youtube.com/embed/5i-GDvqldc8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-            <div class="cl_elements" id="5i-GDvqldc8"><img class="cl_imgs" src="https://img.youtube.com/vi/5i-GDvqldc8/0.jpg"></div>
+            <div class="cl_elements" id="5i-GDvqldc8" onclick="f_newOpen(this.id)"><img class="cl_imgs"
+                    src="https://img.youtube.com/vi/5i-GDvqldc8/0.jpg">
+                <div class="cl_title">멋쟁이 토마토</div>
+            </div>
             <!-- <iframe width="889" height="500" src="https://www.youtube.com/embed/uasbxEnCMxQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-            <div class="cl_elements" id="uasbxEnCMxQ"><img class="cl_imgs" src="https://img.youtube.com/vi/uasbxEnCMxQ/0.jpg"></div>
+            <div class="cl_elements" id="uasbxEnCMxQ" onclick="f_newOpen(this.id)"><img class="cl_imgs"
+                    src="https://img.youtube.com/vi/uasbxEnCMxQ/0.jpg">
+                <div class="cl_title">티라노사우르스 렉스</div>
+            </div>
             <!-- <iframe width="889" height="500" src="https://www.youtube.com/embed/eGIqes-kVOU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-            <div class="cl_elements" id="eGIqes-kVOU"><img class="cl_imgs" src="https://img.youtube.com/vi/eGIqes-kVOU/0.jpg"></div><br>
-
+            <div class="cl_elements" id="eGIqes-kVOU" onclick="f_newOpen(this.id)"><img class="cl_imgs"
+                    src="https://img.youtube.com/vi/eGIqes-kVOU/0.jpg">
+                <div class="cl_title">한국을 빛낸 100명의 위인들</div>
+            </div><br>
             <!-- <iframe width="889" height="500" src="https://www.youtube.com/embed/sjl8ULaKNEU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-            <div class="cl_elements"><img class="cl_imgs" src="https://img.youtube.com/vi/sjl8ULaKNEU/0.jpg"></div>
+            <div class="cl_elements" id="sjl8ULaKNEU" onclick="f_newOpen(this.id)"><img class="cl_imgs"
+                    src="https://img.youtube.com/vi/sjl8ULaKNEU/0.jpg">
+                <div class="cl_title">할아버지 시계</div>
+            </div>
             <!-- <iframe width="889" height="500" src="https://www.youtube.com/embed/SiiDkPBfYss" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-            <div class="cl_elements"><img class="cl_imgs" src="https://img.youtube.com/vi/SiiDkPBfYss/0.jpg"></div>
+            <div class="cl_elements" id="SiiDkPBfYss" onclick="f_newOpen(this.id)"><img class="cl_imgs"
+                    src="https://img.youtube.com/vi/SiiDkPBfYss/0.jpg">
+                <div class="cl_title">꼬고댁 송</div>
+            </div>
             <!-- <iframe width="889" height="500" src="https://www.youtube.com/embed/U_DXjawVb4U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-            <div class="cl_elements"><img class="cl_imgs" src="https://img.youtube.com/vi/U_DXjawVb4U/0.jpg"></div>
-            <!-- <iframe width="889" height="500" src="https://www.youtube.com/embed/gIecPYRLknE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-            <div class="cl_elements"><img class="cl_imgs" src="https://img.youtube.com/vi/gIecPYRLknE/0.jpg"></div>
+            <div class="cl_elements" id="U_DXjawVb4U" onclick="f_newOpen(this.id)"><img class="cl_imgs"
+                    src="https://img.youtube.com/vi/U_DXjawVb4U/0.jpg">
+                <div class="cl_title">꼬리 찾기</div>
+            </div>
+            <!-- <iframe width="889" height="500" src="https://www.youtube.com/embed/Lp9xFVWj0Bo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+            <div class="cl_elements" id="Lp9xFVWj0Bo" onclick="f_newOpen(this.id)"><img class="cl_imgs"
+                    src="https://img.youtube.com/vi/Lp9xFVWj0Bo/0.jpg">
+                <div class="cl_title">할로윈 아기 자동차</div>
+            </div>
         </div>
 
         <div class="cl_hidden" id="id_video"></div>
@@ -54,21 +80,45 @@
         </div>
         <div class="cl_Container">
             <!-- <iframe width="889" height="500" src="https://www.youtube.com/embed/gmAPoAbw5jI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-            <div class="cl_elements"><img class="cl_imgs" src="https://img.youtube.com/vi/gmAPoAbw5jI/0.jpg"></div>
+            <div class="cl_elements" id="gmAPoAbw5jI" onclick="f_newOpen(this.id)"><img class="cl_imgs"
+                    src="https://img.youtube.com/vi/gmAPoAbw5jI/0.jpg">
+                <div class="cl_title">영어 말하기 기초 동작 동사</div>
+            </div>
             <!-- <iframe width="889" height="500" src="https://www.youtube.com/embed/1r3gS3FH9X8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-            <div class="cl_elements"><img class="cl_imgs" src="https://img.youtube.com/vi/1r3gS3FH9X8/0.jpg"></div>
+            <div class="cl_elements" id="1r3gS3FH9X8" onclick="f_newOpen(this.id)"><img class="cl_imgs"
+                    src="https://img.youtube.com/vi/1r3gS3FH9X8/0.jpg">
+                <div class="cl_title">재밌는 알파벳 노래</div>
+            </div>
             <!-- <iframe width="889" height="500" src="https://www.youtube.com/embed/PCZZjYuFHn4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-            <div class="cl_elements"><img class="cl_imgs" src="https://img.youtube.com/vi/PCZZjYuFHn4/0.jpg"></div>
+            <div class="cl_elements" id="PCZZjYuFHn4" onclick="f_newOpen(this.id)"><img class="cl_imgs"
+                    src="https://img.youtube.com/vi/PCZZjYuFHn4/0.jpg">
+                <div class="cl_title">꼬꼬와 함께하는 재밌는 숫자 놀이</div>
+            </div>
             <!-- <iframe width="889" height="500" src="https://www.youtube.com/embed/g2gbLmnZy-I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-            <div class="cl_elements"><img class="cl_imgs" src="https://img.youtube.com/vi/g2gbLmnZy-I/0.jpg"></div>
+            <div class="cl_elements" id="g2gbLmnZy-I" onclick="f_newOpen(this.id)"><img class="cl_imgs"
+                    src="https://img.youtube.com/vi/g2gbLmnZy-I/0.jpg">
+                <div class="cl_title">알파벳 공부</div>
+            </div>
             <!-- <iframe width="889" height="500" src="https://www.youtube.com/embed/4UkbEaBwR50" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-            <div class="cl_elements"><img class="cl_imgs" src="https://img.youtube.com/vi/4UkbEaBwR50/0.jpg"></div>
+            <div class="cl_elements" id="4UkbEaBwR50" onclick="f_newOpen(this.id)"><img class="cl_imgs"
+                    src="https://img.youtube.com/vi/4UkbEaBwR50/0.jpg">
+                <div class="cl_title">헨젤과 그레텔 이야기</div>
+            </div>
             <!-- <iframe width="889" height="500" src="https://www.youtube.com/embed/GVkQKwWkkGU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-            <div class="cl_elements"><img class="cl_imgs" src="https://img.youtube.com/vi/GVkQKwWkkGU/0.jpg"></div>
+            <div class="cl_elements" id="GVkQKwWkkGU" onclick="f_newOpen(this.id)"><img class="cl_imgs"
+                    src="https://img.youtube.com/vi/GVkQKwWkkGU/0.jpg">
+                <div class="cl_title">과일 채소 ABC</div>
+            </div>
             <!-- <iframe width="889" height="500" src="https://www.youtube.com/embed/qFdRmu3Ikj4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-            <div class="cl_elements"><img class="cl_imgs" src="https://img.youtube.com/vi/qFdRmu3Ikj4/0.jpg"></div>
+            <div class="cl_elements" id="qFdRmu3Ikj4" onclick="f_newOpen(this.id)"><img class="cl_imgs"
+                    src="https://img.youtube.com/vi/qFdRmu3Ikj4/0.jpg">
+                <div class="cl_title">알록달록 색깔 배우기</div>
+            </div>
             <!-- <iframe width="889" height="500" src="https://www.youtube.com/embed/UaqxlaLQh20" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-            <div class="cl_elements"><img class="cl_imgs" src="https://img.youtube.com/vi/UaqxlaLQh20/0.jpg"></div>
+            <div class="cl_elements" id="UaqxlaLQh20" onclick="f_newOpen(this.id)"><img class="cl_imgs"
+                    src="https://img.youtube.com/vi/UaqxlaLQh20/0.jpg">
+                <div class="cl_title">영어 작은 별</div>
+            </div>
         </div>
 
         <div class="cl_hidden" id="id_story"></div>
@@ -77,21 +127,45 @@
         </div>
         <div class="cl_Container">
             <!-- <iframe width="889" height="500" src="https://www.youtube.com/embed/-uSiQWzRoUI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-            <div class="cl_elements"><img class="cl_imgs" src="https://img.youtube.com/vi/-uSiQWzRoUI/0.jpg"></div>
+            <div class="cl_elements" id="-uSiQWzRoUI" onclick="f_newOpen(this.id)"><img class="cl_imgs"
+                    src="https://img.youtube.com/vi/-uSiQWzRoUI/0.jpg">
+                <div class="cl_title">토끼와 거북이</div>
+            </div>
             <!-- <iframe width="889" height="500" src="https://www.youtube.com/embed/Mzg_bqQqiP4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-            <div class="cl_elements"><img class="cl_imgs" src="https://img.youtube.com/vi/Mzg_bqQqiP4/0.jpg"></div>
+            <div class="cl_elements" id="Mzg_bqQqiP4" onclick="f_newOpen(this.id)"><img class="cl_imgs"
+                    src="https://img.youtube.com/vi/Mzg_bqQqiP4/0.jpg">
+                <div class="cl_title">잭과 콩나물</div>
+            </div>
             <!-- <iframe width="889" height="500" src="https://www.youtube.com/embed/cFnUQZpriwU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-            <div class="cl_elements"><img class="cl_imgs" src="https://img.youtube.com/vi/cFnUQZpriwU/0.jpg"></div>
-            <!-- <iframe width="889" height="702" src="https://www.youtube.com/embed/mpyBkxOZAn4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-            <div class="cl_elements"><img class="cl_imgs" src="https://img.youtube.com/vi/mpyBkxOZAn4/0.jpg"></div>
-            <!-- <iframe width="889" height="500" src="https://www.youtube.com/embed/PPmN-kZioNA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-            <div class="cl_elements"><img class="cl_imgs" src="https://img.youtube.com/vi/PPmN-kZioNA/0.jpg"></div>
+            <div class="cl_elements" id="cFnUQZpriwU" onclick="f_newOpen(this.id)"><img class="cl_imgs"
+                    src="https://img.youtube.com/vi/cFnUQZpriwU/0.jpg">
+                <div class="cl_title">해와 달이 된 오누이</div>
+            </div>
+            <!-- <iframe width="889" height="500" src="https://www.youtube.com/embed/PwKi1CF8D58" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+            <div class="cl_elements" id="PwKi1CF8D58" onclick="f_newOpen(this.id)"><img class="cl_imgs"
+                    src="https://img.youtube.com/vi/PwKi1CF8D58/0.jpg">
+                <div class="cl_title">황새와 여우의 저녁 초대</div>
+            </div>
+            <!-- <iframe width="889" height="500" src="https://www.youtube.com/embed/4J5CMeegulg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+            <div class="cl_elements" id="4J5CMeegulg" onclick="f_newOpen(this.id)"><img class="cl_imgs"
+                    src="https://img.youtube.com/vi/4J5CMeegulg/0.jpg">
+                <div class="cl_title">넘어지면 3년만 사는 고개</div>
+            </div>
             <!-- <iframe width="889" height="500" src="https://www.youtube.com/embed/Dmk8d4D4fes" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-            <div class="cl_elements"><img class="cl_imgs" src="https://img.youtube.com/vi/Dmk8d4D4fes/0.jpg"></div>
+            <div class="cl_elements" id="Dmk8d4D4fes" onclick="f_newOpen(this.id)"><img class="cl_imgs"
+                    src="https://img.youtube.com/vi/Dmk8d4D4fes/0.jpg">
+                <div class="cl_title">신데렐라</div>
+            </div>
             <!-- <iframe width="889" height="500" src="https://www.youtube.com/embed/Bhb5DovdzvA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-            <div class="cl_elements"><img class="cl_imgs" src="https://img.youtube.com/vi/Bhb5DovdzvA/0.jpg"></div>
+            <div class="cl_elements" id="Bhb5DovdzvA" onclick="f_newOpen(this.id)"><img class="cl_imgs"
+                    src="https://img.youtube.com/vi/Bhb5DovdzvA/0.jpg">
+                <div class="cl_title">청개구리</div>
+            </div>
             <!-- <iframe width="889" height="500" src="https://www.youtube.com/embed/UDq5Q01ClPI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-            <div class="cl_elements"><img class="cl_imgs" src="https://img.youtube.com/vi/UDq5Q01ClPI/0.jpg"></div>
+            <div class="cl_elements" id="UDq5Q01ClPI" onclick="f_newOpen(this.id)"><img class="cl_imgs"
+                    src="https://img.youtube.com/vi/UDq5Q01ClPI/0.jpg">
+                <div class="cl_title">백설공주</div>
+            </div>
 
         </div>
         <div class="cl_hidden" id="id_ent"></div>
@@ -101,21 +175,45 @@
         <div class="cl_Container">
 
             <!-- <iframe width="889" height="500" src="https://www.youtube.com/embed/CmFe4OfMB2s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-            <div class="cl_elements"><img class="cl_imgs" src="https://img.youtube.com/vi/CmFe4OfMB2s/0.jpg"></div>
+            <div class="cl_elements" id="CmFe4OfMB2s" onclick="f_newOpen(this.id)"><img class="cl_imgs"
+                    src="https://img.youtube.com/vi/CmFe4OfMB2s/0.jpg">
+                <div class="cl_title">방귀 뿡뿡 체조</div>
+            </div>
             <!-- <iframe width="1280" height="720" src="https://www.youtube.com/embed/U450Y2zr8gQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-            <div class="cl_elements"><img class="cl_imgs" src="https://img.youtube.com/vi/U450Y2zr8gQ/0.jpg"></div>
+            <div class="cl_elements" id="U450Y2zr8gQ" onclick="f_newOpen(this.id)"><img class="cl_imgs"
+                    src="https://img.youtube.com/vi/U450Y2zr8gQ/0.jpg">
+                <div class="cl_title">개굴개굴 귀여운 왕 개구리 만들기</div>
+            </div>
             <!-- <iframe width="889" height="500" src="https://www.youtube.com/embed/a5rc0JgIgs8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-            <div class="cl_elements"><img class="cl_imgs" src="https://img.youtube.com/vi/a5rc0JgIgs8/0.jpg"></div>
+            <div class="cl_elements" id="a5rc0JgIgs8" onclick="f_newOpen(this.id)"><img class="cl_imgs"
+                    src="https://img.youtube.com/vi/a5rc0JgIgs8/0.jpg">
+                <div class="cl_title">수박 액체괴물 만들기</div>
+            </div>
             <!-- <iframe width="889" height="500" src="https://www.youtube.com/embed/3oOBr2q79FA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-            <div class="cl_elements"><img class="cl_imgs" src="https://img.youtube.com/vi/3oOBr2q79FA/0.jpg"></div>
+            <div class="cl_elements" id="3oOBr2q79FA" onclick="f_newOpen(this.id)"><img class="cl_imgs"
+                    src="https://img.youtube.com/vi/3oOBr2q79FA/0.jpg">
+                <div class="cl_title">뽀로로 바나나차차</div>
+            </div>
             <!-- <iframe width="924" height="508" src="https://www.youtube.com/embed/MEQs24w6tFo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-            <div class="cl_elements"><img class="cl_imgs" src="https://img.youtube.com/vi/MEQs24w6tFo/0.jpg"></div>
+            <div class="cl_elements" id="MEQs24w6tFo" onclick="f_newOpen(this.id)"><img class="cl_imgs"
+                    src="https://img.youtube.com/vi/MEQs24w6tFo/0.jpg">
+                <div class="cl_title">응가 송</div>
+            </div>
             <!-- <iframe width="889" height="500" src="https://www.youtube.com/embed/XpwNLEfCCPA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-            <div class="cl_elements"><img class="cl_imgs" src="https://img.youtube.com/vi/XpwNLEfCCPA/0.jpg"></div>
+            <div class="cl_elements" id="XpwNLEfCCPA" onclick="f_newOpen(this.id)"><img class="cl_imgs"
+                    src="https://img.youtube.com/vi/XpwNLEfCCPA/0.jpg">
+                <div class="cl_title">레고도트 팔찌 만들기</div>
+            </div>
             <!-- <iframe width="889" height="500" src="https://www.youtube.com/embed/JG1YWBx3aCc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-            <div class="cl_elements"><img class="cl_imgs" src="https://img.youtube.com/vi/JG1YWBx3aCc/0.jpg"></div>
+            <div class="cl_elements" id="JG1YWBx3aCc" onclick="f_newOpen(this.id)"><img class="cl_imgs"
+                    src="https://img.youtube.com/vi/JG1YWBx3aCc/0.jpg">
+                <div class="cl_title">쪼이송 율동동요 모음집</div>
+            </div>
             <!-- <iframe width="889" height="500" src="https://www.youtube.com/embed/BvEzP-6T35s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-            <div class="cl_elements"><img class="cl_imgs" src="https://img.youtube.com/vi/BvEzP-6T35s/0.jpg"></div>
+            <div class="cl_elements" id="BvEzP-6T35s" onclick="f_newOpen(this.id)"><img class="cl_imgs"
+                    src="https://img.youtube.com/vi/BvEzP-6T35s/0.jpg">
+                <div class="cl_title">라바와 랄랄라 동요 모음</div>
+            </div>
         </div>
 
         <div id="id_copyright">
@@ -125,7 +223,7 @@
     </div>
 
     <script>
-        var v_elements = document.getElementsByClassName("cl_elements");
+        var v_elements = document.getElementsByClassName("cl_imgs");
         // 영상에 마우스 올려놓을 때 효과
         for (var i = 0; i < v_elements.length; i++) {
             v_elements[i].addEventListener("mouseover", function () {
@@ -141,10 +239,12 @@
         // 메뉴에 마우스 올려놓을 때 효과
         for (var i = 0; i < v_menues.length; i++) {
             v_menues[i].addEventListener("mouseover", function () {
+                event.target.setAttribute("style", "font-weight:bold")
                 event.target.style.boxShadow = "-1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white,1px 1px 0 white, 3px 3px 3px rgb(58, 58, 58)";
                 event.target.style.transition = "all 0.3s";
             })
             v_menues[i].addEventListener("mouseout", function () {
+                event.target.setAttribute("style", "font-weight:none")
                 event.target.style.boxShadow = "0px 0px 0px black";
                 event.target.style.transition = "all 0.3s";
             })
@@ -162,7 +262,6 @@
         function f_move() {
             v_mouse1.style.left = event.pageX + 2 + "px";
             v_mouse1.style.top = event.pageY + 2 + "px";
-            setTimeout(f_move, 10);
         }
         var v_msg = " ꕥ ✿ * ❀ ❀ ✿ ꕥ ✿ ✿ * * ✿ ꕥ";
         v_msg = v_msg.split("");  // 문자열을 쪼개 글자 1개씩 배열에 담기
@@ -216,7 +315,7 @@
                 v_char.style.left = v_leftPos[i] + "px";
                 v_char.style.top = v_topPos[i] + "px";
                 v_char.style.color = f_ranColor();
-                v_char.style.fontSize = Math.floor(Math.random() * 3) + 1.3 + "em"
+                v_char.style.fontSize = Math.floor(Math.random() * 2) + 1 + "em"
             }
             // 마우스 좌표의 변하는 값을 일겅보기 위해 반복실행 필요
             setTimeout(f_charMove, 50);
@@ -224,7 +323,13 @@
         window.onload = f_charMove;
         window.addEventListener("mousemove", f_msMove);
         window.addEventListener("mousemove", f_move);
+        window.addEventListener("keydown", function () {
+            if (event.key != "Enter") {
+                v_searchBox.focus();
+            }
+        })
 
+        // 동영상 재생 화면
         var v_newWin = null;
         var v_newVideoId = null;
         var v_ta = document.getElementById("id_ta");
@@ -232,8 +337,45 @@
             if (!v_newWin) {
                 v_newVideoId = v_id
                 v_newWin = window.open("./play.html", "",
-                    "width=830. height=470, left =200, top=200")
+                    "width=900. height=530, left =200, top=200")
             }
+        }
+
+        // 검색기능
+        var cl_titles = document.getElementsByClassName("cl_title")
+        var v_text = [];  // 제목 v_text에 배열로(영상별) 저장
+        for (var i = 0; i < cl_titles.length; i++) {
+            v_text[i] = cl_titles[i].innerText.replace(/(\s*)/g, ""); // 공백 제거
+        }
+        var v_searchBox = document.getElementById("id_searchBox")
+        var v_menu = ['id_music', 'id_video', 'id_story', 'id_ent']
+        function f_key() {
+            if (event.key == 'Enter') {
+                f_search();
+                v_searchBox.value = "";
+            }
+        }
+
+        function f_search() {
+            var v_isFind = false;
+            for (var i = 0; i < cl_titles.length; i++) {
+                cl_titles[i].parentElement.setAttribute("style", "border: none; transform: scale(1.0)")
+            }
+            var v_value = v_searchBox.value.replace(/ /gi, "");
+            if (v_value) {
+                for (var i = 0; i < cl_titles.length; i++) {
+                    if (v_text[i].indexOf(v_value) != -1) { // 검색하는 단어가 존재하면
+                        v_isFind = true
+                        var v_location = window.pageYOffset + cl_titles[i].getBoundingClientRect().top
+                        window.scrollTo({ top: v_location - 300, behavior: 'smooth' })
+                        cl_titles[i].parentElement.setAttribute("style", "border: 3px solid tomato; transform: scale(1.1)")
+                    }
+                }
+                if (!v_isFind) { // 해당 단어가 나오지 않는다면
+                    alert("찾는 영상이 없습니다.");
+                }
+            }
+            console.log("크기: " + window.innerHeight)
         }
 
     </script>
