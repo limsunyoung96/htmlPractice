@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공지사항같은거띄우기</title>
+    <style>
+        #id_modal {
+            /* 위치 고정 */
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100vw;
+            /* position fixed 일때는 %도 먹음 */
+            height: 100vh;
+            /* layer로 띄우기 */
+            z-index: 272;
+            /* 첨엔 안보였다가 뿅 나타나게 */
+            display: none;
+            background-color: rgba(33, 138, 156, 0.5);
+        }
+
+        #id_body {
+            /* 대충 가운데 정렬 */
+            margin: 80px auto;
+            /* 넓이 부모의 70% */
+            width: 70%;
+            height: 200px;
+            border: 2px solid purple;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- modal, modaless -->
+    <input type="button" value="모달창 띄우기" onclick="f_modalShow()">
+    <input type="button" value="기냥 버튼" onclick="f_check()">
+    <div id="id_modal">
+        <!-- 여기 안에 필요한 걸 만듬 -->
+        <div id="id_body">
+            <input id="id_end" type="button" value="모달창 닫기">
+        </div>
+    </div>
+    <script>
+        var v_modalMin = document.getElementById("id_modal");
+        var v_modalEnd = document.getElementById("id_end");
+        v_modalEnd.onclick=function(){
+            v_modalMin.style.display = "none";
+        }
+        function f_modalShow() {
+            v_modalMin.style.display = "block";
+        }
+        function f_check() {
+            alert("나 눌렀니");
+        }
+    </script>
+</body>
+
+</html>

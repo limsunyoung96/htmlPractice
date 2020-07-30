@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 사용자 정의 속성 data 
+         일반적으로는 잘 쓰이지 않고, 
+         웹 프론트엔드 컴포넌트 개발 전문회사 정도 되면 사용
+    -->
+    <div id="id_ggg" data-lsy="임선영캬캬컄" data-jhs="오엥" >캬캬컄</div>
+    <script>
+        // 사용자 정의 속성 접근
+        var v_ggg = document.getElementById("id_ggg")
+        alert(v_ggg.dataset["lsy"]);
+        alert(v_ggg.dataset.lsy)
+        alert(v_ggg.dataset.jhs)
+    </script>
+</body>
+</html>
