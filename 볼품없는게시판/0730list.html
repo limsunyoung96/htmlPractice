@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script>
+    // localStorage 내용 읽어와서 출력하기
+    var v_tblName = "볼품게시";
+    var v_arrDatas = JSON.parse(localStorage.getItem(v_tblName));
+    document.write("<h1>임선영 짱</h1>");
+    var v_tblStr = "<table border=1>";
+    v_tblStr += "<tr><th>넘버</th><th>제목</th><th>글쓴이</th><th>등급</th><th>보유스킬</th></tr>"
+    for (var i = 0; i < v_arrDatas.length; i++) {
+        v_tblStr += "<tr>";
+        v_tblStr += "<td>" + v_arrDatas[i].num + "</td>";
+        v_tblStr += "<td><a href='0730read.html?g_num=" + v_arrDatas[i].num + "'>" + v_arrDatas[i].title + "</td>";
+        v_tblStr += "<td>" + v_arrDatas[i].writer + "</td>";
+        v_tblStr += "<td>" + v_arrDatas[i].auth + "</td>";
+        v_tblStr += "<td>" + v_arrDatas[i].skills + "</td>";
+        v_tblStr += "</tr>";
+    }
+    v_tblStr += "</table>";
+    v_tblStr += "<a href='0730write.hteml'>글쓰기</a>"
+    document.write(v_tblStr); // 화면에 출력
+</script>

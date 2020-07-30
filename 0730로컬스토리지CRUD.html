@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="id_disp" style="border: 1px solid orchid; height: 100px;"></div>
+    이름<input type="text" id="id_name" value=""><br>
+    별명<input type="text" id="id_alias" value=""><br>
+    <input type="button" value="추가" onclick="f_add()">
+    <input type="button" value="읽기" onclick="f_read()">
+    <input type="button" value="수정" onclick="f_mod()">
+    <input type="button" value="삭제" onclick="f_del()">
+    <script>
+        // localStorage는 문자열 밖에 저장이 안된다.
+        // key 값을 관계형 DB의 테이블명으로, json 타입을 레코드처럼 사용해서 효용성을 높이려 함
+        var v_tbName = "lsy";
+        var v_name = document.getElementById("id_name");
+        var v_alias = document.getElementById("id_alias");
+        var v_disp = document.getElementById("id_disp");
+        var v_arrVals = []; // record를 담을 배열, 이것이 table 역할
+        function f_add() {
+            var v_saram = {};
+            v_saram.name = v_name.value;
+            v_saram.alias = v_alias.value;
+
+            v_arrVals.push(v_saram); // 배열에 json 추가
+
+            localStorage.setItem(v_tbName, JSON.stringify(v_arrVals));
+        }
+
+        function f_read() {
+            var v_schName = v_name.value; // localStorage에서 찾으려는 이름
+            var v_arrDatas = JSON.parse(localStorage.getItem(v_tbName));
+            for (var i = 0; i < v_arrDatas.length; i++) {
+                if (v_arrDatas[i].name == v_schName) {
+                    var v_str = "이름: " + v_arrDatas[i].name + "<br>";
+                    v_str += "별명: " + v_arrDatas[i].alias + "를 찾았습니다."
+                    v_disp.innerHTML = v_str;
+                    break;
+                }
+            }
+        }
+
+        function f_mod() {
+            var v_schName = v_name.value; // localStorage에서 찾으려는 이름
+            var v_modAlias = v_alias.value; // 바꿔쓰려는 별명
+            var v_arrDatas = JSON.parse(localStorage.getItem(v_tbName));
+            for (var i = 0; i < v_arrDatas.length; i++) {
+                if (v_arrDatas[i].name == v_schName) {
+                    v_arrDatas[i].alias = v_modAlias; // 별명 값을 바꾸어 줌
+                    break;
+                }
+            } // 여기까지 하면 메모리상의 배열에서만 값이 바뀌어서, localstorage에는 반영이 안된다.
+            // 로컬스토리지에 바뀐 배열 내용 저장
+            localStorage.setItem(v_tbName, JSON.stringify(v_arrDatas));
+        }
+        function f_del() {
+            var v_schName = v_name.value; // localStorage에서 찾으려는 이름
+            var v_arrDatas = JSON.parse(localStorage.getItem(v_tbName));
+            for (var i = 0; i < v_arrDatas.length; i++) {
+                if (v_arrDatas[i].name == v_schName) {
+                    v_arrDatas.splice(i, 1);
+                    break;
+                }
+            } // 여기까지 하면 메모리상의 배열에서만 값이 바뀌어서, localstorage에는 반영이 안된다.
+            // 로컬스토리지에 바뀐 배열 내용 저장
+            localStorage.setItem(v_tbName, JSON.stringify(v_arrDatas)); // 지운 배열로 덮어쓰기
+        }
+    </script>
+</body>
+
+</html>
