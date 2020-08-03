@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="id_disp"></div>
+    가져올 데이터 파일명<input type="text" id="id_file" value=""><br>
+    <input type="button" value="아작스로데이터가져오기" id="id_btn">
+
+    <script>
+        var v_disp = document.getElementById("id_disp");
+        var v_btn = document.getElementById("id_btn");
+        var v_fileName = document.getElementById("id_file");
+        v_btn.onclick = function () {
+            var v_ajax = new XMLHttpRequest();
+            v_ajax.open("get", v_fileName.value, true);
+            v_ajax.send();
+
+            v_ajax.onreadystatechange = function () {
+                if (v_ajax.readyState == 4 && v_ajax.status == 200) {
+                    // data.csv 파일내용 받아서 table 형식으로 출력
+                    v_disp.innerHTML = "" // 넣기 전에 비움
+                    var v_content = v_ajax.responseText;
+                    var v_lines = v_content.split("\n")
+                    var innerStr = "<table border=2 style='text-align: center;'>"
+                    for (var i = 0; i < v_lines.length; i++) {
+                        var v_str = v_lines[i].split(",")
+                        innerStr += "<tr>"
+                        for (var j = 0; j < v_str.length; j++) {
+                            // console.log(v_str[j].trim())
+                            innerStr += "<td>" + v_str[j].trim() + "</td>";
+                        }
+                        innerStr += "</tr>"
+                    }
+                    innerStr += "</table>"
+                    v_disp.innerHTML += innerStr
+                    // console.log(v_disp.innerHTML)
+                }
+            }
+
+        }
+    </script>
+
+
+    <!-- <script>
+        // AJAX  Asynchronouse JavaScript (XML -> JSON의 시대)
+        // 낯설어도 일단 1번은 외워야 함.
+        var v_ajax = new XMLHttpRequest(); // 통신객체생성, 대신 통신해줄 사람
+        // v_ajax.open("메소드(통신방법)","URL(어떤 서버랑 연결할 것인지)","비동기여부");
+        v_ajax.open("get", "data.txt", true);   //통신 방식은 무조건 비동기방식
+        v_ajax.send();  // 실행하라
+
+        //통신객체의 state변화를 체크(준비 상태가 바뀔 때 마다)
+        v_ajax.onreadystatechange = function () {
+            // 상태 값 0, 1, 2, 3에는 관심 없음. 완료되었다는 4번에만 관심 있음
+            // 통신은 최소 2개의 객체가 통신하는 것이므로 서버의 응답코드도 확인
+            if (v_ajax.readyState == 4 && v_ajax.status == 200) {
+                alert(v_ajax.responseText); // 서버로부터 전달 받은 내용
+            }
+            // console.log(v_ajax.readyState);      //통신객체의 상태값
+        }
+        // 체크가 먼저 나오기 때문에 비동기 방식임을 알 수 있음
+        console.log("체크");
+
+    </script> -->
+</body>
+
+</html>
