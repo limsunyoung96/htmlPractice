@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="id_disp"></div>
+    이름 <input type="text" id="id_name" value=""><br>
+    나이 <input type="text" id="id_age" value=""><br>
+    <input type="button" value="눌러" id="id_btn">
+
+
+    <script>
+        var v_btn = document.getElementById("id_btn");
+        var v_age = document.getElementById("id_age");
+        var v_name = document.getElementById("id_name");
+        var v_div = document.getElementById("id_disp");
+        function f_ajax() {
+            var v_ajax = new XMLHttpRequest();
+            // get 방식에 data 추가로 넘기기
+            var v_queryStr = "p_name=" + v_name.value + "&p_age=" + v_age.value;
+            // v_ajax.open("get", "0804test1.php?" + v_queryStr, true);
+            v_ajax.open("get", "http://naver.com/index.html", true);
+            v_ajax.send();
+
+            v_ajax.onreadystatechange = function () {
+                if (v_ajax.readyState == 4 && v_ajax.status == 200) {
+                    v_div.innerHTML = "<h1>응답 내용: " + v_ajax.responseText + "</h1>";
+                }
+            }
+        }
+        v_btn.addEventListener("click", f_ajax);
+
+    </script>
+
+    <!-- data 형식이 xml 
+    <script>
+        var v_btn = document.getElementById("id_btn");
+        function f_ajax() {
+            var v_ajax = new XMLHttpRequest();
+            v_ajax.open("get", "data.xml", true);
+            v_ajax.send();
+
+            v_ajax.onreadystatechange = function () {
+                if (v_ajax.readyState == 4 && v_ajax.status == 200) {
+                    var v_xmlDoc = v_ajax.responseXML; // xml 문자열을 xml문서로 바꿔서 줌
+                    var v_names = v_xmlDoc.getElementsByTagName("상세")[0];
+                    for(var i=0; i<v_names.children.length; i++){
+                        // alert(v_names.children[i].innerHTML);
+                        // alert(v_names.children[i].nodeName); // nodeName -> 태그 명
+                    }
+                }
+            }
+        }
+        v_btn.addEventListener("click", f_ajax);
+
+    </script>-->
+
+
+
+    <!-- data 형식이 JSON 
+        <script>
+        var v_btn = document.getElementById("id_btn");
+        function f_ajax() {
+            var v_ajax = new XMLHttpRequest();
+            v_ajax.open("get", "data.json", true);
+            v_ajax.send();
+
+            v_ajax.onreadystatechange = function () {
+                if (v_ajax.readyState == 4 && v_ajax.status == 200) {
+                    var v_arr = JSON.parse(v_ajax.responseText);
+                    // 가져온 문자열이 스크립트 배열 / JSON 문법에 어긋나지 않는 문자열
+                    // 이라서 변환 가능
+                    alert(v_arr[0].content.point)
+                }
+            }
+        }
+        v_btn.addEventListener("click", f_ajax);
+
+    </script> -->
+</body>
+
+</html>

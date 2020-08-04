@@ -2,7 +2,9 @@
 <meta charset="utf-8">
 <script>
     // 바뀌는 부분만 일반화 시키기. JSON 사용
-    var $ = {}; // _ 와 $는 변수명으로 쓸 수 있음
+    // 바뀌는 부분만 일반화를 시켜봅시다. JSON을 이용
+
+    var $ = {};   // _ 와 $는 변수명으로 쓸 수 있음.
     $.ajax = function (p_json) {
         var v_ajax = new XMLHttpRequest();
         v_ajax.open(p_json.method, p_json.url, true);
@@ -13,30 +15,23 @@
             }
         }
     }
-
-    var p_data ={};
+    //만들었으니 확인해보기
+    var p_data = {};
     p_data.method = "get";
-    p_data.url="data.csv";
-    p_data.success = function (p_msg){
-        alert("흥"+p_msg);
+    p_data.url = "data.csv";
+    p_data.success = function (p_msg) {
+        alert("흥" + p_msg);
     }
     $.ajax(p_data);
-    //맹들었으니 확인
-    $.ajax({
-        "method": "get",
-        "url": "data.csv",
-        "success": function (p_data) {
-            alert("넘겨 받은 값은: " + p_data + "입니다");
-        }
-    });
 
     $.ajax({
         "method": "get",
-        "url": "0803test.php",
+        "url": "test.php",
         "success": function (p_data) {
-            alert("넘겨 받은 값은: " + p_data + "입니다");
+            alert("넘겨받은 값은:" + p_data + "입니당");
         }
     });
+
 
     /* 아래 항상쓰는 ajax 모양
     var v_ajax = new XMLHttpRequest();
