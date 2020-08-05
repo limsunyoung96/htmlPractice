@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+
+<body>
+    <input type="text" id="id_search" value=""><br>
+    <input type="button" value="구글뉴스검색" onclick="f_search()">
+    <div id="id_disp"></div>
+</body>
+<script>
+    var v_schWord = document.getElementById("id_search")
+    var v_disp = document.getElementById("id_disp");
+    function f_search() {
+        var v_xhr = new XMLHttpRequest();
+        // ajax는 대부분 same-origin 정책으로 인해 다른 사이트(도메인)의 정보를 못가져옴
+        // 이때 사용하는 방법이 내 서버를 경유해서 데이터를 받음
+        v_xhr.open("get", "0805around.php?search=" + v_schWord.value, true);
+        v_xhr.send();
+
+        v_xhr.addEventListener("readystatechange", function () {
+            if (v_xhr.readyState == 4 && v_xhr.status == 200) {
+                // document.getElementById("id_disp").innerHTML = v_xhr.responseText;
+                // console.log(JSON.parse(v_xhr.responseText));
+                var v_items = JSON.parse(v_xhr.responseText).channel.item;
+                // console.log(v_items)
+                var v_tblStr = "<table id='id_tbl' border=1 style='text-align:center'>";
+                for (var i = 0; i < v_items.length; i++) {
+                    v_tblStr += "<tr>";
+                    v_tblStr += "<td>" + (i + 1) + "</td>"
+                    v_tblStr += "<td><a href='" + v_items[i].link + "'>" + v_items[i].title + "</a></td>"
+                    v_tblStr += "</tr>"
+                }
+                v_tblStr += "</table>"
+                v_disp.innerHTML = v_tblStr;
+
+                var v_table = document.getElementById("id_tbl");
+                var v_tbody = v_table.children[0];
+                var v_tr = v_tbody.children; // 배열
+
+                // console.log(v_tr);
+
+                function f_regEvent(p_index) {
+                    v_tr[p_index].onmouseover = function () {
+                        v_tr[p_index].style.backgroundColor = "yellow"
+                    }
+                    v_tr[p_index].onmouseout = function () {
+                        v_tr[p_index].style.backgroundColor = "white"
+                    }
+                }
+
+                for (var i = 0; i < v_tr.length; i++) {
+                    //이벤트 등록에 반복문 i값의 영향 피하기, 별도 함수 생성
+                    f_regEvent(i);
+                }
+
+                // 아래 방법이 위의 방법보다 좋음. this 사용
+                // for (var i = 0; i < v_tr.length; i++) {
+                //     v_tr[i].addEventListener("mouseover", function () {
+                //         console.log(i)// 계속 100이 나옴. 그래서 
+                //         // v_tr[i].style은 안된다.
+                //         this.style.backgroundColor = "yellow";
+                //     })
+                //     v_tr[i].addEventListener("mouseout", function () {
+                //         this.style.backgroundColor = "white";
+                //     })
+                // }
+            }
+        })
+    }
+</script>

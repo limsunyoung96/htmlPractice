@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax post 방식</title>
+</head>
+<body>
+    <script>
+        // ajax post 방식
+        var v_xhr = new XMLHttpRequest();
+        v_xhr.open("post", "0805check.php", true);
+        // post 방식에서 data를 전송할 때는 send에 매개변수로 넘겨줌
+        // application/x-www-form-urlencoded 는 디폴트(default)
+        // multipart/form-data 는 파일 저장
+
+
+        // post방식으로 ajax 실행하려면
+        // 전송 encoding방식을 default 값으로 바꿔줘야 함. (send 전에)
+        v_xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        v_xhr.send("name=lsy");
+
+        v_xhr.onreadystatechange = function () {
+            if (v_xhr.readyState == 4 && v_xhr.status == 200) {
+                alert(v_xhr.responseText);
+            }
+        }
+
+    </script>
+</body>
+
+</html>
