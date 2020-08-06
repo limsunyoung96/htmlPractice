@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    // 그동안 우리의 객체생성 방식은 빈거 한개 만들어서
+    // 거기에 속성을 부여하는 가내수공업 방식이었음
+    // 자바의 class 처럼 공장식으로 마구 찍어내는 방식이 아니었음
+    // 스크립트에선 function 키워드가 자바의 class 키워드 역할도 함
+
+    // 보통 생성자(constructor) 함수라고 부름
+    function Saram(p_name, p_age) {
+        this.name = p_name
+        this.age = p_age;
+        /* 생성자 안에 이렇게 메소드를 선언하는 방식은 좋지 않음. 비효율적
+            this.getAge = function () {
+                return this.age;
+            }
+        */
+    }
+
+    // 메모리의 효율적인 사용을 위해 생성자의 prototype 속성에
+    // 메소드를 생성해주면 생성되는 객체들이 해당 메소드를 공유해서 사용하게 됨
+    // prototype(프로토타입)은 공유 영역에 메소드를 만든다고 생각하면 된다.
+    // 생성자 함수 안에 메소드를 선언하면 메모리 영역이 낭비되기 때문(비효율적).
+    // 메소드는 프로토타입으로 선언
+    Saram.prototype.getAge = function () {
+        return this.age;
+    }
+    Saram.prototype.setAge = function(p_age){
+        this.age = p_age;
+    }
+
+    // 공장식 생성 가능해짐
+    //var s1 = Saram(); // Saram 앞에 window 생략
+    var s1 = new Saram("임선영", 25);
+    var s2 = new Saram("조현수", 27);
+    alert(s1.getAge());
+    alert(s2.getAge());
+    s2.setAge(55);
+    alert(s2.getAge());
+    // alert(s1==s2); // false
+
+</script>

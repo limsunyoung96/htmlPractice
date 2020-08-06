@@ -8,6 +8,11 @@
 </head>
 
 <body>
+    <!-- multipart/form-data
+         이것은 정확히는 인코딩이 아니라 데이터가 섞여 들어간다고 알려주는 의미 
+         보통 파일 등은 바이너리(0,1) 파일
+         boundary라고 경계선을 붙여서 서버쪽으로 넘겨줌   
+        -->
     <input type="file" id="id_file" accept=".jpg,.jpeg,.png,.gif"><br>
     <input type="button" value="아작스파일업로드" onclick="f_up()"><br>
     <div id="id_disp"></div>
