@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    //자바의 ArrayList를 만들자
+    // add(), get(idx), set(idx,value), remove(idx), clear(), size()
+
+    var ArrayList = function () {
+        this.length = 0;
+    }
+    ArrayList.prototype.add = function (p_value) {
+        this[this.length++] = p_value; // json으로 속성을 추가한 것임. 배열을 따로 선언한 적이 없기에.
+    }
+    ArrayList.prototype.get = function (p_index) {
+        return this[p_index];
+    }
+    ArrayList.prototype.set = function (p_index, p_value) {
+        this[p_index] = p_value;
+    }
+    ArrayList.prototype.remove = function (p_index) {
+        // delete this[p_index]; // delete 명령 주의, 배열에서는 값만 사라짐
+        // 중간 index 값이 떠버리면 그 후의 값을 앞으로
+        for (var i = p_index; i < this.length - 1; i++) {
+            this[i] = this[i + 1];
+        }
+        delete this[this.length - 1]; // 땡겨서 마지막 지우기
+        this.length--;
+    }
+    ArrayList.prototype.clear = function () {
+        /*for (var v_attr in this) {
+            if (!isNaN(parseInt(v_attr))) {
+                // console.log(parseInt(v_attr));
+                delete this[v_attr];
+                // console.log(v_test);
+            }
+            this.length = 0;
+            // alert(this[parseInt(v_attr)]);
+        }*/
+
+        /* 중간 값을 지우면 for문에 문제가 생기나, remove 수정*/
+        for (var i = 0; i < this.length; i++) {//속성 갯수만큼
+            delete this[i];
+        }
+        this.length = 0;
+    }
+    ArrayList.prototype.size = function () {
+        return this.length;
+    }
+
+    var v_test = new ArrayList();
+    // add 확인
+    v_test.add("임선영");
+    v_test.add("박성연");
+    v_test.add("허내윤");
+    v_test.add("조현수");
+    v_test.add("조제리");
+    v_test.add("임소희");
+    console.log(v_test);
+
+    // console.log("add확인 " + JSON.stringify(v_test));
+
+    // get 확인
+    // console.log("get확인 " + JSON.stringify(v_test.get(4)));
+
+    // set 확인
+    // v_test.set(4, "조광어");
+    // console.log("set확인 " + JSON.stringify(v_test));
+
+    // remove 확인
+    v_test.remove(2);
+    console.log(v_test);
+    // console.log(JSON.stringify(v_test));
+
+    // size 확인
+    // console.log("size 확인 " + v_test.size());
+
+    // clear 확인
+    v_test.clear();
+    console.log(v_test);
+    // size 확인
+    // console.log("clear size 확인 " + v_test.size());
+
+</script>

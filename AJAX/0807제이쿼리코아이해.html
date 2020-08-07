@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0807제이비쿼리코아이해.html</title>
+</head>
+
+<body>
+    <div>선영</div>
+    <div class="lsy">성연</div>
+    <div class="lsy">내윤</div>
+    <div>현수</div>
+    <div>제리</div>
+    <script>
+        // document.querySelectorAll("css 선택자")
+        // new를 없애기 위해 중간자를 만들어줌 (factory 메소드 생성)
+
+        // var vvv = "ppp"
+        // window.vvv
+
+
+        (function () {
+            var factory = function (p_selector) {
+                return new myDom(p_selector);
+            }
+
+            var myDom = function (p_selector) {
+                var v_elems = document.querySelectorAll(p_selector);
+                this.length = v_elems.length;
+                for (var i = 0; i < this.length; i++) {
+                    this[i] = v_elems[i];
+                }
+            }
+
+            window.$ = factory; // 전역변수 $에 factory 참조시킴
+            factory.fn = myDom.prototype; //myDOm.prototype를 facoty.fn이 참조한다. 
+        })(); // 소스에서 한번만 실행하게 하기 위해
+
+        /*
+            // 핵심코드 밖에서 자유롭게 메소드 추가
+            $.fn.msg = function (p_msg) {
+                alert(p_msg);
+                return this; // return문이 없다는건 되돌려주는 값이 없다는 것
+            }
+
+            var v_divs = $("div");
+            // alert(v_divs.msg("소뇽뇨욘요뇨용")); // undefined임.
+            v_divs.msg("소뇽뇨욘요뇨용").msg('kkk').msg("오엥 ");
+            console.log(v_divs.msg("소뇽뇨욘요뇨용"))
+            // console.log(v_divs);
+        */
+        // 핵심코드 밖에서 자유롭게 메소드 추가
+        $.fn.each = function (f_callback) {
+            // console.log(this);
+            for (var i = 0; i < this.length; i++) {
+                f_callback(i, this[i]); // 이 부분이 중요
+            }
+            return this;
+        }
+
+        // 
+        $("div").each(function (p_index, p_item) {
+            if (p_index == 2) {
+                p_item.innerHTML = "우오오오오오오";
+            }
+            // alert(p_index + " : " + p_item.innerHTML);
+        });
+        $("div").each(function (p_index, p_item) {
+            p_item.innerHTML = "<h1>" + p_item.innerHTML + "</h1>";
+        });
+
+        $(".lsy").each(function (p_index, p_item) {
+            if (p_index == 1) {
+                p_item.innerHTML = "<h1>나 임선영이다</h1>";
+            }
+        });
+
+    </script>
+</body>
+
+</html>

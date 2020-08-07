@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0807제이쿼리코아 혼자</title>
+</head>
+
+<body>
+    <div>임선영</div>
+    <div>박성연</div>
+    <div>조현수</div>
+    <div>이희지</div>
+    <div>허내윤</div>
+    <script>
+        (function () {
+            var factory = function (p_selector) {
+                return new myDom(p_selector);
+            }
+
+            var myDom = function (p_selector) {
+                var elements = document.querySelectorAll(p_selector);
+                this.length = elements.length;
+                for (var i = 0; i < this.length; i++) {
+                    this[i] = elements[i];
+                }
+            }
+
+            window.$ = factory;
+            factory.fn = myDom.prototype;
+        })()
+
+        $.fn.each = function (f_callback) {
+            for (var i = 0; i < this.length; i++) {
+                f_callback(i, this[i]);
+            }
+            return this;
+        }
+        $("div").each(function (p_index, p_item) {
+            if (p_index == 0) {
+                p_item.innerHTML = "호호호호호호호"
+            }
+        })
+
+    </script>
+</body>
+
+</html>

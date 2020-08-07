@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+
+<script>
+    /*
+        객체: 임선영
+        메소드 (return 임선영)
+        임선영.메소드() -> 임선영
+    */
+    // 즉각실행함수 형태
+    // 딱 1번 밖에 실행할 수 없는 형태
+    // 쓰는 이유: 메모리 절약을 위함. 코드 영역을 구분할 ㄸ
+    var v_sum = 0;
+    (function (p_msg) {
+        var v_a = 1;
+        var v_b = 2;
+        // 딱 한번만 호출되기 때문에 한번만 실행된다.
+        v_sum = v_a + v_b;
+        alert(v_sum)
+    })("안녕");
+</script>
