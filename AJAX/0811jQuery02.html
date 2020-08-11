@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>0811jQuery02.html</title>
+</head>
+
+<body>
+    <img src="../images/pig01.jpg">
+    <img src="../images/meat06.jpg">
+    <img src="../images/meat03.jpg">
+    <div>임소뇽소뇽 임</div>
+    <div>임소뇽소뇽 선</div>
+    <div>임소뇽소뇽 영</div>
+    <script>
+        // style 속성 제어 메소드 css
+        // alert($("div").css("color")); // 읽기 
+        // $("div").css("color", "red").css("backgroundColor","yellow");
+        $("div").css({
+            "color": "purple",
+            "backgroundColor": "pink"
+        })
+
+        $("div").css("fontSize", function (p_index, p_str) {
+            if (p_index == 1) {
+                return "5em"
+            }
+            return "0.8em"
+        }).css("color", function (p_index, p_str) {
+            if (p_index == 1) {
+                return "blue";
+            }
+            return "red"
+        })
+
+
+        // 속성제어 메소드 attr
+        // alert($("img").attr("src")); // 속성값 읽기
+        // $("img").eq(1).attr("src", "../images/meat02.jpg") // 속성명에 값 주기 , for문을 돌면서 하고있음
+        $("img").attr("src", function (p_indx, p_str) {
+            // alert(p_indx + ": " + p_str);
+            if (p_indx == 1) {
+                return "../images/meat02.jpg"
+            }
+            return p_str;
+        })
+
+
+        $("img").attr("width", "300").attr("height", "400"); // 이것은 아래와 같은 것.
+        // 너무 길어지기 때문에 json 형식으로 속성을 주는 것임.
+        /*
+            $("img").attr({
+                "width":"300",
+                "height":"400"
+            });
+        */
+    </script>
+</body>
+
+</html>

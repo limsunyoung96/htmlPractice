@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>0811jQuery01.html</title>
+</head>
+
+<body>
+    <div>그렇지용 임선영1</div>
+    <div>그렇지용 임선영2</div>
+    <div>그렇지용 임선영3</div>
+    <input type="text" class="aaa" value="임선영"><br>
+    <input type="text" value="박성연"><br>
+    <input type="text" class="aaa" value="허내윤"><br>
+    <input type="button" value="흥">
+    <script>
+        // $("input[type=text]").val()  // text 타입의 input만 읽기
+        // alert($("input[type=text][class=aaa]").val()); // text 타입의 input 중에서 class의 이름이 aaa 인 것만 읽기
+        // alert($("input[type=text]").val("오엥"));
+        $("input[type=text]").val(function (p_index, p_oldStr) {
+            // alert(p_index + ": " + p_oldStr); // 항상 사용전에 넘어오는 값 확인
+            // if(p_index==1){
+            //     return p_oldStr + " 배고파"
+            // }
+            // return p_oldStr;
+            alert(p_oldStr)
+            if (p_oldStr == "박성연") {
+                return p_oldStr + " 배고파"
+            }
+            return p_oldStr;
+        })
+
+        //alert($("div").eq(1).html()); // 첫번째 요소의 innetHTML 속성값 읽기, eq(1)는 인덱스 1번을 의미함
+        // $("div").html("메롱"); // jQuery 사이트에 들어가서 html 을 검색하여 사용
+        $("div").html(function (p_index, p_oldStr) {
+            // alert(p_index + ": " + p_oldStr);
+            // if(p_index==1){
+            //     return "메롱";
+            //     alert(p_index + ": " + p_oldStr);
+            // }
+            return p_oldStr + " 만만세";
+        })
+    </script>
+</body>
+
+</html>

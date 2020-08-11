@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>0811jQuery이벤트.html</title>
+</head>
+
+<body>
+    <input id="id_btn" type="button" value="눌렁!">
+    <div>임선영 1</div>
+    <div>임선영 2</div>
+    <div>임선영 3</div>
+    <div>임선영 4</div>
+    <script>
+        $("div").css("border", "1px solid black").on("click", function () {
+            // alert("누름");
+            console.log(this) // div 각자의 객체
+            // alert(this.innerHTML)
+            // alert(this.html()); // jQuery 생성자를 통해 만들어지지 아니었니기 때문에 불가능
+
+            // jQuery 객체가 아닌 것에 jQuery 메소드를 사용하고싶으면 $()로 묶어서 jQuery객체로 바꾸어준다.
+            // jQuery랑 자바스트립트 잘 쓰는 사람들의 최고의 기술
+            console.log($(this))
+            // alert($(this).html()); // 이건 가능
+        })
+
+        // jDuery이벤트 등록법
+        // document.getElementById("id_btn").onclick = function(){alert('눌렀닝?')};
+        /* $("#id_btn").click(function () {
+            alert("반가웡!")
+        })
+
+        $("#id_btn").on("click", function () {
+            alert("반가워")
+        }) */
+
+        /* 중요 메소드 체인닝을 안쓰면 더 무거워진다. */
+        
+        $("선택자").css("어쩌구 저쩌구").css(",,,,,,").attr(",,,");
+        // 아래는 메모리 낭비가 심함. 같은 선택자의 생성자를 3개를 만들음. 위에랑 아래랑 차이가 많이 남.
+        $("선택자").css("어쩌구 저쩌구")
+        $("선택자").css(",,,,,,")
+        $("선택자").attr(",,,")
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>0811jQuery03.html</title>
+</head>
+
+<body>
+    <div id="id_disp"></div>
+    <input type="button" id="id_btn" value="눌러">
+    <input type="button" id="id_mv" value="눌러2">
+    <input type="button" id="id_empty" value="innerHTML 지우기">
+    <script>
+
+        $("#id_empty").on("click", function () {
+            $("#id_disp").empty();
+            // 위에랑 아래랑 같은 것
+            document.getElementById("id_disp").innerHTML = "";
+        })
+
+
+        $("#id_mv").on("click", function () {
+            //이미 존재하는 객체를 어떤 곳에 붙이면 이동효과가 나타남
+            $("img").eq(0).appendTo($("#id_disp")); // 앞의 사진을 뒤에 붙임. 그래서 움직이는 것처럼 보임
+
+            alert("확인!");
+            //$("#id_disp").remove();  // id_disp 삭제
+            $("img").eq(0).remove();
+        })
+
+
+        var i = 1;
+        $("#id_btn").on("click", function () {
+            // 이미지 추가
+            // $("#id_disp").append($("<h1></h1>").html("html 메소드에 썼당" + (++i))).html()
+            $("<img></img>").attr("src", "../images/meat0" + i++ + ".jpg").attr("width", "200").attr("height", "150").css("border", "2px solid red").appendTo($("#id_disp"));
+        })
+    </script>
+</body>
+
+</html>
