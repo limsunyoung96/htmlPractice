@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>0812jQuery08.html</title>
+</head>
+
+<body>
+    <div>
+        <div class="friends">
+            <div class="lsy">임선영</div>
+            <div class="psy">박성연</div>
+            <div class="lsy">허내윤</div>
+        </div>
+    </div>
+    <input type="button" value="눌러" onclick="f_clk()">
+    <script>
+        function f_clk() {
+            // 선택된 것 한 단계 위로 올리기 end
+            // $("div").find(".lsy").css("backgroundColor","red")
+            // $("div").find(".psy").css("backgroundColor","blue")
+            // end를 하면 다시 $("div")로 돌아간다
+            // $("div").find(".lsy").css("backgroundColor", "skyblue")
+            //     .end().find(".psy").css("backgroundColor", "pink")
+
+            //$("div").first()  // $("div").eq(0)
+            //$("div").last()   // $("div").eq($("div").length -1)
+            console.log($(".lsy").add(".psy"));
+
+        }
+    </script>
+</body>
+
+</html>

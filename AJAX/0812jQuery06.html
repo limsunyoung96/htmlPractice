@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>0812jQuery06.html</title>
+    <style>
+        /* nth-child 함수는 가끔 쓸만함 */
+        /* 첫 열에만 background-color가 칠해짐 */
+        /* 2n 은 2의 배수의 열만 칠해짐 */
+        /* table >tbody>tr>td:nth-child(2n) {  
+            background-color: aquamarine;
+        } */
+
+        table>tbody>tr:nth-child(2n+1) {
+            background-color: bisque;
+        }
+    </style>
+</head>
+
+<body>
+    <table border=1>
+        <tr><td>이름</td><td>연봉</td></tr>
+        <tr><td>임선영</td><td>4000</td></tr>
+        <tr><td>조현수</td><td>5000</td></tr>
+        <tr><td>집계</td><td>가격</td></tr>
+    </table>
+    
+    <script>
+        // $("table td:nth-child(2)").each(function(p_index,p_item){
+        //     console.log(p_item);
+        // })
+
+        var v_sum = 0;
+        $("table td:nth-child(2)").each(function(p_index,p_item){
+        if(p_index >=1 && p_index <=2){
+            v_sum += parseInt(p_item.innerHTML);
+        }
+        if(p_index == 3){
+            p_item.innerHTML = v_sum;
+        }
+    })
+    </script>
+</body>
+
+</html>

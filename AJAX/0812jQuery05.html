@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>0812jQuery05.html</title>
+</head>
+
+<body>
+    JS <input type="checkbox" value="js" checked>
+    JSP <input type="checkbox" value="jsp">
+    JAVA <input type="checkbox" value="java" readonly><br>
+
+    <select multiple size="3">
+        <option value="js" selected>JS</option>
+        <option value="jsp">JSP</option>
+        <option value="java">JAVA</option>
+    </select>
+    <input type="button" value="눌러">
+
+    <script>
+        // 주로 attr 메소드를 쓰는데, 아래 같은 경우에만 prop 메소드 사용
+        // prop은 attr이 일부 속성에 대한 원하는 값을 리턴해주지 않아서 만들어졌음
+        // 거의 값을 읽는 경우에만 사용
+        $("input[type=button]").click(function () {
+            // select의 option중에 선택된 것만 가져오기
+            $("select > option:selected").each(function (p_indx, p_element) {
+                console.log(p_element)
+                // alert(p_indx + ": " + p_element.value);
+                // alert(p_indx + ": " + $(p_element).val());
+            })
+            // console.log($("input[type=checkbox]")); // 체크박스들이 출력되는데, checked 된 것만 출력하려면 for문을 돌려야하는데
+            // console.log($("input[type=checkbox]:checked")); // 이걸 통해 체크박스 중에 checked 된 것만 출력
+
+            /*
+                $("input[type=checkbox]:checked").each(function (p_indx, p_element) {
+
+                    // alert(p_indx + ": " + p_element.value);
+                    alert(p_indx + ": " + $(p_element).val());
+                });
+            */
+            // alert($("input[type=checkbox]").eq(0).attr("checked")); // undefined
+            // alert($("input[type=checkbox]").eq(0).prop("checked")); // true or false
+            // alert($("input[type=checkbox]").eq(1).attr("disabled")); // undefined
+            // alert($("input[type=checkbox]").eq(1).prop("disabled")); // true or false
+            // 속성="값" 형식은 attr을 쓰면 되는데
+            // checked나 readonly, disabled 등과 같이 속성 하나만 쓰는 것은 prop으로 확인 가능
+
+            // $("input[type=checkbox]").eq(2).attr("checked", true);
+            // alert($("input[type=checkbox]").eq(2).prop("checked")); // true
+        })
+    </script>
+</body>
+
+</html>

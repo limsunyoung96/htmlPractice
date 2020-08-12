@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>0812jQuery07.html</title>
+    <style>
+        .lsy{
+            background-color: blueviolet;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grand">
+        <div class="mother me">
+            <div class="me">임선영</div>
+            <div class="you">박성연</div>
+            <div class="hny">허내윤</div>
+        </div>
+    </div>
+    <div>
+        <img src="../images/meal06.jpg" width=100 height=100 onclick="f_file()">
+        <input id="id_file" type=file value="" style="display:none">
+    </div>
+    <input id="id_btn" type="button" value="눌러봐" onclick="f_lsy()">
+    <input id="id_btn2" type="button" value="졸리지">
+    <input type="button" value="감추기" onclick="f_hide()">
+    <input type="button" value="보이기" onclick="f_show()">
+    <input type="button" value="클래스 추가" onclick="f_addClass()">
+    <input type="button" value="클래스 삭제" onclick="f_removeClass()">
+</body>
+<script>
+    function f_addClass() {
+        $("#id_btn").addClass("lsy")
+    }
+    function f_removeClass() {
+        $("#id_btn").removeClass("lsy")
+    }
+    function f_hide() {
+        $(".grand").hide();
+    }
+
+    function f_show() {
+        $(".grand").show()
+    }
+
+    function f_file() {
+        // $("#id_file").trigger("click");
+        document.getElementById("id_file").click();
+    }
+    function f_lsy() {
+        alert("졸려")
+    }
+    // $("div").remove(".hny");\
+    // find vs filter find는 후손중에서 찾고, filter는 자기자신 포함 후손에서 찾음
+    // console.log($(".mother").find(".me").html());
+    // console.log($(".mother").filter(".me").html());
+    // console.log($(".you").closest(".mother").html()); // closest: 부모를 찾아감
+    // console.log($(".you").parents(".mother").htl()); // closest: 부모를 찾아감
+
+    $("#id_btn2").on("click", function () {
+        $("#id_btn").trigger("click"); // id_btn에 클릭 이벤트 강제 발생
+    })
+</script>
+</body>
+
+</html>
