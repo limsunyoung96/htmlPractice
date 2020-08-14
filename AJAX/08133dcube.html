@@ -102,7 +102,12 @@
         var v_isIn = false;
         var v_isMove = false;
         function f_rot1() {
-            // 프록시 패턴
+            // var v_copyCube = v_cube.cloneNode(); // 얕은 복사
+            v_copyCube = v_cube.cloneNode(true); // 깊은 복사
+            v_scene.appendChild(v_copyCube);
+            v_arr.push(v_copyCube);
+
+            // 프록시 패턴 (Proxy)
             // setTimeout  중복 제거
             // 여러번 눌러도 한번만 돌아감
             if (!v_isMove) {
@@ -110,25 +115,29 @@
                 f_rot();
             }
         }
+        var v_arr = [];   // 생성된 cube를 담을 배열
+        v_arr.push(v_cube);  // 이미 만든 cube는 담아버림
+
         function f_rot() {
             if (!v_isIn) {
-                // var v_copyCube = v_cube.cloneNode(); // 얕은 복사
-                v_copyCube = v_cube.cloneNode(true); // 깊은 복사
-                v_scene.appendChild(v_copyCube);
                 v_isIn = true;
             }
 
             v_deg = (v_deg + 10) % 360;
-            v_cube.style.transform = "rotateX(" + v_deg + "deg) rotateY(" +
-                v_deg + "deg) rotateZ(" + v_deg + "deg)";
-            v_copyCube.style.transform = "rotateX(" + -v_deg + "deg) rotateY(" +
-                -v_deg + "deg) rotateZ(" + -v_deg + "deg)";
-         
-                v_move = setTimeout(f_rot, 80)
+            for (var i = 0; i < v_arr.length; i++) {
+                v_arr[i].style.transform = "rotateX(" + v_deg + "deg) rotateY(" +
+                    v_deg + "deg) rotateZ(" + v_deg + "deg)";
+            }
+            // v_cube.style.transform = "rotateX(" + v_deg + "deg) rotateY(" +
+            //     v_deg + "deg) rotateZ(" + v_deg + "deg)";
+            // v_copyCube.style.transform = "rotateX(" + -v_deg + "deg) rotateY(" +
+            //     -v_deg + "deg) rotateZ(" + -v_deg + "deg)";
+
+            v_move = setTimeout(f_rot, 80)
         }
         v_cube.addEventListener("mouseover", function () {
             clearTimeout(v_move)
-            v_isMove=false;
+            v_isMove = false;
         })
         v_cube.addEventListener("mouseout", function () {
             f_rot();
