@@ -12,6 +12,7 @@
 
     var v_tblName="볼품게시";
     var v_arrDatas = JSON.parse(localStorage.getItem(v_tblName));
+    // console.log(v_arrDatas);
     document.write("<h1>임선영 짱짱</h1>");
     
     // 페이지 나누기, 페이지당 몇개 10개, 전체페이지 수 :전체글수 / 페이지당글수
@@ -55,7 +56,7 @@
     
     
     v_tblStr +="<br><input id='id_submit' type=button value='선택된것 지우기'><br>";
-    v_tblStr += "<a href='write.html'>글쓰깅</a>";
+    v_tblStr += "<a href='0730write.html'>글쓰깅</a>";
     document.write(v_tblStr);  // 화면에 출력
 
     var v_form = document.getElementById("id_form");

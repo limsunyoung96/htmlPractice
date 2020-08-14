@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/myStyle.css">
+    <link rel="stylesheet" href="../css/myHeaderStyle.css">
     <title>넥스트어린이교육</title>
 </head>
 
 <body>
     <div id="wrap">
-        <div id="header">
+        <div id="header" onclick='location.href="index.html"'>
             <a><img src="../img/양.png" id="header_img"></a>
             <a id="header_page_name"> 넥스트어린이 교육페이지</a>
         </div>
@@ -20,8 +21,8 @@
             <div class="cl_menu" onclick="location.href='#id_story'">동화</div>
             <div class="cl_menu" onclick="location.href='#id_ent'">키즈엔터</div>
             <div class="cl_menu"
-                onclick="location.href='http://192.168.20.59/jsstudy/%ed%94%84%eb%a1%9c%ec%a0%9d%ed%8a%b8/%eb%a9%94%ec%9d%b8%ed%99%94%eb%a9%b4.html'">
-                월간동화</div>
+                onclick="location.href='boardList.html'">
+                게시판</div>
             <input type="text" autofocus placeholder="검색어 입력" value="" id="id_searchBox" onkeydown="f_key()">
             <img class="cl_menu" id="id_search" onclick="f_search()" src="../img/search.png">
         </div>
