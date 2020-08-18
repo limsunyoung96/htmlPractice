@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script src="../js/jsp.js"></script>
+<script>
+    var v_title = request.getParameter("nm_title");
+    v_title = v_title.replace("+", " ");
+    var v_writer = request.getParameter("nm_writer");
+    var v_userId = request.getParameter("nm_userId");
+
+    var v_today = new Date();
+    var v_year = v_today.getFullYear();
+    var v_month = v_today.getMonth() + 1;
+    var v_date = v_today.getDate();
+    if (v_month < 10) {
+        v_month = "0" + v_month
+    }
+    if (v_date < 10) {
+        v_date = "0" + v_date
+    }
+    var v_regDate = v_year + "-" + v_month + "-" + v_date;
+
+    var v_content = request.getParameter("nm_content");
+    v_content = v_content.replace("+", " ");
+
+    var v_tbName = "볼품게시"; // key값 임의로 정한 테이블 명
+
+    // var v_arrData = []; // json을 담아줄 배열 선언, 실제 테이블 역할
+
+    var v_record = {};         // 받아온 값 전부를 1개의 JSON으로 묶기 위한 json
+    v_record.title = v_title;
+    v_record.writer = v_writer;
+    v_record.userId = v_userId;
+    v_record.regDate = v_regDate;
+    v_record.hit = 0;
+    v_record.content = v_content;
+
+    // alert(localStorage.getItem(v_tbName)); //?
+    if (!localStorage.getItem(v_tbName)) { // null일 때
+        // 처음 데이터가 들어감
+        var v_arrData = [];
+        v_record.num = 1; // Primary key로 쓸 고유 값
+        v_arrData.push(v_record);
+        localStorage.setItem(v_tbName, JSON.stringify(v_arrData));
+    } else {
+        // 이미 데이터가 들어있음
+        // 있는 데이터 꺼내오기
+        var v_arrData = JSON.parse(localStorage.getItem(v_tbName));
+        v_record.num = v_arrData[v_arrData.length - 1].num + 1;
+        v_arrData.push(v_record);
+        localStorage.setItem(v_tbName, JSON.stringify(v_arrData));
+    }
+    alert("글이 잘 등록되었습니다. 목록으로 가겠습니다.")
+    location.href = "boardList.html";
+
+
+    // v_arrData.push(v_record); // 배열에 묶어준 json 추가(VO역할)
+    // localStorage.setItem(v_tbName, JSON.stringify(v_arrData));
+</script>
