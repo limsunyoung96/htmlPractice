@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    영화코드<input type=text id="mv_code" value="">
+    <input type=button value="줄거리 겟" onclick="f_get()">
+    <p id="id_story" style="border:1px solid red"></p>
+    <script>
+        var v_board = document.getElementById("id_story");
+        var v_code = document.getElementById("mv_code");
+        function f_get(){
+            var v_ajax = new XMLHttpRequest();
+            v_ajax.open("get","around272.php?mv_code="+v_code.value,true);
+            v_ajax.onreadystatechange = function(){
+                if(v_ajax.readyState == 4 && v_ajax.status == 200){
+                    var v_startIndex = v_ajax.responseText.indexOf("<p class=\"con_tx\">");
+                    var v_endIndex =  v_ajax.responseText.indexOf("</p>",v_startIndex);
+                    var v_story = v_ajax.responseText.substring(v_startIndex+18,v_endIndex);
+                   v_board.innerHTML = v_story; 
+                }
+            }
+            v_ajax.send();
+        }
+    </script>
+</body>
+</html>

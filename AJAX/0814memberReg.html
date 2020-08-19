@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    회원ID <input type=text id="mem_id" value=""><br>
+    회원이름 <input type=text id="mem_name" value=""><br>
+    성별 <input type=text id="mem_sb" ><br>
+    <input type=button value="가입" onclick="f_memReg()">
+<script>
+    var memTableName="member";
+    var v_memTable = [];  // 멤버객체 담을 배열
+    function f_memReg(){
+        var v_member = {};  // jsp에 VO 같은 역할
+        v_member.id = document.getElementById("mem_id").value;
+        v_member.name = document.getElementById("mem_name").value;
+        v_member.sb = document.getElementById("mem_sb").value;
+        v_memTable.push(v_member);
+        localStorage.setItem(memTableName,JSON.stringify(v_memTable)); // 로컬에 저장
+    }
+
+</script>
+</body>
+</html>

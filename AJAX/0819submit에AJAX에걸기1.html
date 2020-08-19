@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+  <!--  <form id="id_fm1" onsubmit="return f_send()"> -->
+      <form name="nm_fm1">
+        <input type=text name="nm_t1" value="aaa" required><br>
+        <input type=text name="nm_t2" value="bbb" required><br>
+        <input type=text name="nm_t3" value="ccc" required><br>
+        <input type=text name="nm_t4" value="ddd" required><br>
+        <input type=submit id="id_btn" value="전송">
+    </form>
+    <script>
+        // 가장 일반적인 AJAX 사용틀
+        $("form[name=nm_fm1").on("submit",function(){
+            console.log($("form[name=nm_fm1").serialize()); // form안에 데이타 가져오기
+            /*
+              추가적인 필요코드 작성, AJAX 
+            */
+            event.preventDefault(); // ajax쓸거면 여기에 떡하니 이것이 써 있어야 함
+        });
+    </script>
+</body>
+</html>
