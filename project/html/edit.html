@@ -33,24 +33,78 @@
         </div>
 
     </div>
-    <br>
-    <form class="form-horizontal " action="write_action.html">
-        <div class="form-group"><label for="title">제목</label>
-            <input type=text class="form-control" id="title" name="nm_title" value=""  required ></div>
-        <div class="form-group"><label for="writer">글쓴이</label>
-            <input type=text class="form-control" id="writer" name="nm_writer" value="" pattern="^[가-힣]{2,4}$" required><br></div>
-        <div class="form-group"><label for="userId">아이디</label>
-            <input type=text class="form-control" id="userId" name="nm_userId" value="" required><br></div>
-        <div class="form-group"><label for="content">내용</label>
-            <textarea class="form-control" id="content" name="nm_content" cols=20 rows=10 required></textarea>
-            <!-- <input type=text class="form-control" id="writer" name="nm_writer" value=""><br></div> -->
-        </div>
-        <div class="form-group"><input class="form-control" type=submit value="글등록"><input type=reset value="다시쓰기"
-                class="btn btn-default"></div>
+    <h1>전통적방식 게시판</h1>
+    <form action="0730write_action.html">
+        <div id="id_div"></div>
+        <!-- <table border="1px solid black">
+            <tr> <td>제목</td> <td><input type=text name="nm_title" value="" readonly><br></td></tr>
+            <tr> <td>글쓴이</td><td><input type=text name="nm_writer" value="" readonly><br></td></tr>
+            <tr> <td>권한</td>
+                <td><select name="nm_auth">
+                    <option value="manager">관리자</option>
+                    <option value="member">일반사용자</option>
+                </select></td></tr>
+            글쓴이 보유기술<br>
+        js<input type="checkbox" name="nm_skills" value="js">
+        jsp<input type="checkbox" name="nm_skills" value="jsp">
+        oracle<input type="checkbox" name="nm_skills" value="oracle">
+        인공지능<input type="checkbox" name="nm_skills" value="ai"><br>
+            <tr> <td>내용<br></td>
+                <td><textarea name="nm_content" cols=20 rows=10></textarea><br>
+                <input type=submit value="글수정"><input type=reset value="다시쓰기"></td></tr>
+        </table> -->
+        <input type=submit value='글수정'> <input type=reset value='다시쓰기'>
+        <a href="boardList.html" >목록으로</a><!--onclick="f_back()"-->
     </form>
-
     <script>
-        CKEDITOR.replace( 'nm_content');
+        function f_back() {
+            history.go(-1);
+        }
+        // var v_title = document.getElementsByName("nm_title")[0];
+        // var v_writer = document.getElementsByName("nm_writer")[0];
+        // var v_auth = document.getElementsByName("nm_auth")[0]; //select
+        // var v_skills = document.getElementsByName("nm_skills"); // checkbox
+        // var v_content = document.getElementsByName("nm_content")[0];
+        var v_div = document.getElementById("id_div");
+        var v_tblStr = "<table class='table-condensed text-center table table-bordered' >";
+        var v_tblName = "넥스트게시판";
+        function f_init() {
+            var v_gnum = request.getParameter("g_num");
+            var v_arrDatas = JSON.parse(localStorage.getItem(v_tblName));
+            //넘어온 넘버값에 해당하는 글 찾기
+
+            for (var i = 0; i < v_arrDatas.length; i++) {
+                if (v_arrDatas[i].num == v_gnum) {  // 찾았다면
+                    // alert(v_arrDatas[i].skills.length)
+                    v_tblStr += "<tr><td>제목</td><td>" + v_arrDatas[i].title + "</td></tr>"
+                    v_tblStr += "<tr><td>글쓴이</td><td>" + v_arrDatas[i].writer + "</td></tr>"
+                    v_tblStr += "<tr><td>아이디</td><td>" + v_arrDatas[i].userId + "</td></tr>"
+                    v_tblStr += "<tr><td>등록일</td><td>" + v_arrDatas[i].regDate + "</td></tr>"
+                    v_tblStr += "<tr><td>조회수</td><td>" + v_arrDatas[i].hit + "</td></tr>"
+                    v_tblStr += "<tr><td>내용</td><td>" + v_arrDatas[i].content + "</td></tr>"
+
+                    // checkbox에 v_arrDatas[i].skills 배열에 있는 값이
+                    // 체크되도록 해봅니다.
+                    // var v_skillArr = v_arrDatas[i].skills; // skills 속성은 배열
+                    // for (var j = 0; j < v_skillArr[j].length; j++) {
+                    //     // checkbox도 배열
+                    //     var v_val = v_skillArr[j];
+                    //     for (var k = 0; k <ㅅ v_skills.length; k++) {
+                    //         // checkbox의 value값과 같다면
+                    //         if (v_skills[k].value == v_val) {
+                    //             v_skills[k].checked = true; // 강제 체크
+                    //         }
+                    //     }
+                    // }
+                    break;
+                }
+            }
+            v_tblStr += "</table>"
+            v_div.innerHTML = v_tblStr;
+        }
+        window.onload = f_init;
+
+
         //마우스 포인트 효과
         var v_mouse1 = document.createElement("div"); // 이미지 객체 생성
         v_mouse1.style.width = 150 + "px";
@@ -60,6 +114,7 @@
         document.body.appendChild(v_mouse1);
 
         function f_move() {
+            f_msMove();
             v_mouse1.style.left = event.pageX + 2 + "px";
             v_mouse1.style.top = event.pageY + 2 + "px";
         }
@@ -97,7 +152,7 @@
 
         // 실제 글자들을 움직일 함수
         var v_charGan = 20; // 한 글자 사이의 간격
-        function f_charMove() {
+        window.addEventListener("onload", function f_charMove() {
             // 첫번쨰 글자를 위한 좌표
             v_leftPos[0] = v_msX + v_charGan;
             v_topPos[0] = v_msY;
@@ -119,15 +174,15 @@
             }
             // 마우스 좌표의 변하는 값을 일겅보기 위해 반복실행 필요
             setTimeout(f_charMove, 50);
-        }
-        window.onload = f_charMove;
-        window.addEventListener("mousemove", f_msMove);
+        })
+        // window.addEventListener("mousemove", f_msMove);
         window.addEventListener("mousemove", f_move);
         window.addEventListener("keydown", function () {
             // if (event.key != "Enter") {
             //     v_searchBox.focus();
             // }
         })
+
     </script>
 </body>
 

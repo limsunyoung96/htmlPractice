@@ -5,25 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/myHeaderStyle.css">
-
-    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/bootstrap-table/src/bootstrap-table.css">
-    <link rel="stylesheet" href="../assets/examples.css">
+    <!-- <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css"> -->
+    <!-- <link rel="stylesheet" href="../assets/bootstrap-table/src/bootstrap-table.css"> -->
+    <!-- <link rel="stylesheet" href="../assets/examples.css"> -->
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- 부트스트랩 테이블 -->
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.css">
 
-    <script src="../assets/jquery.min.js"></script>
-    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../assets/bootstrap-table/src/bootstrap-table.js"></script>
-    <script src="../assets/bootstrap-table/src/extensions/export/bootstrap-table-export.js"></script>
-    <script src="//rawgit.com/hhurz/tableExport.jquery.plugin/master/tableExport.js"></script>
-    <script src="../ga.js"></script>
-
     <title>넥스트어린이교육게시판</title>
+    <!-- <script src="../assets/jquery.min.js"></script> -->
+    <!-- <script src="../assets/bootstrap/js/bootstrap.min.js"></script> -->
+    <!-- <script src="../assets/bootstrap-table/src/bootstrap-table.js"></script> -->
+    <!-- <script src="../assets/bootstrap-table/src/extensions/export/bootstrap-table-export.js"></script> -->
+    <script src="//rawgit.com/hhurz/tableExport.jquery.plugin/master/tableExport.js"></script>
+    <!-- <script src="../ga.js"></script> -->
     <script src="../js/jsp.js"></script>
+    <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
 </head>
 
 <body>
@@ -35,28 +34,12 @@
 
     </div>
     <h1>전통적방식 게시판</h1>
-    <form action="0730write_action.html">
-        <div id="id_div"></div>
-        <!-- <table border="1px solid black">
-            <tr> <td>제목</td> <td><input type=text name="nm_title" value="" readonly><br></td></tr>
-            <tr> <td>글쓴이</td><td><input type=text name="nm_writer" value="" readonly><br></td></tr>
-            <tr> <td>권한</td>
-                <td><select name="nm_auth">
-                    <option value="manager">관리자</option>
-                    <option value="member">일반사용자</option>
-                </select></td></tr>
-            글쓴이 보유기술<br>
-        js<input type="checkbox" name="nm_skills" value="js">
-        jsp<input type="checkbox" name="nm_skills" value="jsp">
-        oracle<input type="checkbox" name="nm_skills" value="oracle">
-        인공지능<input type="checkbox" name="nm_skills" value="ai"><br>
-            <tr> <td>내용<br></td>
-                <td><textarea name="nm_content" cols=20 rows=10></textarea><br>
-                <input type=submit value="글수정"><input type=reset value="다시쓰기"></td></tr>
-        </table> -->
-        <input type=submit value='글수정'> <input type=reset value='다시쓰기'>
-        <a href="#" onclick="f_back()">목록으로</a>
-    </form>
+    <div id="id_div"></div>
+    
+    <input class="btn" type=button onclick="location.href='edit.html'" value='글수정'/>
+    <input class="btn" type=button onclick="location.href='boardList.html'" value='목록으로'/>
+    <!--onclick="f_back()"-->
+
     <script>
         function f_back() {
             history.go(-1);
@@ -68,7 +51,7 @@
         // var v_content = document.getElementsByName("nm_content")[0];
         var v_div = document.getElementById("id_div");
         var v_tblStr = "<table class='table-condensed text-center table table-bordered' >";
-        var v_tblName = "볼품게시";
+        var v_tblName = "넥스트게시판";
         function f_init() {
             var v_gnum = request.getParameter("g_num");
             var v_arrDatas = JSON.parse(localStorage.getItem(v_tblName));

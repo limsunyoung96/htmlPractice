@@ -3,7 +3,7 @@
 <script src="../js/jsp.js"></script>
 <script>
     var v_title = request.getParameter("nm_title");
-    v_title = v_title.replace("+", " ");
+    v_title = v_title.replace(/\+/g, " ");
     var v_writer = request.getParameter("nm_writer");
     var v_userId = request.getParameter("nm_userId");
 
@@ -20,9 +20,9 @@
     var v_regDate = v_year + "-" + v_month + "-" + v_date;
 
     var v_content = request.getParameter("nm_content");
-    v_content = v_content.replace("+", " ");
+    v_content = v_content.replace(/\+/g, " ");
 
-    var v_tbName = "볼품게시"; // key값 임의로 정한 테이블 명
+    var v_tbName = "넥스트게시판"; // key값 임의로 정한 테이블 명
 
     // var v_arrData = []; // json을 담아줄 배열 선언, 실제 테이블 역할
 
