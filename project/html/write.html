@@ -33,24 +33,29 @@
         </div>
 
     </div>
-    <br>
-    <form class="form-horizontal " action="write_action.html">
-        <div class="form-group"><label for="title">제목</label>
-            <input type=text class="form-control" id="title" name="nm_title" value=""  required ></div>
-        <div class="form-group"><label for="writer">글쓴이</label>
-            <input type=text class="form-control" id="writer" name="nm_writer" value="" pattern="^[가-힣]{2,4}$" required><br></div>
-        <div class="form-group"><label for="userId">아이디</label>
-            <input type=text class="form-control" id="userId" name="nm_userId" value="" required><br></div>
-        <div class="form-group"><label for="content">내용</label>
-            <textarea class="form-control" id="content" name="nm_content" cols=20 rows=10 required></textarea>
-            <!-- <input type=text class="form-control" id="writer" name="nm_writer" value=""><br></div> -->
-        </div>
-        <div class="form-group"><input class="form-control" type=submit value="글등록"><input type=reset value="다시쓰기"
-                class="btn btn-default"></div>
-    </form>
+    <div class="container">
+        <div style="padding: 15px;"></div>
+        <h3>글 등록하기</h3>
+        <hr>
+        <form class="form-horizontal " action="write_action.html">
+            <div class="form-group"><label for="title"><b>제목</b></label>
+                <input type=text class="form-control" id="title" name="nm_title" value="" required></div>
+            <div class="form-group"><label for="writer"><strong>글쓴이</strong></label>
+                <input type=text class="form-control" id="writer" name="nm_writer" value="" pattern="^[가-힣]{2,5}$"
+                    required></div>
+            <div class="form-group"><label for="userId"><b>아이디</b></label>
+                <input type=text class="form-control" id="userId" name="nm_userId" value="" required></div>
+            <div class="form-group"><label for="content"><b>내용</b></label>
+                <textarea class="form-control" id="content" name="nm_content" cols=20 rows=10 required></textarea>
+                <!-- <input type=text class="form-control" id="writer" name="nm_writer" value=""><br></div> -->
+            </div>
+            <div class="form-group"><input class="form-control" type=submit value="글등록"><input type=reset value="다시쓰기"
+                    class="btn btn-default"></div>
+        </form>
+    </div>
 
     <script>
-        CKEDITOR.replace( 'nm_content');
+        CKEDITOR.replace('nm_content');
         //마우스 포인트 효과
         var v_mouse1 = document.createElement("div"); // 이미지 객체 생성
         v_mouse1.style.width = 150 + "px";

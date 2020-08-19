@@ -33,13 +33,16 @@
         </div>
 
     </div>
-    <h1>전통적방식 게시판</h1>
-    <div id="id_div"></div>
-    
-    <input class="btn" type=button onclick="location.href='edit.html'" value='글수정'/>
-    <input class="btn" type=button onclick="location.href='boardList.html'" value='목록으로'/>
-    <!--onclick="f_back()"-->
+    <div class="container">
+        <div style="padding: 15px;"></div>
+        <h3>글 읽기</h3>
+        <hr>
+        <div id="id_div"></div>
 
+        <input id="id_edit_btn" class="btn" type=button value='글수정' />
+        <input class="btn" type=button onclick="location.href='boardList.html'" value='목록으로' />
+        <!--onclick="f_back()"-->
+    </div>
     <script>
         function f_back() {
             history.go(-1);
@@ -50,22 +53,31 @@
         // var v_skills = document.getElementsByName("nm_skills"); // checkbox
         // var v_content = document.getElementsByName("nm_content")[0];
         var v_div = document.getElementById("id_div");
-        var v_tblStr = "<table class='table-condensed text-center table table-bordered' >";
+        var v_tblStr = "<table class='text-center table table-striped table-bordered' >";
         var v_tblName = "넥스트게시판";
         function f_init() {
             var v_gnum = request.getParameter("g_num");
+            document.getElementById("id_edit_btn").addEventListener("click", function () {
+                location.href = 'edit.html?g_num=' + v_gnum;
+            })
             var v_arrDatas = JSON.parse(localStorage.getItem(v_tblName));
-            //넘어온 넘버값에 해당하는 글 찾기
 
+
+            //넘어온 넘버값에 해당하는 글 찾기
             for (var i = 0; i < v_arrDatas.length; i++) {
                 if (v_arrDatas[i].num == v_gnum) {  // 찾았다면
                     // alert(v_arrDatas[i].skills.length)
-                    v_tblStr += "<tr><td>제목</td><td>" + v_arrDatas[i].title + "</td></tr>"
-                    v_tblStr += "<tr><td>글쓴이</td><td>" + v_arrDatas[i].writer + "</td></tr>"
-                    v_tblStr += "<tr><td>아이디</td><td>" + v_arrDatas[i].userId + "</td></tr>"
-                    v_tblStr += "<tr><td>등록일</td><td>" + v_arrDatas[i].regDate + "</td></tr>"
-                    v_tblStr += "<tr><td>조회수</td><td>" + v_arrDatas[i].hit + "</td></tr>"
-                    v_tblStr += "<tr><td>내용</td><td>" + v_arrDatas[i].content + "</td></tr>"
+                    // hit(조회수) 증가
+                    v_arrDatas[i].hit++;
+                    //localStorage에 실제로 저장
+                    localStorage.setItem(v_tblName, JSON.stringify(v_arrDatas));
+
+                    v_tblStr += "<tr><td><b>제목</b></td><td>" + v_arrDatas[i].title + "</td></tr>"
+                    v_tblStr += "<tr><td><b>글쓴이</b></td><td>" + v_arrDatas[i].writer + "</td></tr>"
+                    v_tblStr += "<tr><td><b>아이디</b></td><td>" + v_arrDatas[i].userId + "</td></tr>"
+                    v_tblStr += "<tr><td><b>등록일</b></td><td>" + v_arrDatas[i].regDate + "</td></tr>"
+                    v_tblStr += "<tr><td><b>조회수</b></td><td>" + v_arrDatas[i].hit + "</td></tr>"
+                    v_tblStr += "<tr><td><b>내용</b></td><td class ='col-xs-4'>" + v_arrDatas[i].content + "</td></tr>"
 
                     // checkbox에 v_arrDatas[i].skills 배열에 있는 값이
                     // 체크되도록 해봅니다.

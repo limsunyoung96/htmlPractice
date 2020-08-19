@@ -5,23 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/myHeaderStyle.css">
-    <!-- <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css"> -->
-    <!-- <link rel="stylesheet" href="../assets/bootstrap-table/src/bootstrap-table.css"> -->
-    <!-- <link rel="stylesheet" href="../assets/examples.css"> -->
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <!-- 요기다 요기 -->
+    <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet"/> -->
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!-- 부트스트랩 테이블 -->
-    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.css">
-
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <title>넥스트어린이교육게시판</title>
     <!-- <script src="../assets/jquery.min.js"></script> -->
     <!-- <script src="../assets/bootstrap/js/bootstrap.min.js"></script> -->
     <!-- <script src="../assets/bootstrap-table/src/bootstrap-table.js"></script> -->
     <!-- <script src="../assets/bootstrap-table/src/extensions/export/bootstrap-table-export.js"></script> -->
-    <script src="//rawgit.com/hhurz/tableExport.jquery.plugin/master/tableExport.js"></script>
     <!-- <script src="../ga.js"></script> -->
     <script src="../js/jsp.js"></script>
+    
+
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" -->
+    <!-- integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
 </head>
 
 <body>
@@ -30,9 +34,10 @@
             <a><img src="../img/양.png" id="header_img"></a>
             <a id="header_page_name"> 넥스트어린이 교육페이지</a>
         </div>
-
     </div>
+
     <script>
+        $("#header_page_name").removeAttr("href")
         var v_pgNum = request.getParameter("pg_num");
         var v_curPage = 1;    // 현재 페이지 디폴트 값
         if (v_pgNum) {
@@ -44,8 +49,12 @@
         var v_tblName = "넥스트게시판";
         var v_arrDatas = JSON.parse(localStorage.getItem(v_tblName));
         // console.log(v_arrDatas);
-        document.write("<h1>넥스트 어린이 게시판</h1>");
-        var v_tblStr = "<form id='id_form'>";
+        // document.write("<h1>넥스트 어린이 게시판</h1>");
+        var v_tblStr = "<div class='container'>"
+            + "<div style='padding: 15px;'>"
+            + "<h2>넥스트 어린이 게시판</h2>"
+            + "<button type='button' aria-label='Left Align' class ='btn btn-default' onclick=\"location.href='write.html'\"><span class='glyphicon glyphicon-pencil' aria-hidden='true'/> 글쓰기</button><hr></div>"
+            + "<form id='id_form'>";
         if (v_arrDatas != null) {
 
             // 페이지 나누기, 페이지당 몇개 10개, 전체페이지 수 :전체글수 / 페이지당글수
@@ -70,7 +79,7 @@
             }
 
 
-            v_tblStr += "<table class='text-center table-striped table table-hover'  border=1>";
+            v_tblStr += "<table class='table-striped table table-hover'>";
             v_tblStr += "<tr><th>번호</th><th>제목</th><th>작성자</th><th>아이디</th><th>등록일</th><th>조회수</th></tr>"
             // for (var i = v_endNum-1; i >= v_startNum; i--) {
             for (var i = v_startNum; i < v_endNum; i++) {
@@ -85,25 +94,45 @@
                 v_tblStr += "</tr>";
             }
             v_tblStr += "</table></form>";
+            v_tblStr += '<nav>'
+                + '<ul class="pagination justify-content-center">'
+                + '<li>'
+                + '<a href="boardList.html?pg_num=1" aria-label="Previous">'
+                + '<span aria-hidden="true">&laquo;</span>'
+                + '</a>'
+                + '</li>';
 
             //사용자 페이지 클릭 모양 맹글어주기
             for (var v_page = 1; v_page <= v_totalPG; v_page++) {
                 if (v_page == v_curPage) {
-                    v_tblStr += "<a style='font-size:2em;' href='list.html?pg_num=" + v_page +
-                        "'>" + v_page + "</a>";
+                    v_tblStr += '<li class="active"><a href="boardList.html?pg_num=' + v_page + '">' + v_page + '</a></li>';
                 } else {
-                    v_tblStr += "<a href='boardList.html?pg_num=" + v_page + "'>" + v_page + "</a>";
+                    v_tblStr += '<li><a href="boardList.html?pg_num=' + v_page + '">' + v_page + '</a></li>';
                 }
-                v_tblStr += "&nbsp;&nbsp;&nbsp;&nbsp;";
+
+                // if (v_page == v_curPage) {
+                //     v_tblStr += "<a style='font-size:2em;' href='list.html?pg_num=" + v_page +
+                //         "'>" + v_page + "</a>";
+                // } else {
+                //     v_tblStr += "<a href='boardList.html?pg_num=" + v_page + "'>" + v_page + "</a>";
+                // }
+                // v_tblStr += "&nbsp;&nbsp;&nbsp;&nbsp;";
             }
 
+            v_tblStr += '<li>'
+                + '<a href="boardList.html?pg_num=' + v_totalPG + '" aria-label="Next">'
+                + '<span aria-hidden="true">&raquo;</span>'
+                + '</a>'
+                + '</li>'
+                + '</ul>'
+                + '</nav>'
         } else {
 
             // v_tblStr += "<br><input id='id_submit' type=button value='선택된것 지우기'><br>";
             v_tblStr += "<br><h4>등록된 글이 존재하지 않습니다.</h4><br>";
             // var v_tblStr = "<br><a href='write.html'>글쓰깅</a>"
         }
-        v_tblStr += "<br><br><a href='write.html'>글쓰기</a>";
+        v_tblStr += "<br> </div>";
         document.write(v_tblStr);  // 화면에 출력
 
         // var v_form = document.getElementById("id_form");
@@ -113,12 +142,6 @@
         //     v_form.action = "delAction.html";
         //     v_form.submit();               //form객체의 submit메소드 호출
         // }
-
-
-
-
-
-
 
 
 
