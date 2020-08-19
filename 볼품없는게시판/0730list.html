@@ -34,7 +34,7 @@
     for(var i=v_startNum; i<v_endNum; i++){
         v_tblStr += "<tr>";
         v_tblStr += "<td>" + v_arrDatas[i].num + "</td>";    
-        v_tblStr += "<td><a href='read.html?g_num=" + v_arrDatas[i].num + "' >" + v_arrDatas[i].title + "</a></td>";    
+        v_tblStr += "<td><a href='0731read.html?g_num=" + v_arrDatas[i].num + "' >" + v_arrDatas[i].title + "</a></td>";    
         v_tblStr += "<td>" + v_arrDatas[i].writer + "</td>";    
         v_tblStr += "<td>" + v_arrDatas[i].skills + "</td>";    
         v_tblStr += "<td>" + v_arrDatas[i].auth + "</td>"; 
@@ -46,7 +46,7 @@
     //사용자 페이지 클릭 모양 맹글어주기
     for(var v_page=1; v_page<= v_totalPG; v_page++){
         if(v_page == v_curPage){
-            v_tblStr += "<a style='font-size:5em;color:red' href='list.html?pg_num="+ v_page +
+            v_tblStr += "<a style='font-size:5em;color:red' href='0730list.html?pg_num="+ v_page +
                          "'>" + v_page + "</a>";
         }else{
             v_tblStr += "<a href='list.html?pg_num="+ v_page + "'>" + v_page + "</a>";
