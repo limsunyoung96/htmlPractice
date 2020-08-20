@@ -5,15 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/myStyle.css">
+    <script src="../js/jsp.js"></script>
     <title>동영상 재생</title>
 </head>
 
 <body>
     <div id="wrap">
-        <div id="header">
-            <a><img src="../img/양.png" id="header_img"></a>
-            <a id="header_page_name"> 넥스트어린이 교육페이지</a>
-        </div>
 
         <iframe id="id_myMovie" width="889" height="500" src="" frameborder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -23,9 +20,9 @@
 <script>
     // var v_code = opener.document.getElementById("id_ta").value;
     var v_myMovie = document.getElementById("id_myMovie")
-    var v_code = opener.v_newVideoId
+    // var v_code = opener.v_newVideoId
     window.onload = function () {
-        v_myMovie.src = "https://www.youtube.com/embed/" + v_code + "?autoplay=1"
+        v_myMovie.src = "https://www.youtube.com/embed/" + request.getParameter("v_id") + "?autoplay=1"
     }
     window.onunload = function () {
         opener.v_newWin = null // 열어준 창의 전역변수에 접근

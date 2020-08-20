@@ -18,6 +18,8 @@
         <div id="header" onclick='location.href="index.html"'>
             <a><img src="../img/양.png" id="header_img"></a>
             <a id="header_page_name"> 넥스트어린이 교육페이지</a>
+            &nbsp;&nbsp;
+            
         </div>
         <div id="id_menu_bar">
             <div class="cl_menu" onclick="location.href='#id_music'">동요</div>
@@ -28,7 +30,6 @@
                 게시판</div>
             <input type="text" autofocus placeholder="검색어 입력" value="" id="id_searchBox" onkeydown="f_key()">
             <img class="cl_menu" id="id_search" onclick="f_search()" src="../img/search.png">
-            &nbsp;&nbsp;
             <a id="id_login_state"></a>
             <a src="" id="id_login_img"></a>
         </div>
@@ -343,7 +344,7 @@
         var f_newOpen = function (v_id) {
             if (!v_newWin) {
                 v_newVideoId = v_id
-                v_newWin = window.open("./play.html", "",
+                v_newWin = window.open("./play.html?v_id="+v_id, "",
                     "width=900. height=530, left =200, top=200")
             }
         }
@@ -387,66 +388,6 @@
 
 
         // 로그인, 로그아웃
-        var is_login = false;
-        var v_loginState = document.getElementById("id_login_state");
-        function f_login_state() {
-            if (!is_login) {
-                // alert(v_loginState);
-                // v_loginState.href = "login.html"
-
-                Kakao.Auth.login();
-
-                // document.getElementById("id_login_img").setAttribute("style", "height: 50px; width: 50px; line-height: 80px; visibility: visible");
-                // document.getElementById("id_login_img").src = v_arrDatas[i].profile_image;
-                // v_loginState.innerHTML = v_arrDatas[i].nickname;
-                is_login = true;
-                return;
-            } else {
-                // Kakao.Auth.logout();
-                // var v_arrDatas = JSON.parse(localStorage.getItem("넥스트회원정보"));
-                // var v_token;
-                // for (var i = 0; i < v_arrDatas.length; i++) {
-                //     if (v_arrDatas[i].id == v_thisId) {  // 찾았다면
-                //         v_token = v_arrDatas[i].access_token;
-                //     }
-                // }
-                // if (!Kakao.Auth.getAccessToken()) {
-                //     console.log('Not logged in.');
-                //     return;
-                // }
-                // Kakao.Auth.logout(function (obj) {
-                //     if (obj == true) {
-
-                //     } else {
-
-                //     }
-                //     location.href = 'index.html';
-                // });
-
-                // Kakao.Auth.logout(function () {
-                //     // Kakao.Auth.setAccessToken(v_token);
-                //     // Kakao.Auth.getAccessToken(v_token);
-                //     // console.log(v_token);
-                //     Kakao.API.request({
-                //         url: '/v1/user/unlink',
-                //         success: function (response) {
-                //             console.log(Kakao.Auth.getAccessToken(v_token));
-                //             console.log(response);
-                //             v_loginState.innerHTML = "로그인";
-                //             document.getElementById("id_login_img").src = "";
-                //             document.getElementById("id_login_img").setAttribute("style", "visibility: hidden");
-                //             is_login = false;
-                //             // h
-                //         },
-                //         fail: function (error) {
-                //             console.log(error);
-                //         },
-                //     });
-
-                // });
-            }
-        }
-
         $(document).ready(function () {
             Kakao.init("9212435427721fda8278606df4519813");
             function getKakaotalkUserProfile() {
@@ -496,149 +437,6 @@
                 createKakaotalkLogin();
             }
         });
-
-        // Kakao.init('9212435427721fda8278606df4519813');  //여기서 아까 발급받은 키 중 javascript키를 사용해준다.
-
-        // Kakao.Auth.login({
-
-        //     success: function (response) {
-        //         // console.log("로그인 성공909-------------");
-        //         console.log(response);
-        //         Kakao.API.request({
-        //             url: '/v1/user/me',
-        //             success: function (res) {
-        //                 alert(JSON.stringify(res));
-        //             }
-        //         })
-
-        //         // location.href = "http://localhost/jsstudy/project/html/index.html"
-        //     },
-        //     fail: function (error) {
-        //         console.log(error);
-        //     }
-        // });
-        // if (!Kakao.Auth.getAccessToken()) {
-        //     console.log('Not logged in.');
-        //     return;
-        // }
-        // Kakao.Auth.logout(function () {
-        //     console.log("로그아웃 성공");
-        //     console.log(Kakao.Auth.getAccessToken());
-        //     location.href = 'http://localhost/jsstudy/project/html/index.html';
-        // });
-        // var v_thisId;
-        // if (request.getParameter("code") != null) {
-        //     // 사용할 앱의 JavaScript 키를 설정해 주세요.
-        //     Kakao.init('9212435427721fda8278606df4519813');  //여기서 아까 발급받은 키 중 javascript키를 사용해준다.
-        //     // 카카오 로그인 버튼을 생성합니다.
-        //     // console.lo
-        //     // Kakao.Auth.setAccessToken(request.getParameter("code"));
-        //     // var v_r = request.getParameter("code").property
-        //     // console.log(v_r);
-
-
-        //     Kakao.Auth.login({
-        //         success: function (authObj) {
-        //             // console.log(authObj)
-        //             Kakao.API.request({
-        //                 url: '/v2/user/me',
-
-        //                 success: function (res) {
-        //                     // console.log(res);
-        //                     // console.log(authObj);
-        //                     v_thisId = res.id;
-        //                     var v_tbName = "넥스트회원정보"; // key값 임의로 정한 테이블 명
-
-        //                     // for(var i=0; i<res.length; i++){
-        //                     //     console.log(res[i]);
-        //                     // }
-        //                     // var v_arrData = []; // json을 담아줄 배열 선언, 실제 테이블 역할
-
-        //                     var v_record = {};         // 받아온 값 전부를 1개의 JSON으로 묶기 위한 json
-        //                     v_record.id = res.id;
-        //                     v_record.connected_at = res.connected_at;
-        //                     v_record.email = res.kakao_account.email;
-        //                     v_record.nickname = res.properties.nickname;
-        //                     v_record.profile_image = res.properties.profile_image;
-        //                     v_record.access_token = authObj.access_token;
-
-        //                     if (!localStorage.getItem(v_tbName)) { // null일 때
-        //                         // 처음 데이터가 들어감
-        //                         var v_arrData = [];
-        //                         v_arrData.push(v_record);
-        //                         localStorage.setItem(v_tbName, JSON.stringify(v_arrData));
-        //                     } else {
-        //                         // 이미 데이터가 들어있음
-        //                         // 있는 데이터 꺼내오기
-        //                         var v_arrData = JSON.parse(localStorage.getItem(v_tbName));
-        //                         for (var i = 0; i < v_arrData.length; i++) {
-        //                             if (v_arrData[i].id == v_record.id) {
-        //                                 v_arrData[i].connected_at = v_record.connected_at;
-        //                                 v_arrData[i].email = v_record.email;
-        //                                 v_arrData[i].nickname = v_record.nickname;
-        //                                 v_arrData[i].profile_image = v_record.profile_image;
-        //                                 v_arrData[i].access_token = v_record.access_token;
-        //                             } else {
-        //                                 v_arrData.push(v_record);
-        //                                 localStorage.setItem(v_tbName, JSON.stringify(v_arrData));
-        //                             }
-        //                         }
-        //                     }
-
-        //                     var v_arrDatas = JSON.parse(localStorage.getItem(v_tbName));
-        //                     //넘어온 넘버값에 해당하는 글 찾기
-        //                     for (var i = 0; i < v_arrDatas.length; i++) {
-        //                         if (v_arrDatas[i].id == v_record.id) {  // 찾았다면
-
-        //                             // console.log(res); //<---- kakao.api.request 에서 불러온 결과값 json형태로 출력
-        //                             // console.log(authObj); //<----Kakao.Auth.createLoginButton에서 불러온 결과값 json형태로 출력
-        //                             // console.log("------------------")
-        //                             // console.log(res.id);//<---- 콘솔 로그에 id 정보 출력(id는 res안에 있기 때문에  res.id 로 불러온다)
-        //                             // // console.log(res.kaccount_email);//<---- 콘솔 로그에 email 정보 출력 (어딨는지 알겠죠?)
-        //                             // console.log(res.properties['nickname']);//<---- 콘솔 로그에 닉네임 출력(properties에 있는 nickname 접근 
-        //                             // // res.properties.nickname으로도 접근 가능 )
-        //                             // console.log(authObj.access_token);//<---- 콘솔 로그에 토큰값 출력
-        //                             document.getElementById("id_login_img").setAttribute("style", "height: 50px; width: 50px; line-height: 80px; visibility: visible");
-        //                             document.getElementById("id_login_img").src = v_arrDatas[i].profile_image;
-        //                             v_loginState.innerHTML = v_arrDatas[i].nickname;
-        //                             is_login = true;
-        //                             break;
-        //                         }
-        //                     }
-        //                 }
-        //             })
-
-        //         },
-        //         fail: function (err) {
-        //             alert(JSON.stringify(err))
-        //         }
-        //     })
-
-        //     // if (!Kakao.Auth.getAccessToken()) {
-        //     //     console.log('Not logged in.');
-        //     //     return;
-        //     // }
-
-
-        //     // Kakao.Auth.logout(function () {
-        //     //     Kakao.API.request({
-        //     //         url: '/v1/user/unlink',
-        //     //         success: function (response) {
-        //     //             console.log(response);
-        //     //             console.log(Kakao.Auth.getAccessToken(request.getParameter("code")));
-        //     //             v_loginState.innerHTML = "로그인";
-        //     //             document.getElementById("id_login_img").src = "";
-        //     //             document.getElementById("id_login_img").setAttribute("style", "visibility: hidden");
-        //     //             is_login = false;
-        //     //             // h
-        //     //         },
-        //     //         fail: function (error) {
-        //     //             console.log(error);
-        //     //         },
-        //     //     });
-
-        //     // });
-        // }
 
     </script>
 

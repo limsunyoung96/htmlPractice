@@ -22,7 +22,7 @@
     <!-- <script src="../assets/bootstrap-table/src/extensions/export/bootstrap-table-export.js"></script> -->
     <!-- <script src="../ga.js"></script> -->
     <script src="../js/jsp.js"></script>
-    
+
 
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" -->
     <!-- integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
@@ -35,6 +35,8 @@
             <a id="header_page_name"> 넥스트어린이 교육페이지</a>
         </div>
     </div>
+    <a id="id_login_state"></a>
+    <a src="" id="id_login_img"></a>
 
     <script>
         $("#header_page_name").removeAttr("href")
@@ -224,6 +226,56 @@
         //     }
         // })
 
+         // 로그인, 로그아웃
+         $(document).ready(function () {
+            Kakao.init("9212435427721fda8278606df4519813");
+            function getKakaotalkUserProfile() {
+                Kakao.API.request({
+                    url: '/v2/user/me',
+                    success: function (res) {
+                        $("#id_login_img").append(res.properties.nickname);
+                        $("#id_login_img").append($("<img/>", { "src": res.properties.profile_image, "alt": res.properties.nickname + "님의 프로필 사진", "style":"heght:25px; width:25px" }));
+                    },
+                    fail: function (error) {
+                        console.log(error);
+                    }
+                });
+            }
+            function createKakaotalkLogin() {
+                $("#id_login_state .kakao-logout-btn,#id_login_state .kakao-login-btn").remove();
+                var loginBtn = $("<a/>", { "class": "kakao-login-btn", "text": "로그인" });
+                loginBtn.click(function () {
+                    Kakao.Auth.login({
+                        persistAccessToken: true,
+                        persistRefreshToken: true,
+                        success: function (authObj) {
+                            getKakaotalkUserProfile();
+                            createKakaotalkLogout();
+                        },
+                        fail: function (err) {
+                            console.log(err);
+                        }
+                    });
+                });
+                $("#id_login_state").prepend(loginBtn)
+            }
+            function createKakaotalkLogout() {
+                $("#id_login_state .kakao-logout-btn,#id_login_state .kakao-login-btn").remove();
+                var logoutBtn = $("<a/>", { "class": "kakao-logout-btn", "text": "로그아웃" });
+                logoutBtn.click(function () {
+                    Kakao.Auth.logout();
+                    createKakaotalkLogin();
+                    $("#id_login_img").text("");
+                });
+                $("#id_login_state").prepend(logoutBtn);
+            }
+            if (Kakao.Auth.getRefreshToken() != undefined && Kakao.Auth.getRefreshToken().replace(/ /gi, "") != "") {
+                createKakaotalkLogout();
+                getKakaotalkUserProfile();
+            } else {
+                createKakaotalkLogin();
+            }
+        });
     </script>
     <!-- Jquery 가져오기 -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
