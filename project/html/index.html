@@ -404,7 +404,8 @@
             }
             function createKakaotalkLogin() {
                 $("#id_login_state .kakao-logout-btn,#id_login_state .kakao-login-btn").remove();
-                var loginBtn = $("<a/>", { "class": "kakao-login-btn", "text": "로그인" });
+                // var loginBtn = $("<a/>", { "class": "kakao-login-btn", "text": "로그인" });
+                var loginBtn = $("<img/>", { "class": "kakao-login-btn", "src": "../img/kakao_login_medium_narrow.png" });
                 loginBtn.click(function () {
                     Kakao.Auth.login({
                         persistAccessToken: true,

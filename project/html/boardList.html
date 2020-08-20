@@ -35,8 +35,6 @@
             <a id="header_page_name"> 넥스트어린이 교육페이지</a>
         </div>
     </div>
-    <a id="id_login_state"></a>
-    <a src="" id="id_login_img"></a>
 
     <script>
         $("#header_page_name").removeAttr("href")
@@ -55,8 +53,11 @@
         var v_tblStr = "<div class='container'>"
             + "<div style='padding: 15px;'>"
             + "<h2>넥스트 어린이 게시판</h2>"
-            + "<button type='button' aria-label='Left Align' class ='btn btn-default' onclick=\"location.href='write.html'\"><span class='glyphicon glyphicon-pencil' aria-hidden='true'/> 글쓰기</button><hr></div>"
-            + "<form id='id_form'>";
+            + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type='button' aria-label='Left Align' class ='btn btn-default' onclick=\"location.href='write.html'\"><span class='glyphicon glyphicon-pencil' aria-hidden='true'/> 글쓰기</button>"
+            + " &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<a id='id_login_state'></a>&nbsp;<a src='' id='id_login_img'></a>"
+            + "<br><br><div id='input-form'><a style='text-align:center;'><h5>제목 검색</h5></a><input type='text' class='form-control' id='keyword_title' /></div><hr>"
+            + "<div id='input-form'><a style='text-align:center;'><h5>작성자 검색</h5></a><input type='text' class='form-control' id='keyword_writer' /></div><hr></div>"
+        // + "<form id='id_form'>";
         if (v_arrDatas != null) {
 
             // 페이지 나누기, 페이지당 몇개 10개, 전체페이지 수 :전체글수 / 페이지당글수
@@ -80,9 +81,10 @@
                 v_endNum = v_arrDatas.length
             }
 
+            // var v_hidden_table = "<table id='user-table' style='visibility: hidden;'></table>"
 
-            v_tblStr += "<table class='table-striped table table-hover'>";
-            v_tblStr += "<tr><th>번호</th><th>제목</th><th>작성자</th><th>아이디</th><th>등록일</th><th>조회수</th></tr>"
+            v_tblStr += "<table id='user-table' class='table-striped table table-hover'>";
+            v_tblStr += "<thead><tr><th>번호</th><th>제목</th><th>작성자</th><th>아이디</th><th>등록일</th><th>조회수</th></tr></thead>"
             // for (var i = v_endNum-1; i >= v_startNum; i--) {
             for (var i = v_startNum; i < v_endNum; i++) {
                 v_tblStr += "<tr>";
@@ -95,7 +97,7 @@
                 // v_tblStr += "<td><input type=checkbox name='nm_delNum' value='" + v_arrDatas[i].num + "'></td>";
                 v_tblStr += "</tr>";
             }
-            v_tblStr += "</table></form>";
+            v_tblStr += "</table>";
             v_tblStr += '<nav>'
                 + '<ul class="pagination justify-content-center">'
                 + '<li>'
@@ -111,14 +113,6 @@
                 } else {
                     v_tblStr += '<li><a href="boardList.html?pg_num=' + v_page + '">' + v_page + '</a></li>';
                 }
-
-                // if (v_page == v_curPage) {
-                //     v_tblStr += "<a style='font-size:2em;' href='list.html?pg_num=" + v_page +
-                //         "'>" + v_page + "</a>";
-                // } else {
-                //     v_tblStr += "<a href='boardList.html?pg_num=" + v_page + "'>" + v_page + "</a>";
-                // }
-                // v_tblStr += "&nbsp;&nbsp;&nbsp;&nbsp;";
             }
 
             v_tblStr += '<li>'
@@ -129,7 +123,6 @@
                 + '</ul>'
                 + '</nav>'
         } else {
-
             // v_tblStr += "<br><input id='id_submit' type=button value='선택된것 지우기'><br>";
             v_tblStr += "<br><h4>등록된 글이 존재하지 않습니다.</h4><br>";
             // var v_tblStr = "<br><a href='write.html'>글쓰깅</a>"
@@ -137,13 +130,22 @@
         v_tblStr += "<br> </div>";
         document.write(v_tblStr);  // 화면에 출력
 
-        // var v_form = document.getElementById("id_form");
-        // var v_btnSubmit = document.getElementById("id_submit");
-        //일반 버튼으로 submit하기
-        // v_btnSubmit.onclick = function () {
-        //     v_form.action = "delAction.html";
-        //     v_form.submit();               //form객체의 submit메소드 호출
-        // }
+        $(document).ready(function () {
+            $("#keyword_title").keyup(function () {
+                var k = $(this).val();
+                $("#user-table > tbody > tr").hide();
+                var temp = $("#user-table > tbody > tr > td:nth-child(5n+2):contains('" + k + "')");
+
+                $(temp).parent().show();
+            })
+            $("#keyword_writer").keyup(function () {
+                var k = $(this).val();
+                $("#user-table > tbody > tr").hide();
+                var temp = $("#user-table > tbody > tr > td:nth-child(5n+3):contains('" + k + "')");
+
+                $(temp).parent().show();
+            })
+        })
 
 
 
@@ -226,15 +228,15 @@
         //     }
         // })
 
-         // 로그인, 로그아웃
-         $(document).ready(function () {
+        // 로그인, 로그아웃
+        $(document).ready(function () {
             Kakao.init("9212435427721fda8278606df4519813");
             function getKakaotalkUserProfile() {
                 Kakao.API.request({
                     url: '/v2/user/me',
                     success: function (res) {
                         $("#id_login_img").append(res.properties.nickname);
-                        $("#id_login_img").append($("<img/>", { "src": res.properties.profile_image, "alt": res.properties.nickname + "님의 프로필 사진", "style":"heght:25px; width:25px" }));
+                        $("#id_login_img").append($("<img/>", { "src": res.properties.profile_image, "alt": res.properties.nickname + "님의 프로필 사진", "style": "heght:25px; width:25px" }));
                     },
                     fail: function (error) {
                         console.log(error);
@@ -243,7 +245,8 @@
             }
             function createKakaotalkLogin() {
                 $("#id_login_state .kakao-logout-btn,#id_login_state .kakao-login-btn").remove();
-                var loginBtn = $("<a/>", { "class": "kakao-login-btn", "text": "로그인" });
+                var loginBtn = $("<img/>", { "class": "kakao-login-btn", "src": "../img/kakao_login_medium_narrow.png" });
+                // var loginBtn = $("<a/>", { "class": "kakao-login-btn", "text": "로그인" });
                 loginBtn.click(function () {
                     Kakao.Auth.login({
                         persistAccessToken: true,
@@ -277,6 +280,8 @@
             }
         });
     </script>
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
     <!-- Jquery 가져오기 -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>

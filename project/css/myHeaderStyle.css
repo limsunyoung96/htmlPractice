@@ -1,5 +1,9 @@
+a{
+    text-decoration:none !important;
+    color:#000000 !important;
+}
 body{
-    cursor: none;
+    cursor: none; 
 }
 #wrap{
     width: 100%;
