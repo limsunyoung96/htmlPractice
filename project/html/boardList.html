@@ -65,14 +65,6 @@
             var v_totalGSu = v_arrDatas.length;
             var v_totalPG = Math.ceil(v_totalGSu / v_pgPGSu);
 
-            // var v_startNum = (v_curPage - 1) * v_pgPGSu;   // 페이지별 스타트 글넘버 배열 index
-            // var v_endNum = v_startNum + v_pgPGSu;
-
-            // //마지막 페이지의 마지막 글 넘버
-            // if (v_endNum > v_arrDatas.length) {
-            //     v_endNum = v_arrDatas.length
-            // }
-
             var v_startNum = (v_curPage - 1) * v_pgPGSu;   // 페이지별 스타트 글넘버 배열 index
             var v_endNum = v_startNum + v_pgPGSu;
 
@@ -86,6 +78,7 @@
             v_tblStr += "<table id='user-table' class='table-striped table table-hover'>";
             v_tblStr += "<thead><tr><th>번호</th><th>제목</th><th>작성자</th><th>아이디</th><th>등록일</th><th>조회수</th></tr></thead>"
             // for (var i = v_endNum-1; i >= v_startNum; i--) {
+            // for (var i = v_startNum; i < v_endNum; i++) {
             for (var i = v_startNum; i < v_endNum; i++) {
                 v_tblStr += "<tr>";
                 v_tblStr += "<td>" + v_arrDatas[i].num + "</td>";
@@ -146,8 +139,6 @@
                 $(temp).parent().show();
             })
         })
-
-
 
 
         //마우스 포인트 효과
@@ -235,8 +226,17 @@
                 Kakao.API.request({
                     url: '/v2/user/me',
                     success: function (res) {
-                        $("#id_login_img").append(res.properties.nickname);
-                        $("#id_login_img").append($("<img/>", { "src": res.properties.profile_image, "alt": res.properties.nickname + "님의 프로필 사진", "style": "heght:25px; width:25px" }));
+                        if (sessionStorage.getItem("nickname") != null && sessionStorage.getItem("image") != null) {
+                            $("#id_login_img").append(sessionStorage.getItem("nickname"));
+                            $("#id_login_img").append($("<img/>", { "src": sessionStorage.getItem("image"), "alt": sessionStorage.getItem('nickname') + "님의 프로필 사진", "style": "heght:25px; width:25px" }));
+                        } else {
+
+                            sessionStorage.setItem("nickname", res.properties.nickname);
+                            sessionStorage.setItem("image", res.properties.profile_image);
+                            $("#id_login_img").append(res.properties.nickname);
+                            $("#id_login_img").append($("<img/>", { "src": res.properties.profile_image, "alt": res.properties.nickname + "님의 프로필 사진", "style": "heght:25px; width:25px" }));
+                        }
+
                     },
                     fail: function (error) {
                         console.log(error);
@@ -245,13 +245,14 @@
             }
             function createKakaotalkLogin() {
                 $("#id_login_state .kakao-logout-btn,#id_login_state .kakao-login-btn").remove();
-                var loginBtn = $("<img/>", { "class": "kakao-login-btn", "src": "../img/kakao_login_medium_narrow.png" });
                 // var loginBtn = $("<a/>", { "class": "kakao-login-btn", "text": "로그인" });
+                var loginBtn = $("<img/>", { "class": "kakao-login-btn", "src": "../img/kakao_login_medium_narrow.png" });
                 loginBtn.click(function () {
                     Kakao.Auth.login({
                         persistAccessToken: true,
                         persistRefreshToken: true,
                         success: function (authObj) {
+
                             getKakaotalkUserProfile();
                             createKakaotalkLogout();
                         },
@@ -267,12 +268,20 @@
                 var logoutBtn = $("<a/>", { "class": "kakao-logout-btn", "text": "로그아웃" });
                 logoutBtn.click(function () {
                     Kakao.Auth.logout();
+                    sessionStorage.clear();// 저장된 모든 값 삭제
+
                     createKakaotalkLogin();
                     $("#id_login_img").text("");
                 });
                 $("#id_login_state").prepend(logoutBtn);
             }
-            if (Kakao.Auth.getRefreshToken() != undefined && Kakao.Auth.getRefreshToken().replace(/ /gi, "") != "") {
+            // if (Kakao.Auth.getRefreshToken() != undefined && Kakao.Auth.getRefreshToken().replace(/ /gi, "") != "") {
+            //     createKakaotalkLogout();
+            //     getKakaotalkUserProfile();
+            // } else {
+            //     createKakaotalkLogin();
+            // }
+            if (sessionStorage.getItem("nickname") != null && sessionStorage.getItem("image") != null) {
                 createKakaotalkLogout();
                 getKakaotalkUserProfile();
             } else {

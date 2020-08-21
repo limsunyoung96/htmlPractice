@@ -1,40 +1,329 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/myHeaderStyle.css">
+  <!-- 합쳐지고 최소화된 최신 CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  <!-- 요기다 요기 -->
+  <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet"/> -->
+  <!-- 부가적인 테마 -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+  <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <title>넥스트어린이교육게시판</title>
+  <!-- <script src="../assets/jquery.min.js"></script> -->
+  <!-- <script src="../assets/bootstrap/js/bootstrap.min.js"></script> -->
+  <!-- <script src="../assets/bootstrap-table/src/bootstrap-table.js"></script> -->
+  <!-- <script src="../assets/bootstrap-table/src/extensions/export/bootstrap-table-export.js"></script> -->
+  <!-- <script src="../ga.js"></script> -->
+  <script src="../js/jsp.js"></script>
+
+
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" -->
+  <!-- integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
 </head>
+
 <body>
-  <a href="#a1">a1으로 이동</a>
-    <p id="a">123123</p>
-    <p id="a">123123</p>
-    <p id="a">123123</p>
-    <p id="a">123123</p>
-    <p id="a">123123</p>
-    <p id="a">123123</p>
-    <p id="a">123123</p>
-    <p id="a">123123</p>
-    <p id="a">123123</p>
-    <p id="a">123123</p>
-    <p id="a">123123</p>
-    <p id="a">123123</p>
-    <p id="a">123123</p>
-    <p id="a">123123</p>
-    <p id="a">123123</p>
-    <p id="a">123123</p>
-    <p id="a">123123</p>
-    <p id="a">123123</p>
-    <p id="a">123123</p>
-    <p id="a">123123</p>
-    <p id="a">123123</p>
-    <p id="a">123123</p>
-    <p id="a">123123</p>
-    <p id="a">123123</p>
-    <p id="a">123123</p>
-    <p id="a">123123</p>
-    <p id="a">123123</p>
-    <p id="a">123123</p>
-    <p id="a1">123ㅇㅇㅇㅇㅇㅇㅇㅇㅇ123</p>
+  <div id="wrap" onclick='location.href="index.html"'>
+    <div id="header">
+      <a><img src="../img/양.png" id="header_img"></a>
+      <a id="header_page_name"> 넥스트어린이 교육페이지</a>
+    </div>
+  </div>
+
+  <script>
+    $("#header_page_name").removeAttr("href")
+    var v_pgNum = request.getParameter("pg_num");
+    var v_curPage = 1;    // 현재 페이지 디폴트 값
+    if (v_pgNum) {
+      v_curPage = v_pgNum;
+    }
+
+    //localstorage내용 읽어와서 출력하기
+
+    var v_tblName = "넥스트게시판";
+    var v_arrDatas = JSON.parse(localStorage.getItem(v_tblName));
+    // console.log(v_arrDatas);
+    // document.write("<h1>넥스트 어린이 게시판</h1>");
+    var v_tblStr = "<div class='container'>"
+      + "<div style='padding: 15px;'>"
+      + "<h2>넥스트 어린이 게시판</h2>"
+      + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type='button' aria-label='Left Align' class ='btn btn-default' onclick=\"location.href='write.html'\"><span class='glyphicon glyphicon-pencil' aria-hidden='true'/> 글쓰기</button>"
+      + " &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<a id='id_login_state'></a>&nbsp;<a src='' id='id_login_img'></a>"
+      + "<br><br><div id='input-form'><a>검색</a>&nbsp;<a><select name='nm_filter' id='id_filter'><option value='title'>제목</option><option value='writer'>작성자</option>"
+      + "<option value='id'>아이디</option></select></a><input type='text' class='form-control' id='id_keyword' /></div><input onclick='f_search()' id='id_search' class='btn' style='float:right; width:100px;' type=button value='검색'/><hr></div>"
+    // + "<form id='id_form'>";
+    if (v_arrDatas != null) {
+
+      // 페이지 나누기, 페이지당 몇개 10개, 전체페이지 수 :전체글수 / 페이지당글수
+      var v_pgPGSu = 10;
+      var v_totalGSu = v_arrDatas.length;
+      var v_totalPG = Math.ceil(v_totalGSu / v_pgPGSu);
+
+      var v_startNum = (v_curPage - 1) * v_pgPGSu;   // 페이지별 스타트 글넘버 배열 index
+      var v_endNum = v_startNum + v_pgPGSu;
+
+      //마지막 페이지의 마지막 글 넘버
+      if (v_endNum > v_arrDatas.length) {
+        v_endNum = v_arrDatas.length
+      }
+
+      // var v_hidden_table = "<table id='user-table' style='visibility: hidden;'></table>"
+
+      v_tblStr += "<table id='user-table' class='table-striped table table-hover'>";
+      v_tblStr += "<thead><tr><th>번호</th><th>제목</th><th>작성자</th><th>아이디</th><th>등록일</th><th>조회수</th></tr></thead>"
+      // for (var i = v_endNum-1; i >= v_startNum; i--) {
+      for (var i = v_startNum; i < v_endNum; i++) {
+        v_tblStr += "<tr>";
+        v_tblStr += "<td>" + v_arrDatas[i].num + "</td>";
+        v_tblStr += "<td><a href='read.html?g_num=" + v_arrDatas[i].num + "' >" + v_arrDatas[i].title + "</a></td>";
+        v_tblStr += "<td>" + v_arrDatas[i].writer + "</td>";
+        v_tblStr += "<td>" + v_arrDatas[i].userId + "</td>";
+        v_tblStr += "<td>" + v_arrDatas[i].regDate + "</td>";
+        v_tblStr += "<td>" + v_arrDatas[i].hit + "</td>";
+        // v_tblStr += "<td><input type=checkbox name='nm_delNum' value='" + v_arrDatas[i].num + "'></td>";
+        v_tblStr += "</tr>";
+      }
+      v_tblStr += "</table>";
+      v_tblStr += '<nav>'
+        + '<ul class="pagination justify-content-center">'
+        + '<li>'
+        + '<a href="abc.html?pg_num=1" aria-label="Previous">'
+        + '<span aria-hidden="true">&laquo;</span>'
+        + '</a>'
+        + '</li>';
+
+      //사용자 페이지 클릭 모양 맹글어주기
+      for (var v_page = 1; v_page <= v_totalPG; v_page++) {
+        if (v_page == v_curPage) {
+          v_tblStr += '<li class="active"><a href="abc.html?pg_num=' + v_page + '">' + v_page + '</a></li>';
+        } else {
+          v_tblStr += '<li><a href="abc.html?pg_num=' + v_page + '">' + v_page + '</a></li>';
+        }
+      }
+
+      v_tblStr += '<li>'
+        + '<a href="abc.html?pg_num=' + v_totalPG + '" aria-label="Next">'
+        + '<span aria-hidden="true">&raquo;</span>'
+        + '</a>'
+        + '</li>'
+        + '</ul>'
+        + '</nav>'
+    } else {
+      // v_tblStr += "<br><input id='id_submit' type=button value='선택된것 지우기'><br>";
+      v_tblStr += "<br><h4>등록된 글이 존재하지 않습니다.</h4><br>";
+      // var v_tblStr = "<br><a href='write.html'>글쓰깅</a>"
+    }
+    v_tblStr += "<br> </div>";
+    document.write(v_tblStr);  // 화면에 출력
+
+    var v_filter;
+    var pm_filter = request.getParameter("filter");
+    var pm_keyword = request.getParameter("keyword");
+    if (pm_filter != null && pm_keyword != null) {
+      document.getElementById("id_keyword").value=pm_keyword;
+      $("select > option:selected").each(function (p_indx, p_element) {
+      v_filter = p_element.value;
+    })
+    }
+    $("select > option:selected").each(function (p_indx, p_element) {
+      v_filter = p_element.value;
+    })
+
+    function f_search() {
+      var k = document.getElementById("id_keyword").value;
+      if (k == null || k.replace(/ /g, "") == "") {
+        alert("검색어를 입력하세요");
+        return;
+      }
+      // var v_filter;
+      $("select > option:selected").each(function (p_indx, p_element) {
+        v_filter = p_element.value;
+      })
+      // console.log(v_curPage);
+      location.href = "abc.html?pg_num=" + v_curPage + "&filter=" + v_filter + "&keyword=" + k;
+    }
+    // $("#id_search").addEventListener("click", function () {
+    //   var k = $("id_key").val();
+    //   $("select > option:selected").each(function (p_indx, p_element) {
+    //     var v_filter = p_element;
+    //   })
+    //   location.href = "abc.html?pg_num='" + v_page + "&filter=" + v_filter + "&keyword=" + k;
+    // })
+
+    // $("#keyword_title").keyup(function () {
+    //   var k = $(this).val();
+    //   $("#user-table > tbody > tr").hide();
+    //   var temp = $("#user-table > tbody > tr > td:nth-child(5n+2):contains('" + k + "')");
+
+    //   $(temp).parent().show();
+    // })
+
+
+    //마우스 포인트 효과
+    var v_mouse1 = document.createElement("div"); // 이미지 객체 생성
+    v_mouse1.style.width = 150 + "px";
+    v_mouse1.innerHTML = '<img src = "../img/마우스.png" width=100%>';
+    v_mouse1.style.position = "absolute"
+    v_mouse1.style.zIndex = 200
+    document.body.appendChild(v_mouse1);
+
+    function f_move() {
+      v_mouse1.style.left = event.pageX + 2 + "px";
+      v_mouse1.style.top = event.pageY + 2 + "px";
+    }
+    var v_msg = " ꕥ ✿ * ❀ ❀ ✿ ꕥ ✿ ✿ * * ✿ ꕥ";
+    v_msg = v_msg.split("");  // 문자열을 쪼개 글자 1개씩 배열에 담기
+    // 글자 1개씩 움직일 수 있게 div태그로 감싸줌
+    var v_leftPos = []; // left좌표를 위한 빈 배열 생성
+    var v_topPos = []; // top좌표를 위한 빈 배열 생성
+    var v_msX, v_msY; // 마우스 좌표를 읽어올 전역변수
+    for (var i = 0; i < v_msg.length; i++) {
+      v_leftPos[i] = -50;
+      v_topPos[i] = -50;
+      var v_char = document.createElement("span"); // 글자만 담을 때는 span 코드
+      v_char.setAttribute("id", "id_char" + i) // 편하게 접근하기 위해 글자별 id 부여
+      v_char.style.position = "absolute"; // default static은 움직이지 않음
+      v_char.style.left = v_leftPos[i] + "px";
+      v_char.style.top = v_topPos[i] + "px";
+      v_char.style.zIndex = 200;
+      v_char.innerHTML = v_msg[i]; // 메모리에만 만들어짐
+      document.body.appendChild(v_char); // body에 붙여넣기
+    }
+
+    // 랜덤 칼라
+    function f_ranColor() {
+      return "rgb(" + Math.floor(Math.random() * 256) + "," +
+        Math.floor(Math.random() * 256) + "," +
+        Math.floor(Math.random() * 256) + ")";
+    }
+
+    // 글자들이 마우스를 따라다니려면 mousemove 이벤트 필요
+    function f_msMove() {
+      v_msX = event.pageX; // 마우스 x(left) 죄표
+      v_msY = event.pageY;// 마우스  y(top) 죄표
+    }
+
+    // 실제 글자들을 움직일 함수
+    var v_charGan = 20; // 한 글자 사이의 간격
+    function f_charMove() {
+      // 첫번쨰 글자를 위한 좌표
+      v_leftPos[0] = v_msX + v_charGan;
+      v_topPos[0] = v_msY;
+
+      // 좌표값 할당을 맨 뒤 글자부터...
+      // 시간차이 때문에 가능
+      for (var i = v_msg.length - 1; i > 0; i--) {
+        v_leftPos[i] = v_leftPos[i - 1] + v_charGan
+        v_topPos[i] = v_topPos[i - 1];
+      }
+
+      // 배열에 담은 값을 각 글자의 좌표에 할당
+      for (var i = 0; i < v_msg.length; i++) {
+        var v_char = document.getElementById("id_char" + i)
+        v_char.style.left = v_leftPos[i] + "px";
+        v_char.style.top = v_topPos[i] + "px";
+        v_char.style.color = f_ranColor();
+        v_char.style.fontSize = Math.floor(Math.random() * 2) + 1 + "em"
+      }
+      // 마우스 좌표의 변하는 값을 일겅보기 위해 반복실행 필요
+      setTimeout(f_charMove, 50);
+    }
+    window.onload = f_charMove;
+    window.addEventListener("mousemove", f_msMove);
+    window.addEventListener("mousemove", f_move);
+    // window.addEventListener("keydown", function () {
+    //     if (event.key != "Enter") {
+    //         v_searchBox.focus();
+    //     }
+    // })
+
+    // 로그인, 로그아웃
+    $(document).ready(function () {
+      Kakao.init("9212435427721fda8278606df4519813");
+      function getKakaotalkUserProfile() {
+        Kakao.API.request({
+          url: '/v2/user/me',
+          success: function (res) {
+            if (sessionStorage.getItem("nickname") != null && sessionStorage.getItem("image") != null) {
+              $("#id_login_img").append(sessionStorage.getItem("nickname"));
+              $("#id_login_img").append($("<img/>", { "src": sessionStorage.getItem("image"), "alt": sessionStorage.getItem('nickname') + "님의 프로필 사진", "style": "heght:25px; width:25px" }));
+            } else {
+
+              sessionStorage.setItem("nickname", res.properties.nickname);
+              sessionStorage.setItem("image", res.properties.profile_image);
+              $("#id_login_img").append(res.properties.nickname);
+              $("#id_login_img").append($("<img/>", { "src": res.properties.profile_image, "alt": res.properties.nickname + "님의 프로필 사진", "style": "heght:25px; width:25px" }));
+            }
+
+          },
+          fail: function (error) {
+            console.log(error);
+          }
+        });
+      }
+      function createKakaotalkLogin() {
+        $("#id_login_state .kakao-logout-btn,#id_login_state .kakao-login-btn").remove();
+        // var loginBtn = $("<a/>", { "class": "kakao-login-btn", "text": "로그인" });
+        var loginBtn = $("<img/>", { "class": "kakao-login-btn", "src": "../img/kakao_login_medium_narrow.png" });
+        loginBtn.click(function () {
+          Kakao.Auth.login({
+            persistAccessToken: true,
+            persistRefreshToken: true,
+            success: function (authObj) {
+
+              getKakaotalkUserProfile();
+              createKakaotalkLogout();
+            },
+            fail: function (err) {
+              console.log(err);
+            }
+          });
+        });
+        $("#id_login_state").prepend(loginBtn)
+      }
+      function createKakaotalkLogout() {
+        $("#id_login_state .kakao-logout-btn,#id_login_state .kakao-login-btn").remove();
+        var logoutBtn = $("<a/>", { "class": "kakao-logout-btn", "text": "로그아웃" });
+        logoutBtn.click(function () {
+          Kakao.Auth.logout();
+          sessionStorage.clear();// 저장된 모든 값 삭제
+
+          createKakaotalkLogin();
+          $("#id_login_img").text("");
+        });
+        $("#id_login_state").prepend(logoutBtn);
+      }
+      // if (Kakao.Auth.getRefreshToken() != undefined && Kakao.Auth.getRefreshToken().replace(/ /gi, "") != "") {
+      //     createKakaotalkLogout();
+      //     getKakaotalkUserProfile();
+      // } else {
+      //     createKakaotalkLogin();
+      // }
+      if (sessionStorage.getItem("nickname") != null && sessionStorage.getItem("image") != null) {
+        createKakaotalkLogout();
+        getKakaotalkUserProfile();
+      } else {
+        createKakaotalkLogin();
+      }
+    });
+  </script>
+  <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+  <!-- Jquery 가져오기 -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <!-- bootstrap 가져오기 -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script> <!-- bootstrap table 가져오기 -->
+  <script src="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.js"></script>
+
 </body>
+
 </html>

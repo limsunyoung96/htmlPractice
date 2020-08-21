@@ -19,7 +19,7 @@
             <a><img src="../img/양.png" id="header_img"></a>
             <a id="header_page_name"> 넥스트어린이 교육페이지</a>
             &nbsp;&nbsp;
-            
+
         </div>
         <div id="id_menu_bar">
             <div class="cl_menu" onclick="location.href='#id_music'">동요</div>
@@ -225,6 +225,7 @@
         </div>
 
         <div id="id_copyright">
+            <div onclick="location.href='map.html'">회사 위치 보기</div><br>
             Copyright(c)2020 by SunyoungLim.<br>All designs cannot be copied without permission.
         </div>
         <textarea id="id_ta" style="display: none;"></textarea>
@@ -344,7 +345,7 @@
         var f_newOpen = function (v_id) {
             if (!v_newWin) {
                 v_newVideoId = v_id
-                v_newWin = window.open("./play.html?v_id="+v_id, "",
+                v_newWin = window.open("./play.html?v_id=" + v_id, "",
                     "width=900. height=530, left =200, top=200")
             }
         }
@@ -387,6 +388,7 @@
         }
 
 
+
         // 로그인, 로그아웃
         $(document).ready(function () {
             Kakao.init("9212435427721fda8278606df4519813");
@@ -394,8 +396,16 @@
                 Kakao.API.request({
                     url: '/v2/user/me',
                     success: function (res) {
-                        $("#id_login_img").append(res.properties.nickname);
-                        $("#id_login_img").append($("<img/>", { "src": res.properties.profile_image, "alt": res.properties.nickname + "님의 프로필 사진", "style":"heght:25px; width:25px" }));
+                        if (sessionStorage.getItem("nickname") != null && sessionStorage.getItem("image") != null) {
+                            $("#id_login_img").append(sessionStorage.getItem("nickname"));
+                            $("#id_login_img").append($("<img/>", { "src": sessionStorage.getItem("image"), "alt": sessionStorage.getItem('nickname') + "님의 프로필 사진", "style": "heght:25px; width:25px" }));
+                        } else {
+                            sessionStorage.setItem("nickname", res.properties.nickname);
+                            sessionStorage.setItem("image", res.properties.profile_image);
+                            $("#id_login_img").append(res.properties.nickname);
+                            $("#id_login_img").append($("<img/>", { "src": res.properties.profile_image, "alt": res.properties.nickname + "님의 프로필 사진", "style": "heght:25px; width:25px" }));
+                        }
+
                     },
                     fail: function (error) {
                         console.log(error);
@@ -411,6 +421,7 @@
                         persistAccessToken: true,
                         persistRefreshToken: true,
                         success: function (authObj) {
+
                             getKakaotalkUserProfile();
                             createKakaotalkLogout();
                         },
@@ -426,12 +437,20 @@
                 var logoutBtn = $("<a/>", { "class": "kakao-logout-btn", "text": "로그아웃" });
                 logoutBtn.click(function () {
                     Kakao.Auth.logout();
+                    sessionStorage.clear();// 저장된 모든 값 삭제
+
                     createKakaotalkLogin();
                     $("#id_login_img").text("");
                 });
                 $("#id_login_state").prepend(logoutBtn);
             }
-            if (Kakao.Auth.getRefreshToken() != undefined && Kakao.Auth.getRefreshToken().replace(/ /gi, "") != "") {
+            // if (Kakao.Auth.getRefreshToken() != undefined && Kakao.Auth.getRefreshToken().replace(/ /gi, "") != "") {
+            //     createKakaotalkLogout();
+            //     getKakaotalkUserProfile();
+            // } else {
+            //     createKakaotalkLogin();
+            // }
+            if (sessionStorage.getItem("nickname") != null && sessionStorage.getItem("image") != null) {
                 createKakaotalkLogout();
                 getKakaotalkUserProfile();
             } else {
